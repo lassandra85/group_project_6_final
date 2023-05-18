@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-// import { Header } from './Header';
+import  Header from './Header';
 import { Suspense } from 'react';
 
 export const Layout = () => {
