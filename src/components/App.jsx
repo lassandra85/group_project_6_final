@@ -1,35 +1,27 @@
-import MainPage from "pages/MainPage/MainPage";
+import { lazy } from "react";
 import { Route,Routes } from "react-router-dom";
-import RegisterPage from "pages/RegisterPage/RegisterPage";
-import LoginPage from "pages/LoginPage/LoginPage";
-import NewsPage from "pages/NewsPage/NewsPage";
-import NoticesPage from "pages/NoticesPage/NoticesPage";
-import OurFriendsPage from "pages/OurFriendsPage/OurFriendsPage";
-import UserPage from "pages/UserPage/UserPage";
-import NoticesCategoriesList from "./NoticesCategoriesList/NoticesCategoriesList";
 import { SharedLayout } from "./SharedLayout";
 
+const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
+const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
+const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
+const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage/OurFriendsPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 
 export const App = () => {
   return (
       
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        
+        <Route path="main" element={<MainPage />}/>
         <Route path="news" element={<NewsPage />}/>
         <Route path="notices" element={<NoticesPage />}/>
-        <Route path="friends" element={<OurFriendsPage/>}/>
-        <Route path="main" element={<MainPage />}/>
-        <Route path="register" element={<RegisterPage />}/>
+        <Route path="friends" element={<OurFriendsPage />}/>
         <Route path="login" element={<LoginPage />}/>
-        <Route path="user" element={<UserPage />}/>
-        <Route path="/notices/:categoryName" element={<NoticesPage />}>
-          <Route path="/notices/sell" element={<NoticesCategoriesList />} />
-          <Route path="/notices/lost-found" element={<NoticesCategoriesList />} />
-          <Route path="/notices/for-free" element={<NoticesCategoriesList />} />
-        </Route>
-
-     
+        <Route path="register" element={<RegisterPage />}/>
+        <Route path="user" element={<UserPage />}/>       
 
       </Route>
     </Routes>

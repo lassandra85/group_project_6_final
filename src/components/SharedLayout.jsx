@@ -4,7 +4,8 @@ import  Header from './Header/Header';
 import { Suspense } from 'react';
 import Navigation from "./Navigation/Navigation";
 import Logo from "./Logo/Logo";
-import { Link } from 'react-router-dom';
+import UserNav from './UserNav/UserNav';
+import AuthNav from './AuthNav/AuthNav';
 
 
 export const SharedLayout = () => {
@@ -12,11 +13,9 @@ export const SharedLayout = () => {
     <div>
       <Header>
         <Logo/>
-        <Navigation>
-          <Link to="/news">Home</Link>
-          <Link to="/notices">About</Link>
-          <Link to="/friends">Products</Link>
-        </Navigation>
+        <Navigation/>     
+        <UserNav/> 
+        <AuthNav/>
       </Header>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
