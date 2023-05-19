@@ -3,7 +3,7 @@ import { lazy } from "react";
 import { Route,Routes } from "react-router-dom";
 import { SharedLayout } from "./SharedLayout";
 
-import Loader from 'components/Loader';
+
 
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
 const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
@@ -15,7 +15,7 @@ const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 
 export const App = () => {
   return (
-    <Suspense fallback={<Loader />}>  
+    <Suspense fallback={<div>...Loader</div>}>  
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="main" element={<MainPage />}/>
