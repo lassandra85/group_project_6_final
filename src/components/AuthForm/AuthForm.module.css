@@ -12,6 +12,15 @@
   align-items: center;
   justify-content: center;
 }
+  @media screen and (min-width:768px) {
+    .container{
+      width: 608px;
+      padding-left: 75px;
+      padding-right: 75px;
+    }
+  }
+  
+
 
 .header {
   color: var(--color-black);
@@ -19,12 +28,19 @@
   padding: 40px 70px;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 1.38;
+  font-size: 24px;  
   margin: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+@media screen and (min-width:768px) {
+  .header {
+    width: 226px;
+    padding: 60px 191px 40px 191px;
+    font-size: 36px;
+    
+  }
 }
 
 .formRegister {
@@ -32,8 +48,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 24px;
-  
+  gap: 24px;  
+}
+
+@media screen and (min-width:768px) {
+  .formRegister {
+    gap: 32px;
+
+  }
 }
 
 .inputRegister {
@@ -45,9 +67,14 @@
   flex-direction: row;
   align-items: center;
   padding: 12px 16px;
-  color: var(--color-grey);
-  
-  
+  color: var(--color-grey);   
+}
+
+@media screen and (min-width:768px) {
+  .inputRegister {
+  width: 458px;
+
+  }
 }
 
 .bttnRegister {
@@ -66,6 +93,13 @@
   width: 256px;
 border-radius: 40px;
 border-color: transparent;
+cursor: pointer;
+}
+@media screen and (min-width:768px) {
+  .bttnRegister {
+    width: 458px;
+
+  }
 }
 
 
@@ -76,6 +110,14 @@ border-color: transparent;
     align-items: center;
     margin-top: 24px;
     margin-bottom: 40px;
+}
+
+@media screen and (min-width:768px) {
+  .containerLog {
+    margin-top: 16px;
+      margin-bottom: 60px;
+
+  }
 }
 
 .text{
@@ -106,5 +148,11 @@ border-color: transparent;
   position: absolute;
   top: 12px;
   left: 216px;
+}
+
+@media screen and (min-width: 768px) {
+  .eyeBttn {  
+    left: 420px;
+  }
 }
 

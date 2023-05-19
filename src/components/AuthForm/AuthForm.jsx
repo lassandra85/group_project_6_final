@@ -3,11 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import { useState } from 'react';
 
+
 const AuthForm = () => {
   
-  const [isActive, setActive] = useState(false);
+  const [isActive, setActive] = useState(false); 
   const handleClick = () => {
-    setActive(!isActive);
+    setActive(!isActive);    
   };
   const [isActive2, setActive2] = useState(false);
   const handleClick2 = () => {
@@ -15,7 +16,7 @@ const AuthForm = () => {
   }
 
 
-  
+
   return (
     <div className={css.container}>
       <h2 className={css.header}>Registration</h2>
@@ -32,8 +33,8 @@ const AuthForm = () => {
         <div className={css.passwordCont}>
           <label>
             <input
-              placeholder="Password"
-              type="password"
+              placeholder="Password"              
+              type={isActive ? "text" : "password"}
               name="password"
               className={css.inputRegister}
             ></input>
@@ -48,7 +49,7 @@ const AuthForm = () => {
           <label>
             <input
               placeholder="Confirm password"
-              type="password"
+              type={isActive2 ? "text" : "password"}
               name="confirm password"
               className={css.inputRegister}
             ></input>
