@@ -19,6 +19,15 @@ import desktop2x_3 from '../../image/main_img/3desktop2x.png' */
 
     
 }
+.mainTitle{
+    max-width: 280px;
+    height: 88px;
+    margin-top: 32px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.38;
+    color:var(--text-color-primary);
+}
 
 
 .imageContainer{
@@ -31,6 +40,7 @@ import desktop2x_3 from '../../image/main_img/3desktop2x.png' */
 }
 
 .imageOne{
+    display: block;
     position:absolute;
     width: 183px;
     height: auto;
@@ -40,31 +50,97 @@ import desktop2x_3 from '../../image/main_img/3desktop2x.png' */
   
 }
 
+.imageTwo{
+    position: absolute;
+    width: 235px;
+    height: auto;
+    right: -45px;
+    bottom: 131px;
+    content: url('../../image/main_img/2mobile2x.png');
+}
+
+.imageThree{
+    position: absolute;
+    width: 165px;
+    height: auto;
+    bottom: -5px;
+    right: 1px;
+    content: url('../../image/main_img/3mobile2x.png');
+}
+
 
 
 @media(min-width:768px){
     .mainContainer{
         background-image: url('../../image/bg_tablet2x.png');
     }
+    .mainTitle{
+        max-width: 588px;
+        height: 200px;
+        margin-top: 80px;
+        font-size: 68px;
+        line-height: 1,47;
+    }
     .imageContainer{
         height: 820px;
         width: 768px;
         margin-top: 20px;
         margin-left: -30px;
+       
     }
     .imageOne{
-        
+        width:380px;
+        bottom: 112px;
+        left: -45px;
+        content:url('../../image/main_img/1tablet2x.png');
+    }
+    .imageTwo{
+        bottom: 280px;
+        width: 490px;
+        right: -74px;
+        content: url('../../image/main_img/2tablet2x.png');
+    }
+    .imageThree{
+        bottom: 12px;
+        right: 12px;
+        width: 332px;
+        content: url('../../image/main_img/3tablet2x.png');
     }
 }
 
-@media(min-width:768px){
+@media(min-width:1280px){
     .mainContainer{
         background-image: url('../../image/bg_desktop2x.png');
+        flex-direction: row;
     }
     .imageContainer{
         right: 0;
         width: 917px;
         height: 570px;
         top: 180px;
+    }
+    .imageOne{
+        width: 380px;
+        bottom: -25px;
+        left: -140px;
+        content: url('../../image/main_img/1desktop2x.png');
+    }
+    .imageTwo{
+        bottom: 130px;
+        right:30px;
+        width: 490px;
+        content: url('../../image/main_img/2desktop2x.png');
+    }
+    .imageThree{
+        bottom: -140px;
+        right: 112px;
+        width: 336px;
+        content: url('../../image/main_img/3desktop2x.png');
+    }
+    .mainTitle{
+        max-width: 501px;
+        height: 264px;
+        margin-top:175px;
+        line-height: 1.3;
     }
 }

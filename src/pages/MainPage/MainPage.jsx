@@ -1,14 +1,14 @@
-
+import css from "./MainPage.module.css" 
 const MainPage = () => {
     return (
-        <div className="mainContainer">
+        <div className={css.mainContainer}>
             
-            <h1 className="mainTitle">Take good care of your small pets</h1>
-            <div className="imageContainer">
-               <div className="imageOne"></div>
-               <div className="imageTwo"></div>
-               <div className="imageThree"></div>
-            </div>
+            <h1 className={css.mainTitle}>Take good care of your small pets</h1>
+            <ul className={css.imageContainer}>
+               <li className={css.imageOne}></li>
+               <li className={css.imageTwo}></li>
+               <li className={css.imageThree}></li>
+            </ul>
         </div>
     );
 }
