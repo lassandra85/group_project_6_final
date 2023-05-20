@@ -68,6 +68,11 @@
   align-items: center;
   padding: 12px 16px;
   color: var(--color-grey);   
+  outline: none;
+}
+
+.inputRegister:focus {
+  border: 3px solid var(--color-gradient_blue);
 }
 
 @media screen and (min-width:768px) {

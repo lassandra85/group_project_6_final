@@ -2,26 +2,47 @@ import css from '../AuthForm/AuthForm.module.css';
 import { NavLink } from 'react-router-dom';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import { useState } from 'react';
-
+import { useDispatch } from 'react-redux';
+import { register } from '../../redux/auth/operations';
 
 const AuthForm = () => {
-  
-  const [isActive, setActive] = useState(false); 
+  const dispatch = useDispatch();
+
+  const [isActive, setActive] = useState(false);
   const handleClick = () => {
-    setActive(!isActive);    
+    setActive(!isActive);
   };
   const [isActive2, setActive2] = useState(false);
   const handleClick2 = () => {
     setActive2(!isActive2);
-  }
+  };
 
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    const form = evt.currentTarget;
+    
+    if (form.elements.password.value === form.elements.confirmPassword.value) {
+      console.log("ok")
+      dispatch(
+      register({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+        confirmPassword: form.elements.confirmPassword.value,
+      })
+    );
 
+    form.reset();
+    } else {
+        console.log("not ok")
+    }   
+    
+  };
 
   return (
     <div className={css.container}>
       <h2 className={css.header}>Registration</h2>
 
-      <form className={css.formRegister}>
+      <form className={css.formRegister} onSubmit={handleSubmit}>
         <label>
           <input
             placeholder="Email"
@@ -33,15 +54,17 @@ const AuthForm = () => {
         <div className={css.passwordCont}>
           <label>
             <input
-              placeholder="Password"              
-              type={isActive ? "text" : "password"}
+              placeholder="Password"
+              type={isActive ? 'text' : 'password'}
               name="password"
               className={css.inputRegister}
             ></input>
             <button type="button" className={css.eyeBttn} onClick={handleClick}>
-              {isActive ? <BsEye size={24} color="rgba(84, 173, 255, 1)" />
-              : <BsEyeSlash size={24} color="rgba(84, 173, 255, 1)"/>}
-              
+              {isActive ? (
+                <BsEye size={24} color="rgba(84, 173, 255, 1)" />
+              ) : (
+                <BsEyeSlash size={24} color="rgba(84, 173, 255, 1)" />
+              )}
             </button>
           </label>
         </div>
@@ -49,13 +72,20 @@ const AuthForm = () => {
           <label>
             <input
               placeholder="Confirm password"
-              type={isActive2 ? "text" : "password"}
-              name="confirm password"
+              type={isActive2 ? 'text' : 'password'}
+              name="confirmPassword"
               className={css.inputRegister}
             ></input>
-            <button type="button" className={css.eyeBttn} onClick={handleClick2}>
-              {isActive2 ? <BsEye size={24} color="rgba(84, 173, 255, 1)" />
-              : <BsEyeSlash size={24} color="rgba(84, 173, 255, 1)"/>}
+            <button
+              type="button"
+              className={css.eyeBttn}
+              onClick={handleClick2}
+            >
+              {isActive2 ? (
+                <BsEye size={24} color="rgba(84, 173, 255, 1)" />
+              ) : (
+                <BsEyeSlash size={24} color="rgba(84, 173, 255, 1)" />
+              )}
             </button>
           </label>
         </div>
