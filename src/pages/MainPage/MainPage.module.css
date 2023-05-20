@@ -79,7 +79,7 @@ import desktop2x_3 from '../../image/main_img/3desktop2x.png' */
         height: 200px;
         margin-top: 80px;
         font-size: 68px;
-        line-height: 1,47;
+        line-height: 1.47;
     }
     .imageContainer{
         height: 820px;
@@ -113,6 +113,12 @@ import desktop2x_3 from '../../image/main_img/3desktop2x.png' */
         background-image: url('../../image/bg_desktop2x.png');
         flex-direction: row;
     }
+    .mainTitle{
+        max-width: 501px;
+        height: 264px;
+        margin-top:175px;
+        line-height: 1.3;
+    }
     .imageContainer{
         right: 0;
         width: 917px;
@@ -137,10 +143,5 @@ import desktop2x_3 from '../../image/main_img/3desktop2x.png' */
         width: 336px;
         content: url('../../image/main_img/3desktop2x.png');
     }
-    .mainTitle{
-        max-width: 501px;
-        height: 264px;
-        margin-top:175px;
-        line-height: 1.3;
-    }
+    
 }

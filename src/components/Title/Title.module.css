@@ -1,0 +1,18 @@
+.title{
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+
+}
+
+@media(min-width:var(--media-tablet)){
+    .title{
+        font-size: 48px;
+    }
+}
+
+@media(min-width:768px){
+    .title{
+        font-size: 48px;
+    }
+}

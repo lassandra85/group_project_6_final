@@ -1,6 +1,8 @@
-const Title = () => {
+import css from './Title.module.css'
+
+const Title = ({text}) => {
     return (
-        <div></div>
+        <h1 className={css.title}>{text}</h1>
     );
 }
 
