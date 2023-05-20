@@ -1,5 +1,5 @@
 import { createSlice,  isAnyOf } from '@reduxjs/toolkit';
-import { register } from './operations';
+import { register, login } from './operations';
 
 
 const initialState = {
@@ -14,7 +14,8 @@ const authSlice = createSlice({
     initialState,
   extraReducers: builder => builder 
     .addMatcher(
-      isAnyOf(register.fulfilled), (state, action) => {
+      isAnyOf(register.fulfilled,
+                login.fulfilled), (state, action) => {
         state.user = action.payload.user
         state.token = action.payload.token
         state.isLoggedIn = true

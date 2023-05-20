@@ -1,12 +1,13 @@
 import css from '../RegisterForm/RegisterForm.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate} from 'react-router-dom';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
 
 const RegisterForm = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [isActive, setActive] = useState(false);
   const handleClick = () => {
@@ -18,13 +19,20 @@ const RegisterForm = () => {
   };
 
   const [pass, setPass] = useState(true);
+  const [em, setEm] = useState(true);
+  const [err, setErr] = useState(true)
 
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = evt.currentTarget;
+    const emailField = form.elements.email.value;
+    const passwordField = form.elements.password.value;
+    const confirmPasswordField = form.elements.confirmPassword.value;
 
-    if (form.elements.password.value === form.elements.confirmPassword.value) {
+    if (passwordField === confirmPasswordField && emailField && passwordField!=="" && confirmPasswordField!=="") {
       setPass(pass);
+      setEm(em)
+      setErr(err)
       dispatch(
         register({
           email: form.elements.email.value,
@@ -33,9 +41,16 @@ const RegisterForm = () => {
       );
 
       form.reset();
-    } else {
+      navigate('/user')
+    } else if (!emailField && confirmPasswordField === passwordField && passwordField!=="" && confirmPasswordField!=="") {
+      setEm(!em)
+    } else if (!emailField && !passwordField && !confirmPasswordField) {
+      setErr(!err)
+    }
+    else if(confirmPasswordField.value !== passwordField  ) {
       setPass(!pass);
     }
+    
   };
 
   return (
@@ -89,6 +104,8 @@ const RegisterForm = () => {
             </button>
           </label>
           {pass ? '' : <p className={css.errorRassword}>Password mismatch</p>}
+          {em ? '' : <p className={css.errorRassword}>Email incorrect</p>}
+          {err ? '' : <p className={css.errorRassword}>Enter data</p>}
         </div>
         <button type="submit" className={css.bttnRegister}>
           Registration
