@@ -24,12 +24,11 @@ const RegisterForm = () => {
     const form = evt.currentTarget;
 
     if (form.elements.password.value === form.elements.confirmPassword.value) {
-      setPass(!pass);
+      setPass(pass);
       dispatch(
         register({
           email: form.elements.email.value,
-          password: form.elements.password.value,
-          confirmPassword: form.elements.confirmPassword.value,
+          password: form.elements.password.value,          
         })
       );
 
