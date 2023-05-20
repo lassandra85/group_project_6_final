@@ -10,7 +10,7 @@ const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage/OurFriendsPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
-const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+export const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 const AddPetPage = lazy(()=>import('../pages/AddPetPage/AddPetPage'))
 
