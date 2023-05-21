@@ -16,6 +16,7 @@ const AddPetPage = lazy(()=>import('../pages/AddPetPage/AddPetPage'))
 
 export const App = () => {
   return (
+    
     <Suspense fallback={<Loader />}>  
       <Routes>
         <Route path="/" element={<SharedLayout />}>
@@ -26,8 +27,7 @@ export const App = () => {
           <Route path="friends" element={<OurFriendsPage />}/>
           <Route path="login" element={<LoginPage />}/>
           <Route path="register" element={<RegisterPage />}/>
-          <Route path="user" element={<UserPage />}/>       
-
+          <Route path="user" element={<UserPage />}/> 
         </Route>
       </Routes>
     </Suspense>

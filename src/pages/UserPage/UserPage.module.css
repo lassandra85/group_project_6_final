@@ -1,0 +1,48 @@
+.box {
+    background: #FFFFFF;
+    box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+    border-radius: 20px;
+    margin: auto 20px;
+    padding: 20px 8px 25px;
+
+    @media screen and (min-width:768px) and (max-width:1279px) {
+        margin: 24px 32px 40px;
+        padding: 20px 76px 21px 20px;
+        display: flex;
+        flex-direction: column;
+        /* flex-flow: wrap;
+        gap: 71px;
+        flex-direction: row-reverse; */
+
+        .photo-container {
+            order: 1;
+            margin-left: auto;
+        }
+    }
+
+    @media screen and (min-width:1280px) {
+        width: 395px;
+        padding: 20px 24px 20px 16px;
+    }
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    text-align: left;
+    margin: 40px auto 18px 20px;
+
+    @media screen and (min-width:768px) {
+        margin: 60px auto 24px 33px;
+    }
+
+    @media screen and (min-width:1280px) {
+        margin: 62px auto 24px 17px;
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 1.35;
+    }
+
+}
