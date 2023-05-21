@@ -7,16 +7,17 @@ import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import css from './SharedLayout.module.css';
 
-export const SharedLayout = () => {
+const SharedLayout = () => {
   return (
     <div className={css.contentWrapper}>
       <Header />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
       <main>
         <Section>
           <Container>
-            <Suspense fallback={<div>Loading...</div>}>
-              <Outlet />
-            </Suspense>
+           
           </Container>
         </Section>
         <Toaster position="top-right" reverseOrder={false} />
@@ -25,3 +26,5 @@ export const SharedLayout = () => {
     </div>
   );
 };
+
+export default SharedLayout;

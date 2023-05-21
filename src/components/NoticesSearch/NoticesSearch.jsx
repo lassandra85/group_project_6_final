@@ -1,30 +1,44 @@
+import { useState } from 'react';
 import { Formik, Form,Field } from 'formik';
+import { BsSearch } from "react-icons/bs";
+ import { RxCross1 } from "react-icons/rx";
+const NoticesSearch = ({onFormSubmit}) => {
 
-const NoticesSearch = () => {
-
-   const handleSubmit = (values,actions)=>{
-    console.log(values)
-    console.log(actions)
+    const [query, setQuery] = useState('')   
+ 
+    const handleChange = (values)=>{
+        console.log(values)
+    }
+   const handleSubmit = (values,{resetForm})=>{
+    // console.log(values)    
+    // onFormSubmit(query);
+    resetForm();
+   
    }
+  
+ 
+  
+
    
   return (
     <>
-      <Formik  initialValues={{query:''}} onSubmit={handleSubmit}>
-        <Form>
+      <Formik  initialValues={{query:''}} onSubmit={handleSubmit} onChange={handleChange} >
+       { props=>
+       <Form>
           <Field
             type="text"
             name="query"
             id="searchQuery"
-            value=''
             placeholder="Search"
+            onChange={props.onChange}
           />
-          <button type="submit">
-            {/* <SearchIcon /> */}
+          <button type="submit" query={query}>
+          <BsSearch/>
           </button>
-          <button type="button">
-            {/* <CrossIcon /> */}
+          <button type="button" onClick={()=>{setQuery('')}} query={query}>
+             <RxCross1 /> 
           </button>
-        </Form>
+        </Form>}
       </Formik>
     </>
   );
