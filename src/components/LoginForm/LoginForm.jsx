@@ -2,18 +2,33 @@ import css from '../LoginForm/LoginForm.module.css';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import { login } from '../../redux/auth/operations';
+import { useDispatch } from 'react-redux';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [isActive, setActive] = useState(false);
   const handleClick = () => {
     setActive(!isActive);
   };
 
+  const handleSubmit = evt => {
+    evt.preventDefault()
+    const form = evt.currentTarget;
+    dispatch(
+        login({
+          email: form.elements.email.value,
+          password: form.elements.password.value,          
+        })
+      );
+
+  }
+
   return (
     <div className={css.container}>
       <h2 className={css.header}>Login</h2>
 
-      <form className={css.formRegister}>
+      <form className={css.formRegister} onSubmit={handleSubmit}>
         <label>
           <input
             placeholder="Email"
