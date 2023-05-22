@@ -1,15 +1,10 @@
-import { useState } from 'react';
-import { BiEditAlt } from 'react-icons/bi';
-import { BsCheck2 } from 'react-icons/bs';
-import styles from './UserDataItem.module.css';
-
 const UserDataItem = ({ id, inputName, placeholder }) => {
   const [isReadonly, setIsReadonly] = useState(true);
   const [value, setValue] = useState('');
-  
-  const handleChangeInput = (e) => {
-setValue(e.target.value)
-  }
+
+  const handleChangeInput = e => {
+    setValue(e.target.value);
+  };
 
   return (
     <div className={styles.field}>

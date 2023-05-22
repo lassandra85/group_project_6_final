@@ -3,31 +3,31 @@ import { useState } from 'react';
 import { MdOutlinePhotoCamera } from 'react-icons/md';
 import { BsCheck2 } from 'react-icons/bs';
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-import userPhoto from '../../image/user-photo-default.png'
+import userPhoto from '../../image/user-photo-default.png';
 
 const userDataNotFilled = {
-// на маунте компонента делать запрос на бекенд на получение данных пользователя  и если их нет то значение по дефолту, а если есть то подставлять данные с бека
-}
+  // на маунте компонента делать запрос на бекенд на получение данных пользователя  и если их нет то значение по дефолту, а если есть то подставлять данные с бека
+};
 const UserData = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imgSrc, setImgSrc] = useState(null);
 
-  const handleChange = (e) => {
-    setSelectedFile(e.target.files[0])
+  const handleChange = e => {
+    setSelectedFile(e.target.files[0]);
     const src = window.URL.createObjectURL(e.target.files[0]);
-    setImgSrc(src)
-  }
+    setImgSrc(src);
+  };
 
   const handleUpload = async () => {
     if (!selectedFile) {
       alert('Please select file!');
-      return
+      return;
     }
     const formData = new FormData();
-    formData.append('file', imgSrc);  //название файла нужно узнать у бекенда, под каким ключом он лежит
-console.log(formData);
+    formData.append('file', imgSrc); //название файла нужно узнать у бекенда, под каким ключом он лежит
+    console.log(formData);
     //сделать запрос на сервер что бы сохранить картинку там useDispatch( patch   data...) отправлять imgSrc
-  }
+  };
 
   return (
     <div className={styles.box}>

@@ -1,11 +1,11 @@
 import LoginForm from "components/LoginForm/LoginForm";
 import  RegisterForm  from "../RegisterForm/RegisterForm";
-import { App, RegisterPage } from "components/App";
+import  RegisterPage  from "pages/RegisterPage/RegisterPage";
  
 
 const AuthForm = () => {
 
-  console.log(App())
+
   return (
     <>
       {RegisterPage ? <RegisterForm></RegisterForm> : <LoginForm></LoginForm>}          

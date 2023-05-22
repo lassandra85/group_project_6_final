@@ -1,18 +1,30 @@
+import Header from './Header/Header';
+import Section from './Section/Section';
+import Container from './Container/Container';
+import Footer from './Footer/Footer';
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import  Header from './Header/Header';
-import { Suspense } from 'react';
+import css from './SharedLayout.module.css';
 
-
-
-export const SharedLayout = () => {
+const SharedLayout = () => {
   return (
-    <div>
-      <Header/>
+    <div className={css.contentWrapper}>
+      <Header />
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
-      <Toaster position="top-right" reverseOrder={false} />
+      <main>
+        <Section>
+          <Container>
+           
+          </Container>
+        </Section>
+        <Toaster position="top-right" reverseOrder={false} />
+      </main>
+      <Footer />
     </div>
   );
 };
+
+export default SharedLayout;

@@ -2,7 +2,7 @@ import  axios  from "axios"
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com'
+axios.defaults.baseURL = 'https://pets-rest-api.onrender.com/'
 
 
 const setAuthHeader = token => { 
@@ -26,6 +26,16 @@ export const register = createAsyncThunk(
         }
     }
 )
+
+export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
+    try {
+        const response = await axios.post('/users/login', credentials);
+        setAuthHeader(response.data.token);
+        return response.data
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.message);
+    }
+});
 
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
     try {
