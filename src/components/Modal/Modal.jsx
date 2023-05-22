@@ -1,5 +1,7 @@
 import { RxCross2 } from 'react-icons/rx';
-
+import { createPortal } from 'react-dom';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 const modalContainer = document.getElementById('modal-root');
 
 //додати у батьківський компонент (сторінку) наступний код:
