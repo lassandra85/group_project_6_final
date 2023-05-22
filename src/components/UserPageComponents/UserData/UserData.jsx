@@ -1,6 +1,6 @@
 const UserData = () => {
     return (
-        <></>
+        <div></div>
     );
 }
 
