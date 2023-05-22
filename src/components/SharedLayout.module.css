@@ -12,8 +12,8 @@
         /* ::after {
             min-height: 79px;
         } */
-    }
-}
+    /* }
+} */
 
 @media(min-width:1280px) {
     .contentWrapper {
@@ -28,4 +28,3 @@
 
 
 
-   */
