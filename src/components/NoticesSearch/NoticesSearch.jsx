@@ -1,28 +1,31 @@
-import { useState } from 'react';
-import { Formik, Form,Field } from 'formik';
-import { BsSearch } from "react-icons/bs";
- import { RxCross1 } from "react-icons/rx";
-const NoticesSearch = ({onFormSubmit}) => {
+// import { useState } from 'react';
+// import { Formik, Form,Field } from 'formik';
+// import { BsSearch } from "react-icons/bs";
+//  import { RxCross1 } from "react-icons/rx";
+const NoticesSearch = () => {
 
-    const [query, setQuery] = useState('')   
+  //   const [query, setQuery] = useState('')   
  
-    const handleChange = (values)=>{
-        console.log(values)
-    }
-   const handleSubmit = (values,{resetForm})=>{
-    // console.log(values)    
-    // onFormSubmit(query);
-    resetForm();
+  //   const handleChange = (values)=>{
+  //       console.log(values)
+  //   }
+  //  const handleSubmit = (values,{resetForm})=>{
+  //   // console.log(values)    
+  //   // onFormSubmit(query);
+  //   resetForm();
    
-   }
-  
- 
-  
-
-   
+     
   return (
-    <>
-      <Formik  initialValues={{query:''}} onSubmit={handleSubmit} onChange={handleChange} >
+    <div>
+    
+    </div>
+  );
+
+}
+export default NoticesSearch;
+
+
+  {/* <Formik  initialValues={{query:''}} onSubmit={handleSubmit} onChange={handleChange} >
        { props=>
        <Form>
           <Field
@@ -39,9 +42,4 @@ const NoticesSearch = ({onFormSubmit}) => {
              <RxCross1 /> 
           </button>
         </Form>}
-      </Formik>
-    </>
-  );
-};
-
-export default NoticesSearch;
+      </Formik> */}
