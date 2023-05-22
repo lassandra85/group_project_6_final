@@ -1,7 +1,7 @@
-const Nav = () => {
-    return (
-        <div></div>
-    );
-}
+// import React from 'react';
 
-export default Nav;
+// const Nav = () => {
+//   return <div>Navigation</div>;
+// };
+
+// export default Nav;
