@@ -1,3 +1,8 @@
+import { useState } from 'react';
+import styles from './UserDataItem.module.css';
+import { BiEditAlt } from 'react-icons/bi';
+import { BsCheck2 } from 'react-icons/bs';
+
 const UserDataItem = ({ id, inputName, placeholder }) => {
   const [isReadonly, setIsReadonly] = useState(true);
   const [value, setValue] = useState('');
