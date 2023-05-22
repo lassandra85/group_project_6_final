@@ -3,9 +3,10 @@ import styles from './UserDataItem.module.css';
 import { BiEditAlt } from 'react-icons/bi';
 import { BsCheck2 } from 'react-icons/bs';
 
+
 const UserDataItem = ({ id, inputName, placeholder }) => {
   const [isReadonly, setIsReadonly] = useState(true);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(''); //пропсом передать с юзердата значение полей юзера со стейта
 
   const handleChangeInput = e => {
     setValue(e.target.value);
@@ -22,6 +23,7 @@ const UserDataItem = ({ id, inputName, placeholder }) => {
           className={styles.input}
           id="user_name"
           placeholder={placeholder}
+          // value={value.email}
           readOnly={isReadonly}
           onChange={handleChangeInput}
         />
@@ -43,7 +45,7 @@ const UserDataItem = ({ id, inputName, placeholder }) => {
           />
         ) : (
           <BsCheck2
-            type="button"
+            type="submit"
             onClick={() => setIsReadonly(prevState => !prevState)}
             // onSubmit={}
             color={value.length > 5 ? '#00C3AD' : '#888888'}
