@@ -1,5 +1,5 @@
 import styles from './UserPage.module.css'
-import UserData from "components/UserData/UserData";
+import UserData from "components/UserPageComponents/UserData/UserData";
 import LogOut from "components/LogOut/LogOut";
 
 const UserPage = () => {
