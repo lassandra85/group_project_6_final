@@ -1,9 +1,9 @@
-/* .contentWrapper{
+.contentWrapper{
     min-height: 100vh;
     ::after {
         content: '';
         display: block;
-         min-height: 0;
+        min-height: 0;
     }
 }
 @media(min-width:768px) { 
@@ -12,8 +12,8 @@
         /* ::after {
             min-height: 79px;
         } */
-    /* }
-} */
+    }
+}
 
 @media(min-width:1280px) {
     .contentWrapper {
