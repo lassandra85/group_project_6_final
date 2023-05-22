@@ -1,7 +1,9 @@
-const UserDataItem = () => {
-    return (
-        <div></div>
-    );
-}
+
+
+const UserDataItem = ()=>{
+  return (
+<div></div>
+  );
+};
 
 export default UserDataItem;
