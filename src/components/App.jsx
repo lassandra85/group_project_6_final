@@ -3,6 +3,7 @@ import { Suspense,lazy } from "react";
 import { Route,Routes } from "react-router-dom";
 import SharedLayout from "./SharedLayout";
 
+import Loader from 'components/Loader/loader';
 
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
 const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
@@ -15,7 +16,8 @@ const AddPetPage = lazy(()=>import('../pages/AddPetPage/AddPetPage'))
 
 export const App = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    
+    <Suspense fallback={<Loader />}>  
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="main" element = {<MainPage />}/>
@@ -25,8 +27,7 @@ export const App = () => {
           <Route path="friends" element={<OurFriendsPage />}/>
           <Route path="login" element={<LoginPage />}/>
           <Route path="register" element={<RegisterPage />}/>
-          <Route path="user" element={<UserPage />}/>       
-
+          <Route path="user" element={<UserPage />}/> 
         </Route>
       </Routes>
     </Suspense>
