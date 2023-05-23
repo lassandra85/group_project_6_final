@@ -5,6 +5,8 @@ import { RxCross2 } from 'react-icons/rx';
 
 import PropTypes from 'prop-types';
 
+import css from '../Modal/Modal.module.css';
+
 /* import { useLocation } from 'react-router-dom'; */
 
 const modalContainer = document.getElementById('modal-root');
@@ -58,12 +60,12 @@ const Modal = ({ toggleModal, children }) => {
 
   return createPortal(
     <>
-      <div className="backdrop" onClick={onBackdropClick} /* inNoticePage={inNoticePage} */ >
+      <div className={css.backdrop} onClick={onBackdropClick} /* inNoticePage={inNoticePage} */ >
 
-        <div className="modalWindow">
+        <div className={css.modalWindow}>
 
-          <button className="closeBtn" onClick={toggleModal}>
-            <RxCross2 className="svg_closeBtn"/>
+          <button className={css.closeBtn} onClick={toggleModal}>
+            <RxCross2 className={css.svg_closeBtn}/>
           </button>
           
           {children}
