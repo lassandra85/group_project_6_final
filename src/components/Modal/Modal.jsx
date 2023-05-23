@@ -58,9 +58,9 @@ const Modal = ({ toggleModal, children }) => {
 
   return createPortal(
     <>
-      <div className="Backdrop" onClick={onBackdropClick} /* inNoticePage={inNoticePage} */ >
+      <div className="backdrop" onClick={onBackdropClick} /* inNoticePage={inNoticePage} */ >
 
-        <div className="ModalWindow">
+        <div className="modalWindow">
 
           <button className="closeBtn" onClick={toggleModal}>
             <RxCross2 className="svg_closeBtn"/>
