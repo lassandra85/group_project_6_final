@@ -1,4 +1,5 @@
-import filters from './filters'
+import {filters} from './filters'
+import {List,Btn} from './NoticesCategoriesNav.styled'
 
 
 const NoticesCategoriesNav = ({isUser}) => {
@@ -12,14 +13,14 @@ const NoticesCategoriesNav = ({isUser}) => {
 
         return (
             <li key={index}>
-                <button to={`/notices/${path}`}>{filter}</button>
+                <Btn to={`/notices/${path}`}>{filter}</Btn>
             </li>
         )
 
     })
     
     return (
-        <ul>{items}</ul>
+        <List>{items}</List>
     );
 }
 
