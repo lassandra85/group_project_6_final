@@ -1,0 +1,102 @@
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createSearchParams } from '../../helpers/createSearchParams';
+
+export const getNotices = createAsyncThunk(
+    'notices/getNotices',
+    async(credentials,{rejectWithValue})=>{
+        const {category, ...params} = credentials;
+
+        try {
+            const {data} = await axios.get(
+                `/api/notices/${category}?${createSearchParams(params)}`
+            );
+
+            return data;
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+);
+
+export const getUsersNotices = createAsyncThunk(
+    'notices/getUsersNotices',
+    async (params,{rejectWithValue})=>{
+        try {
+            const {data} = await axios.get(`/api/notices${createSearchParams(params)}`)
+            return data;
+        } catch (error) {
+            rejectWithValue(error.message)
+        }
+    }
+);
+
+export const getFavoriteNotices = createAsyncThunk(
+    'notices/getFavoriteNotices',
+    async(params,{rejectWithValue})=>{
+        try {
+            const {data} = await axios.get(`/api/notices/favorites${createSearchParams(params)}`)
+            return data;
+        } catch (error) {
+            rejectWithValue(error.message)
+        }
+    }
+);
+
+export const getNoticesByQuery = createAsyncThunk(
+    'notices/getNoticesByQuery',
+    async(credentials,{rejectWithValue})=>{
+        const {category,...params} = credentials;
+
+        try {
+            const {data} = await axios.get(
+                `/api/notices/search/${category}?${createSearchParams(params)}`
+            );
+            return data;
+        } catch (error) {
+            rejectWithValue(error.message)
+        }
+    }
+);
+
+export const getNoticesById = createAsyncThunk(
+    'notices/getNoticesById',
+    async(_id,{rejectWithValue})=>{
+        try {
+            const {data} = await axios.get(`/api/notices/notice/${_id}`);
+        return data.result
+        } catch (error) {
+            rejectWithValue(error.message);
+        }
+    }
+);
+
+export const addNotice = createAsyncThunk(
+    'notices/addNotice',
+    async({category,newFormData},{rejectWithValue})=>{
+        try {
+            await axios.post(
+                `/api/notices/${category}`,newFormData
+            );
+        } catch (error) {
+            rejectWithValue(error.message)
+        }
+    }
+);
+
+export const updateNotice = createAsyncThunk(
+    'notices/updateNotice',
+    async(credentials, {rejectWithValue})=>{
+        const {_id,...params} = credentials;
+        try {
+            await axios.put(`/api/notices/${_id}`,params);
+        } catch (error) {
+            rejectWithValue(error.message)
+        }
+    }
+);
+
+export const removeNotice = createAsyncThunk(
+
+    
+)
