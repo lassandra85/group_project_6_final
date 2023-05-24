@@ -1,0 +1,148 @@
+.deleteContainer{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 100%;
+    padding: 60px 12px;
+    
+    font-style: normal;
+    letter-spacing: 0.04em;
+
+    color: var(--color-black);
+    
+    @media screen and (min-width:768px) {
+        padding: 60px 100px;
+        letter-spacing: -0.01em;
+    }
+}
+
+
+
+.deleteTitle{
+
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 33px;
+
+    margin-left: calc(50% - 200px/2);
+    margin-bottom: 14px;
+    
+    @media screen and (min-width:768px) {
+        font-size: 28px;
+        line-height: 38px;
+        margin-bottom: 40px;
+    }
+}
+
+
+
+.deleteDescr{
+   
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: center;
+    
+    margin-bottom: 44px;
+    
+    @media screen and (min-width:768px) {
+        font-size: 16px;
+        line-height: 22px;
+        margin-bottom: 48px;
+    }
+     
+}
+
+.deleteName{
+
+    font-weight: bold;
+
+}
+
+
+
+.deleteBtnContainer{
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 8px;
+
+    @media screen and (min-width:768px) {
+
+        flex-direction: row;
+
+    }
+
+}
+
+
+.cancelDeleteBtn{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 256px;
+    height: 40px;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    
+    border-radius: 40px;
+    border: 2px solid var(--color-blue);
+
+    color: var(--color-blue);
+    background: var(--color-white);
+    
+    cursor: pointer;
+    
+    
+    &:hover,
+    &:active,
+    &:focus {
+        background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
+    }
+}
+
+
+
+.yesDeleteBtn{
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    width: 256px;
+    height: 40px;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    
+    border: none;
+    border-radius: 40px;
+    color: var(--background-color);
+    background: var(--color-blue);
+    
+    cursor: pointer;
+    
+    &:hover,
+    &:active,
+    &:focus {
+        background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
+    }
+}
+
+
+.yesDeleteSvg{
+
+    fill: var(--background-color);
+}
