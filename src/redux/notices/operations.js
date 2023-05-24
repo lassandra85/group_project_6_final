@@ -97,6 +97,43 @@ export const updateNotice = createAsyncThunk(
 );
 
 export const removeNotice = createAsyncThunk(
+    'notices/removeNotice',
+    async(_id,{rejectWithValue})=>{
+        try {
+            await axios.delete(`/api/notices/notice/${_id}`);
 
-    
-)
+            return {_id}
+        } catch (error) {
+            rejectWithValue(error.message)
+        }
+    }
+
+);
+
+export const addFavoriteNotice = createAsyncThunk(
+    'notices/addFavoriteNotice',
+    async(pet,{rejectWithValue})=>{
+        try {
+            const {data} = await axios.post(`
+                /api/notices/favorite/${pet._id}
+            `);
+            return data.result.updateNotice;
+        } catch (error) {
+            rejectWithValue(error.message)
+        }
+    }
+);
+
+export const removeFavoriteNotice = createAsyncThunk(
+    'notices/removeFavoriteNotice',
+    async(pet,{rejectWithValue})=>{
+        try {
+            const {data} = await axios.delete(`/api/notices/favorite/${pet._id}`);
+
+            return data.result.updateNotice;
+
+        } catch (error) {
+            rejectWithValue(error.message)
+        }
+    }
+);
