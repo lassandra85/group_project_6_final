@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createSearchParams } from '../../helpers/createSearchParams';
+import  createSearchParams  from '../../helpers/createSearchParams';
 
 export const getNotices = createAsyncThunk(
     'notices/getNotices',

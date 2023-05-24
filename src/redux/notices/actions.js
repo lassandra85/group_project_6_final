@@ -1,6 +1,6 @@
 import { createAction } from "@reduxjs/toolkit"; 
 
-const setCurrentNotice = createAction('notices/setCurrentNotices');
+const setCurrentNotice = createAction('notices/setCurrentNotice');
 
 const setNotices = createAction('notices/setNotices');
 
