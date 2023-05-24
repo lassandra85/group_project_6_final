@@ -1,4 +1,3 @@
-// import { SearchIcon, CrossIcon } from 'shared/utils/icons';
 import { useState, useEffect } from 'react';
 import {RxCross2} from "react-icons/rx";
 import {BsSearch} from "react-icons/bs";
@@ -45,8 +44,8 @@ const NoticesSearch = ({ onFormSubmit }) => {
         <RxCross2 />
       </CleareUpBtn>
     </Form>
-  );
-};
+
+  )}
 
 
 export default NoticesSearch;
