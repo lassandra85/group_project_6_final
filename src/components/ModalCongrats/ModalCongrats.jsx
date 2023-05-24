@@ -24,15 +24,15 @@ const ModalCongrats = ({toggleModal}) => {
 
             <button className={css.congratzBtn} type="button" onClick={toggleModal}> 
                
-                <p className={css.congratzBtn}>
+                <p >
                       
                     Go to profile
                       
                 </p> 
                   
-                <svg className={css.congratzBtn}>
+                <svg width={24} height={24} className={css.svg_pawPrint}>
                       
-                    <use href={icons + '#pawprint'} className={css.svg_pawPrint} />
+                    <use href={icons + '#pawprint'} />
                       
                 </svg>
                
