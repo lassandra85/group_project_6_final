@@ -1,3 +1,83 @@
+.photo {
+    width: 182px;
+    border-radius: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+}
+
+.container {}
+
+.edit {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 22px;
+    align-items: center;
+
+    @media screen and (min-width:768px) and (max-width:1279px) {
+        margin-bottom: 0;
+    }
+}
+
+.labelPhoto {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.83;
+    letter-spacing: 0.04em;
+    color: var(--color-black);
+    cursor: pointer;
+}
+
+.confirm {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.83;
+    letter-spacing: 0.04em;
+    color: var(--color-black);
+    cursor: context-menu;
+}
+
+.inputHidden {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.buttonHidden {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 12px;
+    top: 3px;
+    padding: 0;
+    cursor: pointer;
+}
+.buttonUploadHidden {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.box {
+    @media screen and (min-width:768px) and (max-width:1279px) {
+        display: flex;
+        gap: 71px;
+        flex-direction: row-reverse;
+    }
+
+}
+
 .text {
     float: left;
     /* width: 70px;
@@ -34,6 +114,7 @@
         height: 32px;
     }
 }
+
 .input:focus {
     outline: none;
 }
@@ -65,9 +146,10 @@
 
 .field:last-child {
     margin-bottom: 21px;
+
     @media screen and (min-width:768px) and (max-width:1279px) {
-            margin-bottom: 0;
-        }
+        margin-bottom: 0;
+    }
 }
 
 .wrapper {
@@ -78,14 +160,4 @@
     position: absolute;
     right: 12px;
     top: 6px
-}
-
-.buttonHidden {
-    background-color: transparent;
-    border: none;
-    position: absolute;
-    right: 12px;
-    top: 3px;
-    padding: 0;
-    cursor: pointer;
 }
