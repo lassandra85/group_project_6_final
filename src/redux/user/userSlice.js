@@ -1,17 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit';
+// import userPhoto from '../../../image/user-photo-default.png';
+import userPhoto from '../../image/user-photo-default.png'
 
 const initialState = {
   name: '',
-  email: '',
+  email: 'vikit2000@ukr.net',
   birthday: '',
   phone: '',
   city: '',
-  avatar: null,
+  avatar: userPhoto,
 };
 
 const userSlice = createSlice({
     name: 'user',
-    initialState,
+  initialState,
+  reducers: {
+    updateUser: {
+      reducer(state, action) {
+        state.push(action.payload);
+      },
+      prepare(text) {
+        return {
+          payload: {
+            text,
+          },
+        };
+      },
+    },
+  },
     extraReducers: builder => {
 
     }
