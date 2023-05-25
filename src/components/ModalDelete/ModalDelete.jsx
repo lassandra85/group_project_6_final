@@ -1,8 +1,8 @@
 import css from '../ModalDelete/ModalDelete.module.css';
-import icons from 'images/icons.svg';
+import icons from '../../image/icons';
 
 
-const ModalDelete = ({ id, toggleModal}) => {
+const ModalDelete = ({ title, onDelete, toggleModal}) => {
 
     return (
         
@@ -16,7 +16,7 @@ const ModalDelete = ({ id, toggleModal}) => {
               
             <p className={css.deleteDescr}>
                   
-                Are you sure you want to delete <span className={css.deleteName}>“{id}”?</span> You can`t undo this
+                Are you sure you want to delete <span className={css.deleteName}>{title}?</span> You can`t undo this
                 action.
                   
             </p>
@@ -29,7 +29,7 @@ const ModalDelete = ({ id, toggleModal}) => {
                       
                 </button>
 
-                <button className={css.yesDeleteBtn} type="button" onClick={toggleModal}> 
+                <button className={css.yesDeleteBtn} type="button" onClick={onDelete}> 
           
                     Yes
                       

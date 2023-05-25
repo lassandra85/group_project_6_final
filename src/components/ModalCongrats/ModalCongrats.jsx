@@ -1,4 +1,4 @@
-import icons from 'images/icons.svg';
+import icons from '../../image/icons';
 
 import css from '../Modal/Modal.module.css';
 
