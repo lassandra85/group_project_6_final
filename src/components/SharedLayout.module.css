@@ -3,23 +3,24 @@
     ::after {
         content: '';
         display: block;
-         min-height: 0;
+        min-height: 0;
     }
 }
 @media(min-width:768px) { 
     .contentWrapper{
         min-height: calc(100vh - 79px);
-        ::after {
+        /* ::after {
             min-height: 79px;
-        }
-   }
+        } */
+    }
 }
+
 @media(min-width:1280px) {
     .contentWrapper {
         min-height: calc(100vh - 77px);
-        ::after {
+        /* ::after {
         min-height: 77px;
-        }
+        } */
     }                   
 
 } */
@@ -27,4 +28,3 @@
 
 
 
-  

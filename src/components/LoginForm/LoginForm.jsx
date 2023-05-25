@@ -1,28 +1,30 @@
 import css from '../LoginForm/LoginForm.module.css';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { login } from '../../redux/auth/operations';
+import { logIn } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isActive, setActive] = useState(false);
   const handleClick = () => {
     setActive(!isActive);
   };
 
   const handleSubmit = evt => {
-    evt.preventDefault()
+    evt.preventDefault();
     const form = evt.currentTarget;
     dispatch(
-        login({
-          email: form.elements.email.value,
-          password: form.elements.password.value,          
-        })
-      );
-
-  }
+      logIn({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    form.reset();
+    navigate('/user');
+  };
 
   return (
     <div className={css.container}>
@@ -54,7 +56,7 @@ const LoginForm = () => {
             </button>
           </label>
         </div>
-       
+
         <button type="submit" className={css.bttnRegister}>
           Login
         </button>

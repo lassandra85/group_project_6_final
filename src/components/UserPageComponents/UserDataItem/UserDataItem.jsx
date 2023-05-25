@@ -61,4 +61,5 @@ const UserDataItem = ({
     </div>
   );
 };
+
 export default UserDataItem;
