@@ -59,8 +59,8 @@ export const getNoticesByQuery = createAsyncThunk(
     }
 );
 
-export const getNoticesById = createAsyncThunk(
-    'notices/getNoticesById',
+export const getNoticeById = createAsyncThunk(
+    'notices/getNoticeById',
     async(_id,{rejectWithValue})=>{
         try {
             const {data} = await axios.get(`/api/notices/notice/${_id}`);
