@@ -4,9 +4,9 @@ import styles from './UserPage.module.css'
 import UserData from "components/UserPageComponents/UserData/UserData";
 
 import LogOut from "components/LogOut/LogOut";
-import UserDataForm from 'components/UserPageComponents/UserDataForm/UserDataForm';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+// import UserDataForm from 'components/UserPageComponents/UserDataForm/UserDataForm';
+// import { useEffect } from 'react';
+// import { useDispatch } from 'react-redux';
 
 const UserPage = () => {
 

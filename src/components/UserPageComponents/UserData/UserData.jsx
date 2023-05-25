@@ -2,8 +2,8 @@ import styles from './UserData.module.css';
 import { useState } from 'react';
 import { MdOutlinePhotoCamera } from 'react-icons/md';
 import { BsCheck2 } from 'react-icons/bs';
-import UserDataItem from 'components/UserDataItem/UserDataItem';
-import userPhoto from '../../image/user-photo-default.png';
+import UserDataItem from '../UserDataItem/UserDataItem';
+import userPhoto from '../../../image/user-photo-default.png';
 
 const userDataNotFilled = {
   // на маунте компонента делать запрос на бекенд на получение данных пользователя  и если их нет то значение по дефолту, а если есть то подставлять данные с бека
