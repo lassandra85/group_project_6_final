@@ -1,18 +1,19 @@
-import styles from './UserDataItem.module.css';
+import styles from './UserDataForm.module.css';
 import { BiEditAlt } from 'react-icons/bi';
 import { BsCheck2 } from 'react-icons/bs';
 
-const UserDataItem = ({
+const UserDataFormItem = ({
   id,
   value,
   name,
   placeholder,
   label,
-  onChange,
-  isReadonly,
-  onClick,
-  disabled,
+    onChange,
+    isReadonly,
+    onClick,
+  disabled
 }) => {
+
   return (
     <div className={styles.field}>
       <label className={styles.text} htmlFor={id}>
@@ -61,4 +62,4 @@ const UserDataItem = ({
     </div>
   );
 };
-export default UserDataItem;
+export default UserDataFormItem;
