@@ -1,9 +1,12 @@
-// import { Header } from '../Header/Header.module.css';
+import Logo from '../Logo/Logo';
+import Navigation from 'components/Navigation/Navigation';
+import css from './Header.module.css';
 
 const Header = () => {
   return (
-    <div>
-      <p></p>
+    <div className={css.headerWrapper}>
+      <Logo />
+      <Navigation />
     </div>
   );
 };

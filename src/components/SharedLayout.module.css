@@ -1,10 +1,10 @@
 .contentWrapper{
     min-height: 100vh;
-    ::after {
+    /* ::after {
         content: '';
         display: block;
         min-height: 0;
-    }
+    } */
 }
 @media(min-width:768px) { 
     .contentWrapper{
