@@ -96,6 +96,7 @@ export const updateNotice = createAsyncThunk(
     }
 );
 
+
 export const removeNotice = createAsyncThunk(
     'notices/removeNotice',
     async(_id,{rejectWithValue})=>{

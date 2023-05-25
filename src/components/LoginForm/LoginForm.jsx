@@ -12,18 +12,40 @@ const LoginForm = () => {
   const handleClick = () => {
     setActive(!isActive);
   };
+  let [pass, setPass] = useState(true);
+  let [em, setEm] = useState(true);
+  let [err, setErr] = useState(true);
 
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = evt.currentTarget;
-    dispatch(
-      logIn({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
-    form.reset();
-    navigate('/user');
+    const emailField = form.elements.email.value;
+    const passwordField = form.elements.password.value;
+
+    if (
+      passwordField && emailField) {
+      dispatch(
+        logIn({
+          email: form.elements.email.value,
+          password: form.elements.password.value,
+        })
+      );
+      form.reset();
+      navigate('/user');
+    } else if (
+      !emailField && passwordField) {
+      setEm((em = false));
+      setErr((err = true));
+      setPass((pass = true));
+    } else if (!emailField && !passwordField) {
+      setErr((err = false));
+      setPass((pass = true));
+      setEm((em = true));
+    } else if (emailField && !passwordField) {
+      setPass((pass = false));
+      setEm((em = true));
+      setErr((err = true));
+    }
   };
 
   return (
@@ -55,6 +77,9 @@ const LoginForm = () => {
               )}
             </button>
           </label>
+          {pass ? '' : <p className={css.errorRassword}>Enter password</p>}
+          {em ? '' : <p className={css.errorRassword}>Enter email</p>}
+          {err ? '' : <p className={css.errorRassword}>Enter data</p>}
         </div>
 
         <button type="submit" className={css.bttnRegister}>
