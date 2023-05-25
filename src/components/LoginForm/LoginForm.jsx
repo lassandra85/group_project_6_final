@@ -15,6 +15,7 @@ const LoginForm = () => {
   let [pass, setPass] = useState(true);
   let [em, setEm] = useState(true);
   let [err, setErr] = useState(true);
+  let [log, setLog] = useState(true);
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -29,9 +30,16 @@ const LoginForm = () => {
           email: form.elements.email.value,
           password: form.elements.password.value,
         })
-      );
-      form.reset();
-      navigate('/user');
+      ).then(data => {
+        if (data.payload.message === "") {
+          setLog(true)
+          form.reset();
+          navigate('/user');
+        } else {
+          setLog(false)          
+        }
+      })
+      
     } else if (
       !emailField && passwordField) {
       setEm((em = false));
@@ -80,6 +88,7 @@ const LoginForm = () => {
           {pass ? '' : <p className={css.errorRassword}>Enter password</p>}
           {em ? '' : <p className={css.errorRassword}>Enter email</p>}
           {err ? '' : <p className={css.errorRassword}>Enter data</p>}
+          {log ? '' : <p className={css.errorRassword}>Email or password is incorrect.</p>}
         </div>
 
         <button type="submit" className={css.bttnRegister}>

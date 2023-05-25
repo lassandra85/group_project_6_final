@@ -41,7 +41,7 @@ export const logIn = createAsyncThunk(
       localStorage.setItem('refreshToken', response.data.refreshToken);
       return response.data;
     } catch (error) {
-      return rejectWithValue({ message: 'Email or password is incorrect.' });
+      return rejectWithValue ({ message: 'Email or password is incorrect.' });
     }
   }
 );
