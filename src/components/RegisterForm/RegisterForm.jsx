@@ -1,5 +1,5 @@
 import css from '../RegisterForm/RegisterForm.module.css';
-import { NavLink, useNavigate} from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -18,9 +18,9 @@ const RegisterForm = () => {
     setActive2(!isActive2);
   };
 
-  const [pass, setPass] = useState(true);
-  const [em, setEm] = useState(true);
-  const [err, setErr] = useState(true)
+  let [pass, setPass] = useState(true);
+  let [em, setEm] = useState(true);
+  let [err, setErr] = useState(true);
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -29,28 +29,46 @@ const RegisterForm = () => {
     const passwordField = form.elements.password.value;
     const confirmPasswordField = form.elements.confirmPassword.value;
 
-    if (passwordField === confirmPasswordField && emailField && passwordField!=="" && confirmPasswordField!=="") {
+    if (
+      passwordField === confirmPasswordField &&
+      emailField &&
+      passwordField !== '' &&
+      confirmPasswordField !== ''
+    ) {
       setPass(pass);
-      setEm(em)
-      setErr(err)
+      setEm(em);
+      setErr(err);
       dispatch(
         register({
           email: form.elements.email.value,
-          password: form.elements.password.value,          
+          password: form.elements.password.value,
         })
       );
 
       form.reset();
-      navigate('/user')
-    } else if (!emailField && confirmPasswordField === passwordField && passwordField!=="" && confirmPasswordField!=="") {
-      setEm(!em)
+      navigate('/user');
+    } else if (
+      !emailField &&
+      confirmPasswordField === passwordField &&
+      passwordField !== '' &&
+      confirmPasswordField !== ''
+    ) {
+      setEm((em = false));
+      setErr((err = true));
+      setPass((pass = true));
     } else if (!emailField && !passwordField && !confirmPasswordField) {
-      setErr(!err)
+      setErr((err = false));
+      setPass((pass = true));
+      setEm((em = true));
+    } else if (confirmPasswordField !== passwordField) {
+      setPass((pass = false));
+      setEm((em = true));
+      setErr((err = true));
+    } else if (emailField && !passwordField) {
+      setPass((pass = false));
+      setEm((em = true));
+      setErr((err = true));
     }
-    else if(confirmPasswordField.value !== passwordField  ) {
-      setPass(!pass);
-    }
-    
   };
 
   return (
@@ -103,6 +121,7 @@ const RegisterForm = () => {
               )}
             </button>
           </label>
+
           {pass ? '' : <p className={css.errorRassword}>Password mismatch</p>}
           {em ? '' : <p className={css.errorRassword}>Email incorrect</p>}
           {err ? '' : <p className={css.errorRassword}>Enter data</p>}
@@ -119,6 +138,6 @@ const RegisterForm = () => {
       </div>
     </div>
   );
-}
+};
 
 export default RegisterForm;

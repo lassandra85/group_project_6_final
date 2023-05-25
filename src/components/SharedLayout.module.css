@@ -1,4 +1,4 @@
-.contentWrapper{
+/* .contentWrapper{
     min-height: 100vh;
     /* ::after {
         content: '';
@@ -12,8 +12,8 @@
         /* ::after {
             min-height: 79px;
         } */
-    }
-}
+    /* }
+} */
 
 @media(min-width:1280px) {
     .contentWrapper {
@@ -23,7 +23,7 @@
         } */
     }                   
 
-}
+} 
 
 
 
