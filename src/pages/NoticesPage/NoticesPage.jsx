@@ -4,6 +4,7 @@ import Title from "components/Title/Title";
 
 import { VscArrowLeft } from "react-icons/vsc";
 import { Filters } from "./NoticesPage.styled";
+import AddPetBtn from "components/AddPetBtn/AddPetBtn";
 
 
 
@@ -19,6 +20,7 @@ const NoticesPage = () => {
             <NoticesSearch onFormSubmit={onFormSubmit}/>
             <Filters>
                 <NoticesCategoriesNav/>
+                <AddPetBtn/>
             </Filters>
             <button><VscArrowLeft/></button>
         </div>
