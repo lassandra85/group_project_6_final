@@ -61,7 +61,7 @@ const Btn = styled(Link)`
     stroke: var(--color-white);
   }
 
-  @media screen and (min-width: 768px) {
+  @media  (min-width: 768px) {
     position: static;
     translate: 0 0;
 
