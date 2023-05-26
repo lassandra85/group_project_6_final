@@ -6,7 +6,7 @@ import { AddFormButtonWrapper } from '../PetPageForm/PetPageForm.styled';
 import css from './ChooseForm.module.css'
 import AddFormButtonBack from '../AddFormButton/AddFormButtonBack';
 import AddFormButtonNext from '../AddFormButton/AddFormButtonNext';
-// import { PawPrintIcon } from '../utils/icons';
+import { PawPrintIcon } from 'components/AddPetCard/utils/icons';
 
 const ChooseForm = ({ formData, setFormData, nextStep, cancel, setValues }) => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -68,7 +68,7 @@ const ChooseForm = ({ formData, setFormData, nextStep, cancel, setValues }) => {
           isDisabled={isDisabled}
           type="button"
           text="Next"
-          // icon={<PawPrintIcon />}
+          icon={<PawPrintIcon />}
           clickHandler={nextStep}
           filled={false}
         />
