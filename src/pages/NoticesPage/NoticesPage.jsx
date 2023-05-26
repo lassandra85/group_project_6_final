@@ -4,7 +4,7 @@ import Title from "components/Title/Title";
 
 import { VscArrowLeft } from "react-icons/vsc";
 import { Filters } from "./NoticesPage.styled";
-import AddPetBtn from "components/AddPetBtn/AddPetBtn";
+import AddPetBtn from "components/AddPetCard/AddPetButton/AddPetBtn/AddPetBtn";
 
 
 

@@ -1,5 +1,5 @@
 // import PropTypes from 'prop-types';
-import { PlusIcon, PlusSmallIcon } from 'shared/utils/icons';
+import { PlusIcon, PlusSmallIcon } from 'image/icons';
 import { useWindowSize } from 'hooks/useResize';
 import { Btn } from './AddPetBtn.styled';
 import { useLocation } from 'react-router-dom';
