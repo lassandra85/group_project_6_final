@@ -1,0 +1,11 @@
+
+.ErrorText{
+    position: absolute;
+    bottom: -4px;
+    left: 16px;
+
+    font-size: 12px;
+    line-height: 1.33;
+    color: var(--color-red);
+    transform: translateY(100%);
+} 
