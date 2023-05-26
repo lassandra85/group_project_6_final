@@ -28,7 +28,7 @@ const AddPetBtn = ({ text, path, toggleUnauthorizeModal, isFixed }) => {
       isFixed={isFixed}
     >
       {screenWidth < 768 && <PlusIcon />}
-      {text}
+      {/* {text} */} Add Pet
       {screenWidth >= 768 && <PlusSmallIcon />}
     </Btn>
   );
