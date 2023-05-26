@@ -46,6 +46,7 @@ export const logIn = createAsyncThunk(
   }
 );
 
+//додано
 export const logOut = createAsyncThunk(
   'auth/logOut',
   async (_, { rejectWithValue }) => {
