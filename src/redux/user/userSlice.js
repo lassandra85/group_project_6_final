@@ -14,20 +14,6 @@ const initialState = {
 const userSlice = createSlice({
     name: 'user',
   initialState,
-  reducers: {
-    updateUser: {
-      reducer(state, action) {
-        state.push(action.payload);
-      },
-      prepare(text) {
-        return {
-          payload: {
-            text,
-          },
-        };
-      },
-    },
-  },
     extraReducers: builder => {
 
     }
