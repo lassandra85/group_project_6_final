@@ -1,6 +1,6 @@
-// import { createSlice } from '@reduxjs/toolkit';
-// // import userPhoto from '../../../image/user-photo-default.png';
-// import userPhoto from '../../image/user-photo-default.png'
+
+import { createSlice } from '@reduxjs/toolkit';
+import userPhoto from '../../../image/user-photo-default.png';
 
 // const initialState = {
 //   name: '',
