@@ -16,6 +16,7 @@ const initReadOnlyValue = {
   city: true,
 };
 
+
 const UserData = () => {
   const userState = useSelector(userStateValues);
 
