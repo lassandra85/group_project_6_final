@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from '../Nav/Nav';
 import UserNav from '../UserNav/UserNav';
-import AuthNav from '../AuthNav/AuthNav';
+
 // import BurgerMenu from './BurgerMenu/Burger';
 // import { BtnGroup } from './Navigation.styled';
 // import { useState, useEffect } from 'react';
@@ -12,7 +12,7 @@ const Navigation = () => {
     <div className="navigationStyle">
       <Nav />
       <UserNav />
-      <AuthNav />
+     
     </div>
   );
 };
