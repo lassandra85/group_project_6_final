@@ -8,8 +8,8 @@ const Logo = () => {
   return (
     <div>
       <Link to="/">
-        <img src={logo} alt="Logo" className={css.logoWrapperM} />
-        <img src={logoSm} alt="Logo" className={css.logoWrapperS} />
+        <img src={logo} alt="Logo" className={css.logoWrapperS} />
+        <img src={logoSm} alt="Logo" className={css.logoWrapperM} />
       </Link>
     </div>
   );

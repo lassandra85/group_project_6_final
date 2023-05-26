@@ -1,4 +1,4 @@
-.headerWrapper {
+/* .headerWrapper {
   top: 0;
   left: 0;
   width: 1248px;
@@ -11,6 +11,19 @@
   position: relative;
   align-items: center;
   margin: 20px 16px 80px 16px;
+} */
+
+
+.headerWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px 12px;
 }
 
 /* .headerWrapper {
