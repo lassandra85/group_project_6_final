@@ -47,3 +47,26 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
     }
 })
 
+//додано
+export const addMyPet = createAsyncThunk(
+  'user/addMyPet',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      await axios.post('api/pets', credentials);
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deletePet = createAsyncThunk(
+  'user/deleteMyPet',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.delete(`api/pets/${id}`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
