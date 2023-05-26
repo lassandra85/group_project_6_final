@@ -1,19 +1,14 @@
 import { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { AddFormButtonWrapper } from '../PetPageForm/PetPageForm.styled';
 import AddFormButtonBack from '../AddFormButton/AddFormButtonBack';
 import AddFormButtonNext from '../AddFormButton/AddFormButtonNext';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-// import { validateField } from '../vaidatePet';
+import { validateField } from '../validatePet';
 
-import {
-  PlusIcon,
-  MaleIcon,
-  FemaleIcon,
-  PawPrintIcon,
-} from '../utils/icons';
+import { PlusIcon, MaleIcon, FemaleIcon, PawPrintIcon } from '../utils/icons';
 
 import {
   AddFormTextArea,
@@ -130,7 +125,7 @@ const MoreInfo = ({ formData, setFormData, submit, backStep }) => {
                   value="female"
                   onChange={handleInputChange}
                   checked={formData.sex === 'female'}
-                  // onBlur={() => validateField('sex', formData, setErrors)}
+                  onBlur={() => validateField('sex', formData, setErrors)}
                 />
                 <AddFormSexLabel htmlFor="female">
                   <FemaleIcon stroke="#F43F5E" />
@@ -143,7 +138,7 @@ const MoreInfo = ({ formData, setFormData, submit, backStep }) => {
                   value="male"
                   onChange={handleInputChange}
                   checked={formData.sex === 'male'}
-                  // onBlur={() => validateField('sex', formData, setErrors)}
+                  onBlur={() => validateField('sex', formData, setErrors)}
                 />
                 <AddFormSexLabel htmlFor="male">
                   <MaleIcon stroke="#54ADFF" />
@@ -173,7 +168,7 @@ const MoreInfo = ({ formData, setFormData, submit, backStep }) => {
               accept=".png, .jpg, .jpeg, .webp"
               onChange={handleInputChange}
               value={imageValue}
-              // onBlur={() => validateField('petPhoto', formData, setErrors)}
+              onBlur={() => validateField('petPhoto', formData, setErrors)}
             />
           </AddFormImageLabel>
         </FirstPartFormWrapper>
@@ -188,7 +183,7 @@ const MoreInfo = ({ formData, setFormData, submit, backStep }) => {
                   name="location"
                   onChange={handleInputChange}
                   value={formData.location}
-                  // onBlur={() => validateField('location', formData, setErrors)}
+                  onBlur={() => validateField('location', formData, setErrors)}
                   className={errors.location ? 'invalid' : ''}
                 />
               </AddFormLabel>
@@ -205,7 +200,7 @@ const MoreInfo = ({ formData, setFormData, submit, backStep }) => {
                   name="price"
                   onChange={handleInputChange}
                   value={formData.price}
-                  // onBlur={() => validateField('price', formData, setErrors)}
+                  onBlur={() => validateField('price', formData, setErrors)}
                   className={errors.price ? 'invalid' : ''}
                 />
               </AddFormLabel>
@@ -221,7 +216,7 @@ const MoreInfo = ({ formData, setFormData, submit, backStep }) => {
                 name="comments"
                 onChange={handleInputChange}
                 value={formData.comments}
-                // onBlur={() => validateField('comments', formData, setErrors)}
+                onBlur={() => validateField('comments', formData, setErrors)}
                 className={errors.comments ? 'invalid' : ''}
               />
             </AddFormTextAreaLabel>
@@ -249,11 +244,11 @@ const MoreInfo = ({ formData, setFormData, submit, backStep }) => {
   );
 };
 
-// MoreInfo.propTypes = {
-//   formData: PropTypes.object.isRequired,
-//   setFormData: PropTypes.func.isRequired,
-//   backStep: PropTypes.func.isRequired,
-//   submit: PropTypes.func.isRequired,
-// };
+MoreInfo.propTypes = {
+  formData: PropTypes.object.isRequired,
+  setFormData: PropTypes.func.isRequired,
+  backStep: PropTypes.func.isRequired,
+  submit: PropTypes.func.isRequired,
+};
 
 export default MoreInfo;

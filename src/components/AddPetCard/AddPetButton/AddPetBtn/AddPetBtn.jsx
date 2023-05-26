@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { PlusIcon, PlusSmallIcon } from 'components/AddPetCard/utils/icons';
 import { useWindowSize } from 'hooks/useResize';
 import { Btn } from './AddPetBtn.styled';
@@ -33,11 +33,11 @@ const AddPetBtn = ({ text, path, toggleUnauthorizeModal, isFixed }) => {
   );
 };
 
-// AddPetBtn.propTypes = {
-//   text: PropTypes.string.isRequired,
-//   path: PropTypes.string.isRequired,
-//   toggleUnauthorizeModal: PropTypes.func,
-//   isFixed: PropTypes.bool.isRequired,
-// };
+AddPetBtn.propTypes = {
+  text: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  toggleUnauthorizeModal: PropTypes.func,
+  isFixed: PropTypes.bool.isRequired,
+};
 
 export default AddPetBtn;

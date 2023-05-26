@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { Field } from 'formik';
 
@@ -78,14 +78,14 @@ const ChooseForm = ({ formData, setFormData, nextStep, cancel, setValues }) => {
   );
 };
 
-// ChooseForm.propTypes = {
-//   formData: PropTypes.object.isRequired,
-//   setFormData: PropTypes.func.isRequired,
-//   cancel: PropTypes.oneOfType([
-//     PropTypes.string.isRequired,
-//     PropTypes.object.isRequired,
-//   ]),
-//   nextStep: PropTypes.func.isRequired,
-// };
+ChooseForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  setFormData: PropTypes.func.isRequired,
+  cancel: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.object.isRequired,
+  ]),
+  nextStep: PropTypes.func.isRequired,
+};
 
 export default ChooseForm;
