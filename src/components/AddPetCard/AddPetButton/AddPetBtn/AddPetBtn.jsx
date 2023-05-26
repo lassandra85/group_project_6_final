@@ -1,6 +1,6 @@
 // import PropTypes from 'prop-types';
-import  PlusIcon from 'image/icons/plus.svg';
-import PlusSmallIcon  from 'image/icons/plus-small.svg'
+import  {ReactComponent  as PlusIcon} from 'image/icons/plus.svg';
+import {ReactComponent as PlusSmallIcon}  from 'image/icons/plus-small.svg'
 import { useWindowSize } from 'hooks/useResize';
 import { Btn } from './AddPetBtn.styled';
 import { useLocation } from 'react-router-dom';
