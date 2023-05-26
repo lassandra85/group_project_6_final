@@ -16,9 +16,7 @@ const SharedLayout = () => {
       </Suspense>
       <main>
         <Section>
-          <Container>
-           
-          </Container>
+          <Container>Hi there!!!</Container>
         </Section>
         <Toaster position="top-right" reverseOrder={false} />
       </main>

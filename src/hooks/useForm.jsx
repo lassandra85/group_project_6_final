@@ -1,22 +1,22 @@
-// import { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 
-// const useForm = ({initialState, onSubmit})=> {
-//     const [state, setState] = useState({...initialState})
+const useForm = ({initialState, onSubmit})=> {
+    const [state, setState] = useState({...initialState})
 
-//     const handleChange = useCallback(({target}) => {
-//         const {name, value} = target;
-//         setState(prevState => {
-//             return {...prevState, [name]: value}
-//         })
-//     }, [setState]);
+    const handleChange = useCallback(({target}) => {
+        const {name, value} = target;
+        setState(prevState => {
+            return {...prevState, [name]: value}
+        })
+    }, [setState]);
 
-//     const handleSubmit = event => {
-//         event.preventDefault();
-//         onSubmit({...state});
-//         setState({...initialState});
-//     };
+    const handleSubmit = event => {
+        event.preventDefault();
+        onSubmit({...state});
+        setState({...initialState});
+    };
 
-//     return { state, setState, handleChange, handleSubmit }
-// }
+    return { state, setState, handleChange, handleSubmit }
+}
 
-// export default useForm;
+export default useForm;
