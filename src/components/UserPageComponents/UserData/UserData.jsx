@@ -1,4 +1,3 @@
-// Виктория, [26.05.2023 11:50]
 import { Formik } from 'formik';
 import userPhoto from '../../../image/user-photo-default.png';
 import styles from './UserData.module.css';
