@@ -1,6 +1,5 @@
 // import PropTypes from 'prop-types';
-import  {ReactComponent  as PlusIcon} from 'image/icons/plus.svg';
-import {ReactComponent as PlusSmallIcon}  from 'image/icons/plus-small.svg'
+import { PlusIcon, PlusSmallIcon } from 'components/AddPetCard/utils/icons';
 import { useWindowSize } from 'hooks/useResize';
 import { Btn } from './AddPetBtn.styled';
 import { useLocation } from 'react-router-dom';
@@ -28,7 +27,7 @@ const AddPetBtn = ({ text, path, toggleUnauthorizeModal, isFixed }) => {
       isFixed={isFixed}
     >
       {screenWidth < 768 && <PlusIcon />}
-      {/* {text} */} Add Pet
+      {text} Add Pet
       {screenWidth >= 768 && <PlusSmallIcon />}
     </Btn>
   );
