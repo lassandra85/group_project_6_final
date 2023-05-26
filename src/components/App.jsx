@@ -20,7 +20,7 @@ export const App = () => {
     <Suspense fallback={<Loader />}>  
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route path="main" element = {<MainPage />}/>
+          <Route index element = {<MainPage />}/>
           <Route path="news" element={<NewsPage />}/>
           <Route path="notices" element={<NoticesPage />}/>
           <Route path="add-pet" element={<AddPetPage />} />

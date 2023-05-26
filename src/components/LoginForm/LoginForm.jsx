@@ -1,28 +1,60 @@
 import css from '../LoginForm/LoginForm.module.css';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { login } from '../../redux/auth/operations';
+import { logIn } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isActive, setActive] = useState(false);
   const handleClick = () => {
     setActive(!isActive);
   };
+  let [pass, setPass] = useState(true);
+  let [em, setEm] = useState(true);
+  let [err, setErr] = useState(true);
+  let [log, setLog] = useState(true);
 
   const handleSubmit = evt => {
-    evt.preventDefault()
+    evt.preventDefault();
     const form = evt.currentTarget;
-    dispatch(
-        login({
-          email: form.elements.email.value,
-          password: form.elements.password.value,          
-        })
-      );
+    const emailField = form.elements.email.value;
+    const passwordField = form.elements.password.value;
 
-  }
+    if (
+      passwordField && emailField) {
+      dispatch(
+        logIn({
+          email: form.elements.email.value,
+          password: form.elements.password.value,
+        })
+      ).then(data => {
+        if (data.payload.message === "") {
+          setLog(true)
+          form.reset();
+          navigate('/user');
+        } else {
+          setLog(false)          
+        }
+      })
+      
+    } else if (
+      !emailField && passwordField) {
+      setEm((em = false));
+      setErr((err = true));
+      setPass((pass = true));
+    } else if (!emailField && !passwordField) {
+      setErr((err = false));
+      setPass((pass = true));
+      setEm((em = true));
+    } else if (emailField && !passwordField) {
+      setPass((pass = false));
+      setEm((em = true));
+      setErr((err = true));
+    }
+  };
 
   return (
     <div className={css.container}>
@@ -53,8 +85,12 @@ const LoginForm = () => {
               )}
             </button>
           </label>
+          {pass ? '' : <p className={css.errorRassword}>Enter password</p>}
+          {em ? '' : <p className={css.errorRassword}>Enter email</p>}
+          {err ? '' : <p className={css.errorRassword}>Enter data</p>}
+          {log ? '' : <p className={css.errorRassword}>Email or password is incorrect.</p>}
         </div>
-       
+
         <button type="submit" className={css.bttnRegister}>
           Login
         </button>
