@@ -74,7 +74,7 @@ const items = [
     comments: "Loves to play fetch and swim in the pool. Good with kids and other pets.",
     category: "sell"
 },
-,
+
  {  id:uniqid(),
     titleOfAdd: "Looking for good friend",
     name: "Lord",
