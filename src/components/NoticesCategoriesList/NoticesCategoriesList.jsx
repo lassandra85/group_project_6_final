@@ -5,7 +5,13 @@ import { BsGenderMale,BsGenderFemale } from "react-icons/bs";
 import Leila from 'image/notices_img/Leila.png'
 import Lord from 'image/notices_img/Lord.png'
 import uniqid from 'uniqid'
-// import Button from "components/Button/Button";
+import Button from "components/Button/Button";
+import {List,ListItem,ImageWrapper} from './NoticesCategoryList.styled'
+
+
+
+
+
 const items = [
     {
     id:uniqid(),
@@ -16,31 +22,7 @@ const items = [
     location: "Lviv",
     price: 200,
     sex: "female",
-    avatarURL: {Leila},
-    comments: "Loves to play fetch and swim in the pool. Good with kids and other pets.",
-    category: "sell"
-},
-{   id:uniqid(),
-    titleOfAdd: "Looking for good friend",
-    name: "Viska",
-    birthday: "11.12.2022",
-    breed: "Husky",
-    location: "Lviv",
-    price: 200,
-    sex: "female",
-    avatarURL: {Leila},
-    comments: "Loves to play fetch and swim in the pool. Good with kids and other pets.",
-    category: "sell"
-},
-{   id:uniqid(),
-    titleOfAdd: "Looking for good friend",
-    name: "Leyla",
-    birthday: "11.12.2022",
-    breed: "Husky",
-    location: "Lviv",
-    price: 200,
-    sex: "female",
-    avatarURL: {Leila},
+    avatarURL: Leila,
     comments: "Loves to play fetch and swim in the pool. Good with kids and other pets.",
     category: "sell"
 },
@@ -52,10 +34,47 @@ const items = [
     location: "Lviv",
     price: 200,
     sex: "male",
-    avatarURL: {Lord},
+    avatarURL: Lord,
     comments: "Loves to play fetch and swim in the pool. Good with kids and other pets.",
     category: "sell"
 },
+{   id:uniqid(),
+    titleOfAdd: "Looking for good friend",
+    name: "Viska",
+    birthday: "11.12.2022",
+    breed: "Husky",
+    location: "Lviv",
+    price: 200,
+    sex: "female",
+    avatarURL: Leila,
+    comments: "Loves to play fetch and swim in the pool. Good with kids and other pets.",
+    category: "sell"
+},
+{   id:uniqid(),
+    titleOfAdd: "Looking for good friend",
+    name: "Rex",
+    birthday: "11.12.2022",
+    breed: "Husky",
+    location: "Lviv",
+    price: 200,
+    sex: "male",
+    avatarURL: Lord,
+    comments: "Loves to play fetch and swim in the pool. Good with kids and other pets.",
+    category: "sell"
+},
+{   id:uniqid(),
+    titleOfAdd: "Looking for good friend",
+    name: "Leyla",
+    birthday: "11.12.2022",
+    breed: "Husky",
+    location: "Lviv",
+    price: 200,
+    sex: "female",
+    avatarURL: Leila,
+    comments: "Loves to play fetch and swim in the pool. Good with kids and other pets.",
+    category: "sell"
+},
+,
  {  id:uniqid(),
     titleOfAdd: "Looking for good friend",
     name: "Lord",
@@ -64,7 +83,7 @@ const items = [
     location: "Lviv",
     price: 200,
     sex: "male",
-    avatarURL: {Lord},
+    avatarURL: Lord,
     comments: "Loves to play fetch and swim in the pool. Good with kids and other pets.",
     category: "sell"
 }
@@ -75,10 +94,10 @@ const NoticesCategoriesList = () => {
     
    
     return (
-        <ul className="List">
+        <List>
            { items.map(pet=>(
-                <li className="ListItem" key={pet.id}>
-                <div className="ImageWrapper" bgi={pet.avatarURL}>
+                <ListItem key={pet.id}>
+                <ImageWrapper bgi={pet.avatarURL}>
                     <p className="Category">{pet.category}</p>
                     <button className="FavoriteBtn">
                         <AiOutlineHeart/> {/*HeartIcon*/}  
@@ -101,15 +120,15 @@ const NoticesCategoriesList = () => {
                         </span>
                         
                     </div>
-                </div>
+                </ImageWrapper>
                 <div className="CardFooter">
                     <h3 className="Comments">Good Friend</h3>
-                    {/* <Button/> */}
+                    <Button/>
                 </div>
         
-            </li>  
+            </ListItem>  
            ))}
-        </ul>
+        </List>
         )
         
       

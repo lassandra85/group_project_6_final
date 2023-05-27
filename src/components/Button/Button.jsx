@@ -1,4 +1,4 @@
-// import  Btn  from "./Button.styled";
+import  {Btn}  from "./Button.styled";
 
 // - type - функціонал / призначення кнопки;
 // - text - обов'язковий - текст кнопки;
@@ -7,19 +7,17 @@
 // - filled - не обов'язковий - робить фон кнопки синім у звичайному стані;
 // - short - не обов'язковий - зменшує довжину кнопки з 252px до 129px;
 
-// const Button = ({ type, text, icon, clickHandler, filled, short, heart }) => {
-//     return (
-//       <Btn
-//         type={type}
-//         onClick={clickHandler}
-//         filled={filled}
-//         short={short}
-//         heart={heart}
-//       >
-//         {text}
-//         {icon}
-//       </Btn>
-//     );
-//   };
+const Button = ({text,icon,short,heart,filled}) => {
+    return (
+      <Btn
+        type='button'
+        // onClick={clickHandler}
+   
+      >
+        {text}
+        {icon}
+      </Btn>
+    );
+  };
 
-// export default Button
+export default Button

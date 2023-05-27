@@ -1,79 +1,76 @@
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
-// const Btn = styled.button`
-//   position: relative;
 
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   gap: ${({ theme, short }) =>
-//     short ? theme.space[2] * 2 + 'px' : theme.space[2] * 3 + 'px'};
 
-//   min-width: ${({ short }) => (short ? '129px' : '252px')};
-//   max-height: 40px;
-//   padding: ${({ theme }) => theme.space[2] * 2 + 'px'} 0;
+const Btn = styled.button`
+  position: relative;
 
-//   font-family: ${({ theme }) => theme.fonts.main.semiBold};
-//   font-size: ${({ theme }) => theme.fontSizes[2]};
-//   color: ${({ theme, filled }) =>
-//     filled ? theme.colors.white : theme.colors.blue};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: ${({ short }) =>
+    short ? '8px' : '12px'};
 
-//   background-color: ${({ theme, filled }) =>
-//     filled ? theme.colors.blue : 'transparent'};
-//   border-width: ${({ filled }) => (filled ? 0 : '2px')};
-//   border-color: ${({ theme }) => theme.colors.blue};
-//   border-style: solid;
-//   border-radius: 40px;
+  min-width: ${({ short }) => (short ? '129px' : '252px')};
+  max-height: 40px;
+  padding: 8px 0;
 
-//   z-index: 2;
+  font-family: 700;
+  font-size:16px;
+  color: ${({  filled }) =>(
+    filled ? '#fff' : '#0000ff')};
 
-//   transition: color 300ms ${({ theme }) => theme.transition.main},
-//     border-color 300ms ${({ theme }) => theme.transition.main},
-//     background-color 300ms ${({ theme }) => theme.transition.main};
+  background-color: ${({  filled }) =>
+    filled ? 'blue' : 'transparent'};
+  border-width: ${({ filled }) => (filled ? 0 : '2px')};
+  border-color: var(--color-blue);
+  border-style: solid;
+  border-radius: 40px;
 
-//   &:hover,
-//   &:focus {
-//     color: ${({ theme }) => theme.colors.white};
-//     border-color: transparent;
-//     background-color: ${({ filled }) => filled && 'transparent'};
-//   }
+  z-index: 2;
 
-//   &::before {
-//     content: '';
-//     position: absolute;
-//     top: 0;
-//     right: 0;
+  transition: color 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95),
+     border-color 300ms  cubic-bezier(0.445, 0.05, 0.55, 0.95),
+     background-color 300ms  cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
-//     width: 100%;
-//     height: 100%;
+   &:hover,
+   &:focus {
+     color: var(--color-white);
+     border-color: transparent;
+    background-color: ${({ filled }) => filled && 'transparent'};
+  }
 
-//     background: ${({ theme }) => theme.colors.gradientBlue};
-//     border-radius: 40px;
-//     opacity: 0;
+   &::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     right: 0;
+     width: 100%;
+     height: 100%;
+     background:var(--background_gradient);
+     border-radius: 40px;
+     opacity: 0;
+     z-index: -1;
+     transition: opacity 300ms ;
+   }
 
-//     z-index: -1;
+   &:hover::before,
+   &:focus::before {
+     opacity: 1;
+   }
 
-//     transition: opacity 300ms ${({ theme }) => theme.transition.main};
-//   }
+   & svg {
+     fill: ${({  filled, heart }) =>( filled && !heart ? 'white' : 'blue')};
 
-//   &:hover::before,
-//   &:focus::before {
-//     opacity: 1;
-//   }
+     stroke: ${({  heart }) => heart && 'white'};
 
-//   & svg {
-//     fill: ${({ theme, filled, heart }) =>
-//       filled && !heart ? theme.colors.white : theme.colors.blue};
+     transition: fill 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+   }
 
-//     stroke: ${({ theme, heart }) => heart && theme.colors.white};
+   &:hover svg,
+   &:focus svg {
+     fill: ${({  heart }) => !heart && 'white'};
+   }
+ `;
 
-//     transition: fill 300ms ${({ theme }) => theme.transition.main};
-//   }
-
-//   &:hover svg,
-//   &:focus svg {
-//     fill: ${({ theme, heart }) => !heart && theme.colors.white};
-//   }
-// `;
-
-// export { Btn };
+ export { Btn };
