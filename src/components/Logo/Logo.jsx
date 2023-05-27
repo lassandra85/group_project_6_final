@@ -13,8 +13,8 @@ function Logo({ handleLinkClick }) {
   return (
     <div>
       <Link to="/" onClick={handleClick}>
-        <img src={logo} alt="Logo" className={css.logoWrapperS} />
-        <img src={logoSm} alt="Logo" className={css.logoWrapperM} />
+        <img src={logoSm} alt="Logo" className={css.logoWrapperS} />
+        <img src={logo} alt="Logo" className={css.logoWrapperM} />
       </Link>
     </div>
   );
