@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import { AddFormButtonWrapper } from '../PetPageForm/PetPageForm.styled';
@@ -14,7 +14,7 @@ import {
   AddFormLabelWrapper,
 } from './PersonalForm.styled';
 
-// import { validateField } from '../vaidatePet';
+import { validateField } from '../validatePet';
 
 const PersonalForm = ({ formData, setFormData, nextStep, backStep }) => {
   const [errors, setErrors] = useState({});
@@ -95,7 +95,7 @@ const PersonalForm = ({ formData, setFormData, nextStep, backStep }) => {
               name="title"
               value={formData.title}
               onChange={handleInputChange}
-              // onBlur={() => validateField('title', formData, setErrors)}
+              onBlur={() => validateField('title', formData, setErrors)}
               className={errors.title ? 'invalid' : ''}
             />
           </AddFormLabel>
@@ -111,7 +111,7 @@ const PersonalForm = ({ formData, setFormData, nextStep, backStep }) => {
             name="name"
             onChange={handleInputChange}
             value={formData.name}
-            // onBlur={() => validateField('name', formData, setErrors)}
+            onBlur={() => validateField('name', formData, setErrors)}
             className={errors.name ? 'invalid' : ''}
           />
         </AddFormLabel>
@@ -127,7 +127,7 @@ const PersonalForm = ({ formData, setFormData, nextStep, backStep }) => {
             data-pattern="**.**.****"
             onChange={handleInputChange}
             value={formData.birthday.split('.').reverse().join('-')}
-            // onBlur={() => validateField('birthday', formData, setErrors)}
+            onBlur={() => validateField('birthday', formData, setErrors)}
             className={errors.birthday ? 'invalid' : ''}
           />
         </AddFormLabel>
@@ -142,7 +142,7 @@ const PersonalForm = ({ formData, setFormData, nextStep, backStep }) => {
             name="breed"
             onChange={handleInputChange}
             value={formData.breed}
-            // onBlur={() => validateField('breed', formData, setErrors)}
+            onBlur={() => validateField('breed', formData, setErrors)}
             className={errors.breed ? 'invalid' : ''}
           />
         </AddFormLabel>
@@ -168,11 +168,11 @@ const PersonalForm = ({ formData, setFormData, nextStep, backStep }) => {
   );
 };
 
-// PersonalForm.propTypes = {
-//   formData: PropTypes.object.isRequired,
-//   setFormData: PropTypes.func.isRequired,
-//   backStep: PropTypes.func.isRequired,
-//   nextStep: PropTypes.func.isRequired,
-// };
+PersonalForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  setFormData: PropTypes.func.isRequired,
+  backStep: PropTypes.func.isRequired,
+  nextStep: PropTypes.func.isRequired,
+};
 
 export default PersonalForm;
