@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { register, logIn, logOut } from './operations';
+import { register, logIn, logOut, deletePet } from './operations';
 
 const initialState = {
   user: { email: null, password: null, id: '' },
@@ -31,21 +31,25 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.isRefreshing = false;
       })
+      .addCase(deletePet.fulfilled, (state, { payload }) => {
+        const index = state.user.pet.findIndex(pet => pet._id === payload.id);
+        state.user.pet.splice(index, 1);
+      })
       .addMatcher(
-        isAnyOf(register.pending, logIn.pending, logOut.pending),
+        isAnyOf(register.pending, logIn.pending, logOut.pending, deletePet.pending),
         state => {
           state.isLoading = true;
         }
       )
       .addMatcher(
-        isAnyOf(register.fulfilled, logIn.fulfilled, logOut.fulfilled),
+        isAnyOf(register.fulfilled, logIn.fulfilled, logOut.fulfilled, deletePet.fulfilled),
         state => {
           state.isLoading = false;
           state.error = null;
         }
       )
       .addMatcher(
-        isAnyOf(register.rejected, logIn.rejected, logOut.rejected),
+        isAnyOf(register.rejected, logIn.rejected, logOut.rejected, deletePet.rejected),
         (state, { payload }) => {
           state.isLoading = false;
           state.error = payload;

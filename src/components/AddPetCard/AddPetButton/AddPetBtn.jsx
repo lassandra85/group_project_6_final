@@ -1,6 +1,6 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {ReactComponent as  PlusIcon} from 'image/icons/plus.svg'
-   import {ReactComponent as PlusSmallIcon } from 'image/icons/plus-small.svg';
+import {ReactComponent as PlusSmallIcon } from 'image/icons/plus-small.svg';
 import { useWindowSize } from 'hooks/useResize';
 import { Btn } from './AddPetBtn.styled';
 import { useLocation } from 'react-router-dom';
@@ -35,12 +35,11 @@ const AddPetBtn = ({ text, path, toggleUnauthorizeModal, isfixed }) => {
 };
 
 
-// AddPetBtn.propTypes = {
-//   text: PropTypes.string.isRequired,
-//   path: PropTypes.string.isRequired,
-//   toggleUnauthorizeModal: PropTypes.func,
-//   isfixed: PropTypes.bool.isRequired,
-// };
-
+AddPetBtn.propTypes = {
+  text: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  toggleUnauthorizeModal: PropTypes.func,
+  isfixed: PropTypes.bool.isRequired,
+};
 
 export default AddPetBtn;

@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import { AddFormButtonWrapper } from '../PetPageForm/PetPageForm.styled';
@@ -19,8 +19,6 @@ import { validateField } from '../validatePet';
 const PersonalForm = ({ formData, setFormData, nextStep, backStep }) => {
   const [errors, setErrors] = useState({});
   const [isDisabled, setIsDisabled] = useState(false);
-
-  console.log({ isDisabled });
 
   const isNameFieldValid = Boolean(!errors.name && !!formData.name);
   const isBirthdayFieldValid = Boolean(!errors.birthday && !!formData.birthday);
@@ -168,11 +166,11 @@ const PersonalForm = ({ formData, setFormData, nextStep, backStep }) => {
   );
 };
 
-// PersonalForm.propTypes = {
-//   formData: PropTypes.object.isRequired,
-//   setFormData: PropTypes.func.isRequired,
-//   backStep: PropTypes.func.isRequired,
-//   nextStep: PropTypes.func.isRequired,
-// };
+PersonalForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  setFormData: PropTypes.func.isRequired,
+  backStep: PropTypes.func.isRequired,
+  nextStep: PropTypes.func.isRequired,
+};
 
 export default PersonalForm;
