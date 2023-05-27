@@ -1,4 +1,4 @@
-/* .headerWrapper {
+.headerWrapper {
   top: 0;
   left: 0;
   width: 1248px;
@@ -10,21 +10,21 @@
   justify-content: center;
   position: relative;
   align-items: center;
-  margin: 20px 16px 80px 16px;
-} */
+  margin: 20px 16px 0px 16px;
+}
 
 
-.headerWrapper {
+/* .headerWrapper {
     position: relative;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 1248px;
     z-index: 999;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 24px 32px 12px;
-}
+} */
 
 /* .headerWrapper {
     display: flex;
@@ -55,3 +55,4 @@
     align-items: center;
     height: 48px;
 } */
+
