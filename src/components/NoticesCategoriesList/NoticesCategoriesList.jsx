@@ -86,6 +86,31 @@ const items = [
     avatarURL: Lord,
     comments: "Loves to play fetch and swim in the pool. Good with kids and other pets.",
     category: "sell"
+},
+{   id:uniqid(),
+    titleOfAdd: "Looking for good friend",
+    name: "Leyla",
+    birthday: "11.12.2022",
+    breed: "Husky",
+    location: "Lviv",
+    price: 200,
+    sex: "female",
+    avatarURL: Leila,
+    comments: "Loves to play fetch and swim in the pool. Good with kids and other pets.",
+    category: "sell"
+},
+
+ {  id:uniqid(),
+    titleOfAdd: "Looking for good friend",
+    name: "Lord",
+    birthday: "11.12.2022",
+    breed: "Husky",
+    location: "Lviv",
+    price: 200,
+    sex: "male",
+    avatarURL: Lord,
+    comments: "Loves to play fetch and swim in the pool. Good with kids and other pets.",
+    category: "sell"
 }
 ]
 
