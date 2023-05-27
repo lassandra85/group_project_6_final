@@ -41,15 +41,17 @@ export const AddFormTitle = styled.h1`
 
     @media screen and (min-width: 768px) {
       font-size: 28px;
-
   }
-
 `;
 
 export const AddFormList = styled.ul`
   display: flex;
   column-gap: 12px;
   margin-bottom: 16px;
+     
+  @media screen and (min-width: 768px) {
+    column-gap: 16px;
+  }
 `;
 
 export const AddFormItem = styled.li`
