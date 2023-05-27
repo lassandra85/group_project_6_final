@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {ReactComponent as  PlusIcon} from 'image/icons/plus.svg'
    import {ReactComponent as PlusSmallIcon } from 'image/icons/plus-small.svg';
 import { useWindowSize } from 'hooks/useResize';

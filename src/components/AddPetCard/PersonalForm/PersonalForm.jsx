@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import { AddFormButtonWrapper } from '../PetPageForm/PetPageForm.styled';
@@ -168,11 +168,11 @@ const PersonalForm = ({ formData, setFormData, nextStep, backStep }) => {
   );
 };
 
-PersonalForm.propTypes = {
-  formData: PropTypes.object.isRequired,
-  setFormData: PropTypes.func.isRequired,
-  backStep: PropTypes.func.isRequired,
-  nextStep: PropTypes.func.isRequired,
-};
+// PersonalForm.propTypes = {
+//   formData: PropTypes.object.isRequired,
+//   setFormData: PropTypes.func.isRequired,
+//   backStep: PropTypes.func.isRequired,
+//   nextStep: PropTypes.func.isRequired,
+// };
 
 export default PersonalForm;
