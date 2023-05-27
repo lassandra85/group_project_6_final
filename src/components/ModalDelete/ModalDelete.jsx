@@ -1,5 +1,5 @@
 import css from '../ModalDelete/ModalDelete.module.css';
-import icons from '../../image/icons';
+import {ReactComponent as deleteicon} from 'image/icons/delete.svg';
 
 
 const ModalDelete = ({ title, onDelete, toggleModal}) => {

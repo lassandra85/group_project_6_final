@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
-import { PlusIcon, PlusSmallIcon } from 'components/AddPetCard/utils/icons';
+import {ReactComponent as  PlusIcon} from 'image/icons/plus.svg'
+   import {ReactComponent as PlusSmallIcon } from 'image/icons/plus-small.svg';
 import { useWindowSize } from 'hooks/useResize';
 import { Btn } from './AddPetBtn.styled';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 
-const AddPetBtn = ({ text, path, toggleUnauthorizeModal, isFixed }) => {
+const AddPetBtn = ({ text, path, toggleUnauthorizeModal, isfixed }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const location = useLocation();
   const [screenWidth] = useWindowSize();
@@ -24,7 +25,7 @@ const AddPetBtn = ({ text, path, toggleUnauthorizeModal, isFixed }) => {
       to={path}
       state={{ from: location }}
       onClick={onAddBtnClick}
-      isFixed={isFixed}
+      isfixed={isfixed}
     >
       {screenWidth < 768 && <PlusIcon />}
       {text} Add Pet
@@ -33,11 +34,13 @@ const AddPetBtn = ({ text, path, toggleUnauthorizeModal, isFixed }) => {
   );
 };
 
-AddPetBtn.propTypes = {
-  text: PropTypes.string.isRequired,
-  path: PropTypes.string.isRequired,
-  toggleUnauthorizeModal: PropTypes.func,
-  isFixed: PropTypes.bool.isRequired,
-};
+
+// AddPetBtn.propTypes = {
+//   text: PropTypes.string.isRequired,
+//   path: PropTypes.string.isRequired,
+//   toggleUnauthorizeModal: PropTypes.func,
+//   isfixed: PropTypes.bool.isRequired,
+// };
+
 
 export default AddPetBtn;
