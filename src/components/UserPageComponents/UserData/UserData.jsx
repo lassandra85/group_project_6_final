@@ -5,8 +5,8 @@ import { BsCheck2 } from 'react-icons/bs';
 import { MdOutlinePhotoCamera } from 'react-icons/md';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { userStateValues } from 'redux/user/selectors';
 import UserDataItem from '../UserDataItem/UserDataItem';
+import {selectUser} from 'redux/auth/selectors'
 // на маунте компонента делать запрос на бекенд на получение данных пользователя  и если их нет то значение по дефолту, а если есть то подставлять данные с бека
 const initReadOnlyValue = {
   name: true,
@@ -18,7 +18,7 @@ const initReadOnlyValue = {
 
 
 const UserData = () => {
-  const userState = useSelector(userStateValues);
+  const userState = useSelector(selectUser);
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [isReadonly, setIsReadonly] = useState(initReadOnlyValue);

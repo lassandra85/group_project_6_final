@@ -6,7 +6,17 @@ import Leila from 'image/notices_img/Leila.png'
 import Lord from 'image/notices_img/Lord.png'
 import uniqid from 'uniqid'
 import Button from "components/Button/Button";
-import {List,ListItem,ImageWrapper} from './NoticesCategoryList.styled'
+import {List,
+        ListItem,
+        ImageWrapper,
+        FavoriteBtn,
+        DeleteBtn,
+        InfoWrapper,
+        Info,
+        AgeInfo,
+        GenderInfo,
+        CardFooter,
+        Comments,} from './NoticesCategoryList.styled'
 
 
 
@@ -124,32 +134,32 @@ const NoticesCategoriesList = () => {
                 <ListItem key={pet.id}>
                 <ImageWrapper bgi={pet.avatarURL}>
                     <p className="Category">{pet.category}</p>
-                    <button className="FavoriteBtn">
-                        <AiOutlineHeart/> {/*HeartIcon*/}  
-                    </button>
-                    {<button className="DeleteBtn">
+                    <FavoriteBtn>
+                        <AiOutlineHeart/> 
+                    </FavoriteBtn>
+                    {<DeleteBtn>
                             <FiTrash2/>
-                    </button>}
-                    <div className="InfoWrapper">
-                        <span className="Info">
+                    </DeleteBtn>}
+                    <InfoWrapper>
+                        <Info>
                             <CiLocationOn/>
                             {pet.location}
-                        </span>
-                        <span className="AgeInfo">
+                        </Info>
+                        <AgeInfo>
                             <CiClock2/>
                             1 year
-                        </span>
-                        <span className="GenderInfo">
+                        </AgeInfo>
+                        <GenderInfo>
                            {pet.sex==='male'? <BsGenderMale/>:<BsGenderFemale/>}
                            {pet.sex}
-                        </span>
+                        </GenderInfo>
                         
-                    </div>
+                    </InfoWrapper>
                 </ImageWrapper>
-                <div className="CardFooter">
-                    <h3 className="Comments">Good Friend</h3>
+                <CardFooter>
+                    <Comments>Good Friend</Comments>
                     <Button/>
-                </div>
+                </CardFooter>
         
             </ListItem>  
            ))}

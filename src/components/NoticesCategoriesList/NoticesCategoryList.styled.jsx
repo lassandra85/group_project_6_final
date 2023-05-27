@@ -146,8 +146,41 @@ export const Info = styled.span`
   }
 `;
 export const AgeInfo = styled(Info)`
-color:${({inRange})=>inRange ? "#fff" : "#0000ff"}
+color:${({inRange})=>inRange ? "#fff" : "#0000ff"};
+
+background-color:${({inRange})=>inRange ? "blue" : "lightblue" };
+
+& svg {
+    stroke: ${({inRange})=>inRange ? "#fff" : "#0000ff"};
+}
 `;
-// GenderInfo
-// CardFooter
-// Comments
+
+
+export const GenderInfo = styled(Info)`
+color:${({inRange})=>inRange ? "#fff" : "#000000"};
+
+background-color: ${({inRange})=>inRange ? "blue" : "lightblue" };
+
+& svg{
+    stroke: ${({inRange})=>inRange ? "#fff" : "#0000ff"};
+}
+`;
+export const CardFooter = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding:20px;
+  padding-bottom: 24px;
+  background-color: #fff;
+  border-radius: 0px 0px 40px 40px;
+`;
+export const Comments = styled.h3`
+  width: 100%;
+  height: 66px;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: left;
+  overflow: hidden;
+`;
