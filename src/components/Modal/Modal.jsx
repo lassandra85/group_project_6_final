@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import { RxCross2 } from 'react-icons/rx';
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import css from '../Modal/Modal.module.css';
 
@@ -80,9 +80,9 @@ const Modal = ({ toggleModal, children }) => {
   );
 };
 
-Modal.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  children: PropTypes.node,
-};
+// Modal.propTypes = {
+//   onClick: PropTypes.func.isRequired,
+//   children: PropTypes.node,
+// };
 
 export default Modal;

@@ -1,33 +1,35 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const Btn = styled(Link)`
-  ${({ isfixed }) => (isfixed ? 'position: fixed;top: 460px;right: 20px;' : '')}
-
+export const Btn = styled(Link)`
+ position: ${(props) => props.$isFix ? ' fixed' : 'static'};
+ top:${(props) => props.$isFix  ? ' 460px' : '0'};
+ right:${(props) => props.$isFix  ? ' 20px' : '0'};
   display: flex;
-  flex-direction: ${({ isfixed }) => (isfixed ? 'column' : 'row-reverse')};
+  flex-direction: ${(props) => props.$isFix  ? 'column' : 'row-reverse'};
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: ${({ theme }) => theme.space[3] + 'px'};
 
-  width: ${({ isfixed }) => (isfixed ? '80px' : '129px')};
-  height: ${({ isfixed }) => (isfixed ? '80px' : '40px')};
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
+  width: ${(props) => props.$isFix  ? '80px' : '129px'};
+  height: ${(props) => props.$isFix  ?  '80px' : '40px'};
+  padding-top: ${({ theme }) => theme.space[3] + 'px'};
+  padding-bottom: ${({ theme }) => theme.space[3] + 'px'};
+  padding-left: ${({ theme }) => theme.space[4] + 'px'};
+  padding-right: ${({ theme }) => theme.space[4] + 'px'};
 
-  font-family: Manrope;
-  font-size: ${({ isfixed }) => isfixed ? '12px' : '16px'};
-  color: var(--color-white);
+  font-family: ${({ theme }) => theme.fonts.main.semiBold};
+  font-size: ${({ theme, $isFix }) =>
+    $isFix ? theme.fontSizes[0] : theme.fontSizes[2]};
+  color: #fff;
 
-  background-color: var(--color-blue);
-  border-radius: ${({ isfixed }) => (isfixed ? '50%' : '40px')};
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  background-color: ${({ theme }) => theme.colors.blue};
+  border-radius: ${(props) => props.$isFix   ?  '50%' : '40px'};
+  box-shadow: ${({ theme }) => theme.boxShadows.main};
 
   z-index: 1;
 
-  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 300ms ${({ theme }) => theme.transition.main};
 
   &:hover,
   &:focus {
@@ -43,13 +45,13 @@ const Btn = styled(Link)`
     width: 100%;
     height: 100%;
 
-    background: linear-gradient(290.46deg, var(--color-gradient_blue) 0%, #9BD0FF 107.89%);
+    background: ${({ theme }) => theme.colors.gradientBlue};
     border-radius: 40px;
     opacity: 0;
 
     z-index: -1;
 
-    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 300ms ${({ theme }) => theme.transition.main};
   }
 
   &:hover::before,
@@ -58,10 +60,10 @@ const Btn = styled(Link)`
   }
 
   & svg {
-    stroke: var(--color-white);
+    stroke: #fff;
   }
 
-  @media  (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     position: static;
     translate: 0 0;
 
@@ -70,16 +72,15 @@ const Btn = styled(Link)`
 
     width: 134px;
     height: 40px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-top: ${({ theme }) => theme.space[2] + 'px'};
+    padding-bottom: ${({ theme }) => theme.space[2] + 'px'};
+    padding-left: ${({ theme }) => theme.space[2] * 5 + 'px'};
+    padding-right: ${({ theme }) => theme.space[2] * 5 + 'px'};
 
-    font-family: Manrope;
-    font-size: 16px;
+    font-family: ${({ theme }) => theme.fonts.main.bold};
+    font-size: ${({ theme }) => theme.fontSizes[2]};
 
     border-radius: 40px;
   }
 `;
 
-export { Btn };
