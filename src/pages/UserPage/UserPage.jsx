@@ -3,8 +3,8 @@ import UserData from "components/UserPageComponents/UserData/UserData";
 import LogOut from "components/LogOut/LogOut";
 import { getUserInfo } from 'redux/auth/operations';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { userStateValues } from 'redux/user/selectors';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { userStateValues } from 'redux/user/selectors';
 
 const UserPage = () => {
    const dispatch = useDispatch();
