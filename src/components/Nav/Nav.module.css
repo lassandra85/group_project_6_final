@@ -1,4 +1,48 @@
-.navItem {
+.navList {
+    list-style: none;
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+}
+
+.navList a {
+    text-decoration: none;
+    color: black;
+}
+
+.navList a:hover,
+.navList a:focus {
+    color: #ffc107;
+}
+
+a.active {
+    color: #ffc107;
+}
+
+.nav_item {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+}
+
+.nav_item:not(:last-child) {
+    margin-right: 20px;
+}
+
+@media screen and (min-width: 1280px) {
+    .navList {
+        margin-right: auto;
+        margin-left: 159px;
+    }
+}
+
+
+/* .navItem {
     text-decoration: none;
 }
 
@@ -11,4 +55,4 @@
         padding-top: 10px;
         padding-bottom: 10px;
         font-size: 20px;
-}
+} */

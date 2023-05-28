@@ -2,27 +2,27 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Btn = styled(Link)`
-  ${({ isFixed }) => (isFixed ? 'position: fixed;top: 460px;right: 20px;' : '')}
+  ${({ isfixed }) => (isfixed ? 'position: fixed;top: 460px;right: 20px;' : '')}
 
   display: flex;
-  flex-direction: ${({ isFixed }) => (isFixed ? 'column' : 'row-reverse')};
+  flex-direction: ${({ isfixed }) => (isfixed ? 'column' : 'row-reverse')};
   align-items: center;
   justify-content: center;
   gap: 8px;
 
-  width: ${({ isFixed }) => (isFixed ? '80px' : '129px')};
-  height: ${({ isFixed }) => (isFixed ? '80px' : '40px')};
+  width: ${({ isfixed }) => (isfixed ? '80px' : '129px')};
+  height: ${({ isfixed }) => (isfixed ? '80px' : '40px')};
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 16px;
   padding-right: 16px;
 
   font-family: Manrope;
-  font-size: ${({ isFixed }) => isFixed ? '12px' : '16px'};
+  font-size: ${({ isfixed }) => isfixed ? '12px' : '16px'};
   color: var(--color-white);
 
   background-color: var(--color-blue);
-  border-radius: ${({ isFixed }) => (isFixed ? '50%' : '40px')};
+  border-radius: ${({ isfixed }) => (isfixed ? '50%' : '40px')};
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
 
   z-index: 1;

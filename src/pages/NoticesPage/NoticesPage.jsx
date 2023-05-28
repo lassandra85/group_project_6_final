@@ -4,7 +4,8 @@ import Title from "components/Title/Title";
 
 import { VscArrowLeft } from "react-icons/vsc";
 import { Filters } from "./NoticesPage.styled";
-import AddPetBtn from "components/AddPetCard/AddPetButton/AddPetBtn/AddPetBtn";
+import AddPetBtn from "components/AddPetCard/AddPetButton/AddPetBtn";
+import NoticesCategoriesList from "components/NoticesCategoriesList/NoticesCategoriesList";
 
 
 
@@ -20,8 +21,11 @@ const NoticesPage = () => {
             <NoticesSearch onFormSubmit={onFormSubmit}/>
             <Filters>
                 <NoticesCategoriesNav/>
-                <AddPetBtn/>
+                <AddPetBtn isfixed='true'/>
             </Filters>
+            <div className="ListContainer">
+                <NoticesCategoriesList/>
+            </div>
             <button><VscArrowLeft/></button>
         </div>
     );

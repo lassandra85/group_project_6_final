@@ -1,29 +1,26 @@
-@media screen and (max-width: 420px) {
+/* Стили для мобильных устройств */
+@media screen and (max-width: 767px) {
+    .logoWrapperM {
+        display: none;
+    }
+
     .logoWrapperS {
         display: initial;
-        display: none;
         padding-top: 8px;
-        margin-right: 167px;
+        /* margin-right: 160px; */
         max-width: 480px;
-        }
+    }
 }
 
+/* Стили для планшетов и десктопов */
 @media screen and (min-width: 768px) {
-    .logoWrapperM {
-        display: initial;
+    .logoWrapperS {
         display: none;
-        padding-top: 8px;
-        margin-right: 167px;
     }
-}
 
-@media screen and (max-width: 1280px) {
     .logoWrapperM {
         display: initial;
-        display: none; 
-        padding-top: 10px;
-        margin-right: 0;
+        padding-top: 8px;
+        /* margin-right: 167px; */
     }
 }
-
-

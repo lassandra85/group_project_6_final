@@ -10,6 +10,7 @@ import UserDataItem from '../UserDataItem/UserDataItem';
 import { userDataValidation } from 'helpers';
 import { updateUser } from 'redux/auth/operations';
 
+
 const initReadOnlyValue = {
   name: true,
   email: true,
@@ -20,8 +21,10 @@ const initReadOnlyValue = {
 
 const UserData = () => {
   const userState = useSelector(selectUser);
+
   const dispatch = useDispatch();
   const [state, setState] = useState({ ...userState });
+
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [isReadonly, setIsReadonly] = useState(initReadOnlyValue);

@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { Field } from 'formik';
 
@@ -6,7 +6,7 @@ import { AddFormButtonWrapper } from '../PetPageForm/PetPageForm.styled';
 import css from './ChooseForm.module.css'
 import AddFormButtonBack from '../AddFormButton/AddFormButtonBack';
 import AddFormButtonNext from '../AddFormButton/AddFormButtonNext';
-// import { PawPrintIcon } from '../utils/icons';
+import { PawPrintIcon } from 'components/AddPetCard/utils/icons';
 
 const ChooseForm = ({ formData, setFormData, nextStep, cancel, setValues }) => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -68,7 +68,7 @@ const ChooseForm = ({ formData, setFormData, nextStep, cancel, setValues }) => {
           isDisabled={isDisabled}
           type="button"
           text="Next"
-          // icon={<PawPrintIcon />}
+          icon={<PawPrintIcon />}
           clickHandler={nextStep}
           filled={false}
         />
@@ -78,14 +78,14 @@ const ChooseForm = ({ formData, setFormData, nextStep, cancel, setValues }) => {
   );
 };
 
-// ChooseForm.propTypes = {
-//   formData: PropTypes.object.isRequired,
-//   setFormData: PropTypes.func.isRequired,
-//   cancel: PropTypes.oneOfType([
-//     PropTypes.string.isRequired,
-//     PropTypes.object.isRequired,
-//   ]),
-//   nextStep: PropTypes.func.isRequired,
-// };
+ChooseForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  setFormData: PropTypes.func.isRequired,
+  cancel: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.object.isRequired,
+  ]),
+  nextStep: PropTypes.func.isRequired,
+};
 
 export default ChooseForm;
