@@ -1,8 +1,10 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { register, logIn, logOut, deletePet } from './operations';
+
+import { register, logIn, logOut, getUserInfo, updateUser,deletePet } from './operations';
+
 
 const initialState = {
-  user: { email: null, password: null, id: '' },
+  user: { email: null, password: null, _id: '', name : '', birthday: '', phone: '', city: '', avatarURL: null },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -31,30 +33,41 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.isRefreshing = false;
       })
+
+      .addCase(getUserInfo.fulfilled, (state, { payload }) => {
+        state.user = payload;
+      })
+      .addCase(updateUser.fulfilled, (state, { payload }) => {
+        state.user = { ...state.user, payload }; // state.Object.keys().includes payload? {... обновить} : push)
+      })
+
       .addCase(deletePet.fulfilled, (state, { payload }) => {
         const index = state.user.pet.findIndex(pet => pet._id === payload.id);
         state.user.pet.splice(index, 1);
       })
-      .addMatcher(
-        isAnyOf(register.pending, logIn.pending, logOut.pending, deletePet.pending),
+        .addMatcher(
+        isAnyOf(register.pending, logIn.pending, logOut.pending, getUserInfo.pending, updateUser.pending, deletePet.pending),
+
         state => {
           state.isLoading = true;
-        }
-      )
+        })
       .addMatcher(
-        isAnyOf(register.fulfilled, logIn.fulfilled, logOut.fulfilled, deletePet.fulfilled),
+
+        isAnyOf(register.fulfilled, logIn.fulfilled, logOut.fulfilled, deletePet.fulfilled,   getUserInfo.fulfilled,
+          updateUser.fulfilled),
+
         state => {
           state.isLoading = false;
           state.error = null;
-        }
-      )
+        })
       .addMatcher(
-        isAnyOf(register.rejected, logIn.rejected, logOut.rejected, deletePet.rejected),
+        isAnyOf(register.rejected, logIn.rejected, logOut.rejected, deletePet.rejected,  getUserInfo.rejected,
+          updateUser.rejected),
+
         (state, { payload }) => {
           state.isLoading = false;
           state.error = payload;
-        }
-      );
+        });
   },
 });
 

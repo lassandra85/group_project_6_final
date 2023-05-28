@@ -28,7 +28,7 @@ const UserDataItem = ({
           value={value}
           readOnly={isReadonly}
           onChange={onChange}
-          required={name === 'name' || name === 'birthday' ? true : false} //убрать при подключенной валидации йап
+          // required={name === 'name' || name === 'birthday' ? true : false} //убрать при подключенной валидации йап
         />
         {isReadonly ? (
           <button
@@ -49,7 +49,7 @@ const UserDataItem = ({
         ) : (
           <button type="submit" className={styles.buttonHidden}>
             <BsCheck2
-              color="#00C3AD" //value.length > 5 ? '#00C3AD' : '#888888'
+              color="#00C3AD"
               size={24}
               style={{
                 pointerEvents: 'none',

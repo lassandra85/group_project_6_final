@@ -5,6 +5,7 @@ axios.defaults.baseURL = 'https://pets-rest-api.onrender.com/'
 
 const setAuthHeader = token => { 
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
+    
 }
 
 const clearAuthHeader = () => {
@@ -19,7 +20,7 @@ export const register = createAsyncThunk(
     try {
       const response = await axios.post('api/users/register', credentials);
       setAuthHeader(response.data.accessToken);
-      localStorage.setItem('refreshToken', response.data.refreshToken);
+        localStorage.setItem('refreshToken', response.data.refreshToken);
       return response.data;
     } catch (error) {
       const { code } = error.response.data;
@@ -51,7 +52,7 @@ export const logOut = createAsyncThunk(
   'auth/logOut',
   async (_, { rejectWithValue }) => {
     try {
-      await axios.post('api/users/logout');
+      await axios.post('api/auth/logout');
       clearAuthHeader();
     } catch (error) {
       return rejectWithValue(error.message);
@@ -59,36 +60,36 @@ export const logOut = createAsyncThunk(
   }
 );
 
-export const getCurrentUser = createAsyncThunk(
-  'auth/currentUser',
-  async (_, { rejectWithValue, getState }) => {
-    if (!retry) {
-      const state = getState();
-      const currentToken = state.auth.token;
-      setAuthHeader(currentToken);
-    }
+// export const getCurrentUser = createAsyncThunk(
+//   'auth/currentUser',
+//   async (_, { rejectWithValue, getState }) => {
+//     if (!retry) {
+//       const state = getState();
+//       const currentToken = state.auth.token;
+//       setAuthHeader(currentToken);
+//     }
 
-    try {
-      const response = await axios.get('api/users/current');
+//     try {
+//       const response = await axios.get('api/users/current');
 
-      const token = axios.defaults.headers.common.Authorization.split(' ')[1];
-      return { token, data: response.data };
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+//       const token = axios.defaults.headers.common.Authorization.split(' ')[1];
+//       return { token, data: response.data };
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
 
-export const updateUser = createAsyncThunk(
-  'user/updateUser',
-  async (credentials, { rejectWithValue }) => {
-    try {
-      await axios.put('api/users/update', credentials);
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+// export const updateUser = createAsyncThunk(
+//   'user/updateUser',
+//   async (credentials, { rejectWithValue }) => {
+//     try {
+//       await axios.put('api/users/update', credentials);
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const addMyPet = createAsyncThunk(
   'user/addMyPet',
@@ -113,23 +114,23 @@ export const deletePet = createAsyncThunk(
   }
 );
 
-export const getUserInfo = createAsyncThunk(
-  'user/getUserInfo',
-  async (id, { rejectWithValue }) => {
+export const getUserInfo = createAsyncThunk( 
+  'auth/getUserInfo',
+  async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`api/users/${id}`);
-      return response.data;
+      const response = await axios.get(`api/user`);
+      return response.data.user;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
 
-export const changeUser = createAsyncThunk(
-  'user/changeUser',
+export const updateUser = createAsyncThunk(
+  'auth/updateUser',
   async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.put('api/users/', data);
+      const response = await axios.patch(`api/auth/${data.id}`, data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
