@@ -11,5 +11,6 @@
 //   isErrorRegistration: state => state.users.errorRegistration,
 // };
 
-// export const userStateValues = state => state.user
+// export const userStateValues = state => state.user.user
+
 

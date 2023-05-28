@@ -1,21 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit';
-import userPhoto from '../../../image/user-photo-default.png';
+// import { createSlice } from '@reduxjs/toolkit';
+// import { getUserInfo, updateUser } from './operations';
+// // import userPhoto from '../../../image/user-photo-default.png';
 
-const initialState = {
-  name: '',
-  email: 'vikit2000@ukr.net',
-  birthday: '',
-  phone: '',
-  city: '',
-  avatar: userPhoto,
-};
+// // const initialState = {
+// //   name: '',
+// //   email: '',
+// //   birthday: '',
+// //   phone: '',
+// //   city: '',
+// //   avatar: null,
+// // };
 
-const userSlice = createSlice({
-    name: 'user',
-  initialState,
-    extraReducers: builder => {
+// const userSlice = createSlice({
+//     name: 'user',
+//   initialState: {
+//     user: {},
+//     pet: []
+//   },
+//   extraReducers: builder => {
+//     builder.addCase(getUserInfo.fulfilled, (state, action) => {
+//       state.user = action.payload
+//       })
+//     }
+// })
 
-    }
-})
-
-export const userReducer = userSlice.reducer;
+// export const userReducer = userSlice.reducer;

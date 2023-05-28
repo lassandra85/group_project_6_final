@@ -4,10 +4,12 @@ import styles from './UserData.module.css';
 import { BsCheck2 } from 'react-icons/bs';
 import { MdOutlinePhotoCamera } from 'react-icons/md';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { userStateValues } from 'redux/user/selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectUser } from 'redux/auth/selectors';
 import UserDataItem from '../UserDataItem/UserDataItem';
-// на маунте компонента делать запрос на бекенд на получение данных пользователя  и если их нет то значение по дефолту, а если есть то подставлять данные с бека
+import { userDataValidation } from 'helpers';
+import { updateUser } from 'redux/auth/operations';
+
 const initReadOnlyValue = {
   name: true,
   email: true,
@@ -16,17 +18,18 @@ const initReadOnlyValue = {
   city: true,
 };
 
-
 const UserData = () => {
-  const userState = useSelector(userStateValues);
+  const userState = useSelector(selectUser);
+  const dispatch = useDispatch();
+  const [state, setState] = useState({ ...userState });
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [isReadonly, setIsReadonly] = useState(initReadOnlyValue);
 
-  const [state, setState] = useState({ ...userState });
   const [inputName, setInputName] = useState('');
-
+console.log(inputName);
   const [btnEditClicked, setBtnEditClicked] = useState(false);
+  console.log(btnEditClicked);
 
   const handleChangeInput = e => {
     const { name, value } = e.target;
@@ -35,8 +38,8 @@ const UserData = () => {
   };
   const onClickButton = e => {
     const { name } = e.target;
-    setIsReadonly({ ...isReadonly, [name]: false });
-    setBtnEditClicked(true)
+    setIsReadonly({...isReadonly, [name]: false });
+    setBtnEditClicked(true);
   };
 
   const handleChangeAvatar = e => {
@@ -47,37 +50,39 @@ const UserData = () => {
     setInputName(name);
   };
 
-  const handleUpload = async () => {
-    if (!selectedFile) {
-      alert('Please select file!');
-      return;
-    }
-    const formData = new FormData();
-    formData.append('file', state.avatar); //название файла нужно узнать у бекенда, под каким ключом он лежит
+  // const handleUpload = async () => {
+  //   console.log(inputName);
+  //   if (!selectedFile) {
+  //     alert('Please select file!');
+  //     return;
+  //   }
+  //   const formData = new FormData();
+  //   formData.append('avatarURL', state.avatarURL); //название файла нужно узнать у бекенда, под каким ключом он лежит
 
-    //сделать запрос на сервер что бы сохранить картинку там useDispatch( patch   data...)
-  };
+  //   dispatch(updateUser({id: state._id, avatarURL: state.avatarURL}))  //сделать запрос на сервер что бы сохранить картинку там useDispatch( patch   data...)
+  // };
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!inputName) {
-      alert('Please write something');
-      return;
-    }
-    console.log({ [inputName]: state[inputName] }); //диспачить
+    // if (!inputName) {
+    //   alert('Please write something');
+    //   return;
+    // }
+    console.log({ id: state._id, [inputName]: state[inputName] }); //диспачить
+    dispatch(updateUser({ _id: state._id, [inputName]: state[inputName] }));
     setInputName('');
     setIsReadonly(initReadOnlyValue);
-    setBtnEditClicked(false)
+    setBtnEditClicked(false);
   };
 
-// Виктория, [26.05.2023 11:50]
-return (
-    <Formik>
+  // Виктория, [26.05.2023 11:50]
+  return (
+    <Formik validationSchema={userDataValidation}>
       <form onSubmit={handleSubmit} className={styles.box} autoComplete="off">
         <div className="photo-container">
           <img
             className={styles.photo}
-            src={state.avatar ? state.avatar : userPhoto}
+            src={state.avatarURL ? state.avatarURL : userPhoto}
             alt="user"
             width={182}
             height={182}
@@ -87,7 +92,7 @@ return (
               <button
                 type="submit"
                 className={styles.buttonUploadHidden}
-                onClick={handleUpload}
+                // onClick={handleUpload}
               >
                 <BsCheck2
                   size={24}
@@ -106,7 +111,7 @@ return (
                   <input
                     type="file"
                     id="file"
-                    name="avatar"
+                    name="avatarURL"
                     className={styles.inputHidden}
                     onChange={handleChangeAvatar}
                     accept="image/png, image/jpeg"
@@ -134,7 +139,7 @@ return (
           />
           <UserDataItem
             id={'user_email'}
-            value={state.email}
+            value={state.email || ''}
             placeholder={'anna00@gmail.com|'}
             name={'email'}
             label={'Email:'}
