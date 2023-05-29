@@ -13,6 +13,7 @@ const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 const AddPetPage = lazy(()=>import('../pages/AddPetPage/AddPetPage'))
+const ErrorPage = lazy(()=>import('../pages/ErrorPage/ErrorPage'))
 
 export const App = () => {
   return (
@@ -28,6 +29,7 @@ export const App = () => {
           <Route path="login" element={<LoginPage />}/>
           <Route path="register" element={<RegisterPage />}/>
           <Route path="user" element={<UserPage />}/> 
+          <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
     </Suspense>

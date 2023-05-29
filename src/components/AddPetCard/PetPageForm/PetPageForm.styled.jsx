@@ -48,8 +48,8 @@ export const AddFormList = styled.ul`
      display: grid;
      grid-template-columns: 1fr 1fr 1fr;
      justify-content: start;
-    //  gap: 12px; 
-  // display: flex;
+     //  gap: 12px; 
+     // display: flex;
       column-gap: 12px;
       width:100%;
       margin-bottom: 16px;
@@ -58,7 +58,7 @@ export const AddFormList = styled.ul`
       // gap:16px;
       justify-content: center;
       // max-width:390px;
-    column-gap: 16px;
+      column-gap: 16px;
   }
 `;
 
