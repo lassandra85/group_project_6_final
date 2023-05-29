@@ -3,12 +3,12 @@ import userPhoto from '../../../image/user-photo-default.png';
 import styles from './UserData.module.css';
 import { BsCheck2 } from 'react-icons/bs';
 import { MdOutlinePhotoCamera } from 'react-icons/md';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 import UserDataItem from '../UserDataItem/UserDataItem';
 import { userDataValidation } from 'helpers';
-import { updateUser } from 'redux/auth/operations';
+import { getUserInfo, updateUser } from 'redux/auth/operations';
 
 const initReadOnlyValue = {
   name: true,
@@ -22,14 +22,17 @@ const UserData = () => {
   const userState = useSelector(selectUser);
   const dispatch = useDispatch();
   const [state, setState] = useState({ ...userState });
+  
+  useEffect(() => {
+    setState({...userState})
+  }, [userState])
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [isReadonly, setIsReadonly] = useState(initReadOnlyValue);
 
   const [inputName, setInputName] = useState('');
-console.log(inputName);
+
   const [btnEditClicked, setBtnEditClicked] = useState(false);
-  console.log(btnEditClicked);
 
   const handleChangeInput = e => {
     const { name, value } = e.target;
@@ -64,15 +67,13 @@ console.log(inputName);
 
   const handleSubmit = e => {
     e.preventDefault();
-    // if (!inputName) {
-    //   alert('Please write something');
-    //   return;
-    // }
-    console.log({ id: state._id, [inputName]: state[inputName] }); //диспачить
+    
     dispatch(updateUser({ _id: state._id, [inputName]: state[inputName] }));
     setInputName('');
     setIsReadonly(initReadOnlyValue);
     setBtnEditClicked(false);
+    setSelectedFile(null);
+    dispatch(getUserInfo()); //???
   };
 
   // Виктория, [26.05.2023 11:50]
@@ -90,9 +91,10 @@ console.log(inputName);
           <div className={styles.edit}>
             {selectedFile ? (
               <button
-                type="submit"
+                type="button"
                 className={styles.buttonUploadHidden}
                 // onClick={handleUpload}
+                onClick={handleSubmit}
               >
                 <BsCheck2
                   size={24}
@@ -115,7 +117,7 @@ console.log(inputName);
                     className={styles.inputHidden}
                     onChange={handleChangeAvatar}
                     accept="image/png, image/jpeg"
-                    disabled={btnEditClicked ? true : false}
+                    disabled={btnEditClicked}
                   />
                   <label className={styles.labelPhoto} htmlFor="file">
                     Edit Photo
@@ -135,7 +137,8 @@ console.log(inputName);
             onChange={handleChangeInput}
             isReadonly={isReadonly.name}
             onClick={onClickButton}
-            disabled={btnEditClicked ? true : false}
+            disabled={btnEditClicked}
+            onSubmit={handleSubmit}
           />
           <UserDataItem
             id={'user_email'}
@@ -146,7 +149,8 @@ console.log(inputName);
             onChange={handleChangeInput}
             isReadonly={isReadonly.email}
             onClick={onClickButton}
-            disabled={btnEditClicked ? true : false}
+            disabled={btnEditClicked}
+            onSubmit={handleSubmit}
           />
           <UserDataItem
             id={'user_birthday'}
@@ -157,7 +161,8 @@ console.log(inputName);
             onChange={handleChangeInput}
             isReadonly={isReadonly.birthday}
             onClick={onClickButton}
-            disabled={btnEditClicked ? true : false}
+            disabled={btnEditClicked}
+            onSubmit={handleSubmit}
           />
           <UserDataItem
             id={'user_phone'}
@@ -168,7 +173,8 @@ console.log(inputName);
             onChange={handleChangeInput}
             isReadonly={isReadonly.phone}
             onClick={onClickButton}
-            disabled={btnEditClicked ? true : false}
+            disabled={btnEditClicked}
+            onSubmit={handleSubmit}
           />
           <UserDataItem
             id={'user_city'}
@@ -179,7 +185,8 @@ console.log(inputName);
             onChange={handleChangeInput}
             isReadonly={isReadonly.city}
             onClick={onClickButton}
-            disabled={btnEditClicked ? true : false}
+            disabled={btnEditClicked}
+            onSubmit={handleSubmit}
           />
         </div>
       </form>
