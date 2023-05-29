@@ -4,7 +4,6 @@ import LogOut from 'components/LogOut/LogOut';
 import { getUserInfo } from 'redux/auth/operations';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import PetsData from 'components/UserPageComponents/PetsData/PetsData';
 // import { userStateValues } from 'redux/user/selectors';
 
 const UserPage = () => {
