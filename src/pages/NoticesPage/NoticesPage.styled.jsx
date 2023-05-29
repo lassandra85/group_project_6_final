@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  font-family: ${({ theme }) => theme.fonts.main.bold};
+
   font-size: ${({ theme }) => theme.fontSizes[4]};
   text-align: center;
 

@@ -76,7 +76,7 @@ const Btn = styled.button`
     gap: ${({ theme }) => theme.space[3] + 'px'};
     min-width: 152px;
 
-    font-family: ${({ theme }) => theme.fonts.main.bold};
+    font-weight: ${({ theme }) => theme.fonts.main.bold};
     font-size: ${({ theme }) => theme.fontSizes[2]};
     color: ${({ theme, isOpen }) =>
       isOpen ? theme.colors.white : theme.colors.blue};
@@ -119,7 +119,7 @@ const Filters = styled.div`
 `;
 
 const FiltersText = styled.p`
-  font-family: ${({ theme }) => theme.fonts.main.bold};
+  font-weight: ${({ theme }) => theme.fonts.main.bold};
   font-size: ${({ theme }) => theme.fontSizes[2]};
   color: ${({ theme }) => theme.colors.blue};
   text-align: left;

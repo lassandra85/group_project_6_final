@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-export const Btn = styled(Link)`
+export const Btn = styled(NavLink)`
  position: ${(props) => props.$isFix ? ' fixed' : 'static'};
  top:${(props) => props.$isFix  ? ' 460px' : '0'};
  right:${(props) => props.$isFix  ? ' 20px' : '0'};
@@ -18,7 +18,7 @@ export const Btn = styled(Link)`
   padding-left: ${({ theme }) => theme.space[4] + 'px'};
   padding-right: ${({ theme }) => theme.space[4] + 'px'};
 
-  font-family: ${({ theme }) => theme.fonts.main.semiBold};
+  font-weight: ${({ theme }) => theme.fonts.main.semiBold};
   font-size: ${({ theme, $isFix }) =>
     $isFix ? theme.fontSizes[0] : theme.fontSizes[2]};
   color: #fff;
@@ -76,8 +76,6 @@ export const Btn = styled(Link)`
     padding-bottom: ${({ theme }) => theme.space[2] + 'px'};
     padding-left: ${({ theme }) => theme.space[2] * 5 + 'px'};
     padding-right: ${({ theme }) => theme.space[2] * 5 + 'px'};
-
-    font-family: ${({ theme }) => theme.fonts.main.bold};
     font-size: ${({ theme }) => theme.fontSizes[2]};
 
     border-radius: 40px;
