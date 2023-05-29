@@ -45,12 +45,14 @@ export const AddFormTitle = styled.h1`
 `;
 
 export const AddFormList = styled.ul`
-  display: flex;
-  column-gap: 12px;
-  margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: start;
+    gap: 12px;
+    margin-bottom: 16px;
      
   @media screen and (min-width: 768px) {
-    column-gap: 16px;
+    gap: 16px;
   }
 `;
 
@@ -83,7 +85,7 @@ export const AddFormItem = styled.li`
 
 export const AddFormStepName = styled.p`
   font-family: Manrope;
-  font-size: 10px;
+  font-size: 0.625rem;
   line-height: 1.4;
 
   color: var(--background_btn-color);
