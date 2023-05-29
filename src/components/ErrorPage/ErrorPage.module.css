@@ -1,0 +1,334 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../image/bg_mobile2x.png');
+}
+
+.title {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 33px;
+  text-align: center;
+  color: var(--text-color-primary);
+}
+.imageContainer {
+  position: absolute;
+  width: 280px;
+  height: 123px;
+  left: 20px;
+  top: 274px;
+}
+.Left4 {
+  position: absolute;
+  width: 80px;
+  height: 169px;
+  left: -10.81px;
+  top: -8.54px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 129.782px;
+  line-height: 130%;
+  color: #54adff;
+  transform: rotate(-11.34deg);
+}
+.imageCat::before {
+  position: absolute;
+  width: 220.56px;
+  height: 220.56px;
+  left: 285.6px;
+  top: 110.89px;
+  background: #ffc107;
+  border-radius: 55.1391px;
+  transform: rotate(154.12deg);
+}
+.imageCat {
+  position: absolute;
+  width: 99.46px;
+  height: 131.48px;
+  left: 95.81px;
+  top: 7.15px;
+  background: url('../../image/404_img/cat_mobile_x2.png');
+}
+.Right4 {
+  position: absolute;
+  width: 80px;
+  height: 169px;
+  left: 236.32px;
+  top: -32.7px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 129.782px;
+  line-height: 130%;
+  color: #54adff;
+  transform: rotate(24.23deg);
+}
+.bttnMain {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 28px;
+  gap: 12px;
+  position: absolute;
+  width: 248px;
+  height: 40px;
+  left: 36px;
+  top: 457px;
+  border: none;
+  border-radius: 40px;
+  color: var(--background-color);
+  background: var(--color-blue);
+
+  cursor: pointer;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  }
+}
+
+.svg_pawPrint {
+  fill: var(--background-color);
+}
+/* .btnImg {
+  position: absolute;
+  width: 24px;
+  height: 20.97px;
+  left: 5.56px;
+  top: -2.59px;
+  transform: rotate(25deg);
+  content: url('../../image/404_img/mobile_btn_x2.png');
+} */
+
+@media screen and (min-width: 768px) {
+  .container {
+    background-image: url('../../image/bg_tablet2x.png');
+  }
+  .title {
+    position: absolute;
+    width: 450px;
+    height: 42px;
+    left: 159px;
+    top: 128px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 130%;
+    color: var(--text-color-primary);
+  }
+  .imageContainer {
+    position: absolute;
+    width: 704px;
+    height: 308px;
+    left: 32px;
+    top: 250px;
+  }
+  .Left4 {
+    position: absolute;
+    width: 201px;
+    height: 424px;
+    left: -17.13px;
+    top: -21.46px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 326.31px;
+    line-height: 130%;
+    color: #54adff;
+    transform: rotate(-11.34deg);
+  }
+  .imageCat::before {
+    position: absolute;
+    width: 554.54px;
+    height: 554.54px;
+    left: 728.15px;
+    top: 278.8px;
+    background: #ffc107;
+    border-radius: 138.636px;
+    transform: rotate(154.12deg);
+  }
+  .imageCat {
+    position: absolute;
+    width: 250.08px;
+    height: 330.59px;
+    left: 250.94px;
+    top: 17.99px;
+    background: url('../../image/404_img/cat_tablet_X2.png');
+  }
+  .Right4 {
+    position: absolute;
+    width: 201px;
+    height: 424px;
+    left: 604.22px;
+    top: -82.22px;
+
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 326.31px;
+    line-height: 130%;
+    color: #54adff;
+    transform: rotate(24.23deg);
+  }
+  .bttnMain {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 28px;
+    gap: 12px;
+    position: absolute;
+    width: 248px;
+    height: 40px;
+    left: 260px;
+    top: 628px;
+    border: none;
+    border-radius: 40px;
+    color: var(--background-color);
+    background: var(--color-blue);
+
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+    }
+  }
+
+  .svg_pawPrint {
+    fill: var(--background-color);
+  }
+
+  /* .btnImg {
+    position: absolute;
+    width: 24px;
+    height: 20.97px;
+    left: 5.56px;
+    top: -2.59px;
+    transform: rotate(25deg);
+    content: url('../../image/404_img/tablet_btn_X2.png');
+  } */
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    background-image: url('../../image/bg_desktop2x.png');
+    flex-direction: row;
+  }
+  .title {
+    position: absolute;
+    width: 450px;
+    height: 42px;
+    left: 415px;
+    top: 128px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 130%;
+    color: var(--text-color-primary);
+  }
+  .imageContainer {
+    position: absolute;
+    width: 822px;
+    height: 360px;
+    left: 229px;
+    top: 250px;
+  }
+  .Left4 {
+    position: absolute;
+    width: 235px;
+    height: 495px;
+    left: -20px;
+    top: -25.06px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 381.004px;
+    line-height: 130%;
+    color: #54adff;
+    transform: rotate(-11.34deg);
+  }
+  .imageCat::before {
+    position: absolute;
+    width: 647.49px;
+    height: 647.49px;
+    left: 850.2px;
+    top: 325.54px;
+    background: #ffc107;
+    border-radius: 161.873px;
+    transform: rotate(154.12deg);
+  }
+  .imageCat {
+    position: absolute;
+    width: 292px;
+    height: 386px;
+    left: 293px;
+    top: 21px;
+    background: url('../../image/404_img/cat_desctop_2x.png');
+  }
+  .Right4 {
+    position: absolute;
+    width: 235px;
+    height: 495px;
+    left: 705.5px;
+    top: -96px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 381.004px;
+    line-height: 130%;
+    color: #54adff;
+    transform: rotate(24.23deg);
+  }
+  .bttnMain {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 28px;
+    gap: 12px;
+    position: absolute;
+    width: 248px;
+    height: 40px;
+    left: 516px;
+    top: 628px;
+    border: none;
+    border-radius: 40px;
+    color: var(--background-color);
+    background: var(--color-blue);
+
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+    }
+  }
+
+  .svg_pawPrint {
+    fill: var(--background-color);
+  }
+
+  /* .btnImg {
+    position: absolute;
+    width: 24px;
+    height: 20.97px;
+    left: 5.56px;
+    top: -2.59px;
+    transform: rotate(25deg);
+    content: url('../../image/404_img/desctop_btn_x2.png');
+  } */
+}
