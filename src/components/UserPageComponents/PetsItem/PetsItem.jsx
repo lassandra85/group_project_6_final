@@ -15,10 +15,7 @@ const PetsItem = ({ pet }) => {
   const dispatch = useDispatch();
   const { _id, name, birthday, breed, comments, fileURL } = pet;
 
-  const url =
-    'https://res.cloudinary.com/dboarinns/image/upload/v1685189425/pet_app/pets/pet_app/pets646e24527f053eb2a6cf828dkitty.jpg';
-
-  const path = url
+  const path = fileURL
     .split('/')
     .reduce((acc, item) => {
       if (item.includes('pet')) {
@@ -61,23 +58,19 @@ const PetsItem = ({ pet }) => {
       <div className={css.info}>
         <p>
           <span className={css['info-type']}>Name: </span>
-          <span>Jack</span>
+          <span>{name}</span>
         </p>
         <p>
           <span className={css['info-type']}>Date of birth: </span>
-          <span>22.04.2018</span>
+          <span>{birthday}</span>
         </p>
         <p>
           <span className={css['info-type']}>Breed: </span>
-          <span>Persian cat</span>
+          <span>{breed}</span>
         </p>
         <p>
           <span className={css['info-type']}>Comments: </span>
-          <span>
-            Jack is a gray Persian cat with green eyes. He loves to be pampered
-            and groomed, and enjoys playing with toys. Although a bitshy, he's a
-            loyal and affectionate lap cat.
-          </span>
+          <span>{comments}</span>
         </p>
       </div>
     </div>

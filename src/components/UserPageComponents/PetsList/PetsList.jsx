@@ -7,17 +7,11 @@ import PetsItem from '../PetsItem/PetsItem';
 const PetsList = ({ pets }) => {
   return (
     <ul className={css.list}>
-      <li>
-        <PetsItem />
-      </li>
-      <li>
-        <PetsItem />
-      </li>
-      {/* {pets.map(pet => (
+      {pets.map(pet => (
         <li key={pet._id}>
           <PetsItem pet={pet} />
         </li>
-      ))} */}
+      ))}
     </ul>
   );
 };
