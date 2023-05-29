@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { cloud } from 'helpers';
 import { fill } from '@cloudinary/url-gen/actions/resize';
 import { focusOn } from '@cloudinary/url-gen/qualifiers/gravity';
@@ -8,8 +9,11 @@ import { ReactComponent as TrashIcon } from 'image/icons/trash-2.svg';
 
 import css from './PetsItem.module.css';
 
+import { deletePet } from 'redux/auth/operations';
+
 const PetsItem = ({ pet }) => {
-  //   const { name, birthday, breed, comments, fileURL } = pet;
+  const dispatch = useDispatch();
+  const { _id, name, birthday, breed, comments, fileURL } = pet;
 
   const url =
     'https://res.cloudinary.com/dboarinns/image/upload/v1685189425/pet_app/pets/pet_app/pets646e24527f053eb2a6cf828dkitty.jpg';
@@ -36,18 +40,22 @@ const PetsItem = ({ pet }) => {
     return petImage.toURL();
   };
 
+  const handleClick = () => {
+    dispatch(deletePet(_id));
+  };
+
   return (
     <div className={css.card}>
       <picture>
-        <source media="(max-width: 767px)" srcSet={getSizeImage(240)} />
+        <source media="(min-width: 1280px)" srcSet={getSizeImage(161)} />
         <source
           media="(min-width: 768px) and (max-width: 1279px)"
           srcSet={getSizeImage(128)}
         />
-        <source media="(min-width: 1280px)" srcSet={getSizeImage(161)} />
+        <source media="(max-width: 767px)" srcSet={getSizeImage(240)} />
         <img src={getSizeImage(240)} alt="pet" className={css.photo} />
       </picture>
-      <button type="button" className={css['trash-btn']}>
+      <button type="button" className={css['trash-btn']} onClick={handleClick}>
         <TrashIcon className={css['trash-icon']} />
       </button>
       <div className={css.info}>
@@ -78,6 +86,7 @@ const PetsItem = ({ pet }) => {
 
 PetsItem.propTypes = {
   pet: PropTypes.shape({
+    _id: PropTypes.string,
     name: PropTypes.string,
     birthday: PropTypes.string,
     breed: PropTypes.string,
