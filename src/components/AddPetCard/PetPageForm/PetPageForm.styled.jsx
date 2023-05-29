@@ -41,15 +41,25 @@ export const AddFormTitle = styled.h1`
 
     @media screen and (min-width: 768px) {
       font-size: 28px;
-
   }
-
 `;
 
 export const AddFormList = styled.ul`
-  display: flex;
-  column-gap: 12px;
-  margin-bottom: 16px;
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr;
+     justify-content: start;
+     //  gap: 12px; 
+     // display: flex;
+      column-gap: 12px;
+      width:100%;
+      margin-bottom: 16px;
+     
+  @media screen and (min-width: 768px) {
+      // gap:16px;
+      justify-content: center;
+      // max-width:390px;
+      column-gap: 16px;
+  }
 `;
 
 export const AddFormItem = styled.li`
@@ -77,11 +87,18 @@ export const AddFormItem = styled.li`
   &.completed::after {
     background-color: var(--color-green);
   }
+
+    @media screen and (min-width: 768px) {
+      max-width:120px;
+      // flex-basis: none;
+    }
 `;
+
+  // font-size: 10px;
 
 export const AddFormStepName = styled.p`
   font-family: Manrope;
-  font-size: 10px;
+  font-size: 0.625rem;
   line-height: 1.4;
 
   color: var(--background_btn-color);

@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Formik } from 'formik';
 import { useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux'; //, useSelector
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { addNotice } from 'redux/notices/operations';
 import { addMyPet } from 'redux/auth/operations';
-// import { validatePetSchema } from '../vaidatePet';
+import { validatePetSchema } from '../validatePet';
 
 import MoreInfo from '../MoreInfoForm/MoreInfoForm';
 import ChooseForm from '../ChooseForm/ChooseForm';
@@ -14,8 +14,8 @@ import PersonalForm from '../PersonalForm/PersonalForm';
 import Modal from 'components/Modal/Modal';
 import AddPetModal from '../AddPetModal/AddPetModal';
 
-// import { selectIsLoading } from 'redux/auth/selectors';
-// import { selectNoticesIsLoading } from 'redux/notices/selectors';
+import { selectIsLoading } from 'redux/auth/selectors';
+import { selectNoticesIsLoading } from 'redux/notices/selectors';
 
 import {
   AddForm,
@@ -46,9 +46,9 @@ const AddPetPageForm = () => {
   const backLink = location.state?.from ?? '/';
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const isAddMyPetLoading = useSelector(selectIsLoading);
-  // const isAddPetLoading = useSelector(selectNoticesIsLoading);
-  // const isLoading = isAddMyPetLoading || isAddPetLoading;
+  const isAddMyPetLoading = useSelector(selectIsLoading);
+  const isAddPetLoading = useSelector(selectNoticesIsLoading);
+  const isLoading = isAddMyPetLoading || isAddPetLoading;
 
   const getPageTitle = useCallback(() => {
     if (step < 1) return 'Add Pet';
@@ -143,7 +143,7 @@ const AddPetPageForm = () => {
       </AddFormList>
       <Formik
         initialValues={formData}
-        // validationSchema={validatePetSchema}
+        validationSchema={validatePetSchema}
         onSubmit={handleSubmit}
         validateOnChange={false}
       >
@@ -176,7 +176,7 @@ const AddPetPageForm = () => {
           </AddForm>
         )}
       </Formik>
-      {isModalOpen /*&& !isLoading*/ && (
+      {isModalOpen && !isLoading && (
         <Modal toggleModal={() => navigate(backLink)}>
           <AddPetModal backLink={backLink} />
         </Modal>

@@ -11,8 +11,8 @@ export const selectPet = state => state.auth.pet;
 
 export const selectIsRefreshing = state => state.auth.isRefreshing;
 
-export const selectIsLoading = state => state.auth.isLoading;//розкоментовано
+export const selectIsLoading = state => state.auth.isLoading;
 
-export const selectError = state => state.auth.error; //розкоментовано
+export const selectError = state => state.auth.error;
 
 export const selectToken = state => state.auth.token;

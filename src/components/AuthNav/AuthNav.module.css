@@ -6,6 +6,7 @@
   font-size: 16px;
   line-height: calc(22 / 16);
   letter-spacing: 0.04em;
+  margin-left: 270px;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
@@ -14,15 +15,32 @@
 }
 
 .login {
-  padding: 8px 41px;
+  width: 165px;
+  padding: 4px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   column-gap: 8px;
+  border: 2px solid var(--color-yellow);
   border-radius: 40px;
   font-weight: 700;
   color: var(--text-color-white);
   background-color: var(--color-yellow);
+}
+
+.login:hover,
+.login:focus {
+  color: var(--color-yellow);
+  background-color: var(--text-color-white);  
+}
+
+.paw-icon {
+  fill: var(--text-color-white);
+}
+
+.login:hover > .paw-icon,
+.login:focus > .paw-icon {
+  fill: var(--color-yellow);
 }
 
 .register {
@@ -41,6 +59,8 @@
   }
 }
 
-.paw-icon {
-  fill: var(--text-color-white);
+.register:hover,
+.register:focus {
+  color: var(--text-color-white);
+  background-color: var(--color-yellow);  
 }

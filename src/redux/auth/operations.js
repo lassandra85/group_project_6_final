@@ -2,7 +2,7 @@ import  axios  from "axios"
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { changeUserData } from "helpers";
 
-axios.defaults.baseURL = 'https://pets-rest-api.onrender.com/'
+axios.defaults.baseURL = 'https://pets-rest-api.onrender.com/api/'
 
 const setAuthHeader = token => { 
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
@@ -13,15 +13,15 @@ const clearAuthHeader = () => {
     axios.defaults.headers.common.Authorization = '';
 }
 
-let retry=false;
+// let retry=false;
 
 export const register = createAsyncThunk(
   'auth/register',
-  async (credentials, { rejectWithValue }) => {
+  async ({credentials}, { rejectWithValue }) => {
     try {
-      const response = await axios.post('api/users/register', credentials);
+      const response = await axios.post('auth/register', credentials);
       setAuthHeader(response.data.accessToken);
-        localStorage.setItem('refreshToken', response.data.refreshToken);
+        console.log(response.data)
       return response.data;
     } catch (error) {
       const { code } = error.response.data;
@@ -40,7 +40,7 @@ export const logIn = createAsyncThunk(
     try {
       const response = await axios.post('api/users/login', credentials);
       setAuthHeader(response.data.accessToken);
-      localStorage.setItem('refreshToken', response.data.refreshToken);
+      localStorage.getItem('refreshToken', response.data.refreshToken);
       return response.data;
     } catch (error) {
       return rejectWithValue ({ message: 'Email or password is incorrect.' });

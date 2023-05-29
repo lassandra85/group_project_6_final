@@ -1,5 +1,5 @@
 import css from '../ModalDelete/ModalDelete.module.css';
-import icons from '../../image/icons';
+import {ReactComponent as DeleteIcon} from 'image/icons/delete.svg';
 
 
 const ModalDelete = ({ title, onDelete, toggleModal}) => {
@@ -33,11 +33,11 @@ const ModalDelete = ({ title, onDelete, toggleModal}) => {
           
                     Yes
                       
-                    <svg width={24} height={24} className={css.yesDeleteSvg}>
+                    <DeleteIcon className={css.yesDeleteSvg}/>
                       
-                        <use href={icons + '#delete'} />
+                        
                       
-                    </svg>
+                    
                
                 </button>
             </div>

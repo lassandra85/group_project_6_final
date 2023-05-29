@@ -20,10 +20,10 @@ const UserPage = () => {
       <div className={styles.box}>
         <UserData />
         <LogOut />
-        {/* <PetsData pets={[...petsData]} /> */}
+        <PetsData pets={[...petsData]} /> //?
       </div>
     </>
   );
-}
+};
 
 export default UserPage;

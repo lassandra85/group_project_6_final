@@ -5,6 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { store, persistor } from './redux/store';
+import { ThemeProvider } from 'styled-components';
+import { theme } from 'theme/theme';
 import 'modern-normalize';
 import './index.css';
 
@@ -14,7 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
      <Provider store={store}> 
        <PersistGate loading={null} persistor={persistor}> 
         <BrowserRouter basename='/group_project_6_final'>
-            <App />
+           <ThemeProvider theme={theme}>
+              <App />
+           </ThemeProvider>
         </BrowserRouter>
        </PersistGate> 
      </Provider> 
