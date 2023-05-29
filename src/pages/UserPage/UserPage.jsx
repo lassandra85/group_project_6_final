@@ -20,7 +20,6 @@ const UserPage = () => {
         <UserData />
         <LogOut />
       </div>
-      <PetsData />
     </>
   );
 };
