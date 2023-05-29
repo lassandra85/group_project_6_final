@@ -7,47 +7,39 @@ import AddFormButtonNext from '../AddFormButton/AddFormButtonNext';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { PawPrintIcon } from '../utils/icons';
 
-import {
-  PersonalFormWrapper,
-  AddFormLabel,
-  AddFormInput,
-  AddFormLabelWrapper,
-} from './PersonalForm.styled';
+import { PersonalFormWrapper, AddFormLabel, AddFormInput, AddFormLabelWrapper } from './PersonalForm.styled';
 
 import { validateField } from '../validatePet';
 
 const PersonalForm = ({ formData, setFormData, nextStep, backStep }) => {
   const [errors, setErrors] = useState({});
   const [isDisabled, setIsDisabled] = useState(false);
+  const [maxDate, setMaxDate] = useState();
+
 
   const isNameFieldValid = Boolean(!errors.name && !!formData.name);
   const isBirthdayFieldValid = Boolean(!errors.birthday && !!formData.birthday);
   const isBreedFieldValid = Boolean(!errors.breed && !!formData.breed);
   const isTitleFieldValid = Boolean(!errors.title && !!formData.title);
 
-  useEffect(() => {
-    switch (formData.category) {
-      case 'sell' || 'lost-found' || 'for-free':
-        setIsDisabled(
-          !(
-            isNameFieldValid &&
-            isBirthdayFieldValid &&
-            isBreedFieldValid &&
-            isTitleFieldValid
-          )
-        );
-        break;
-
-      case 'my-pet':
-        setIsDisabled(
-          !(isNameFieldValid && isBirthdayFieldValid && isBreedFieldValid)
-        );
-        break;
-
-      default:
-        setIsDisabled(true);
-        break;
+   useEffect(() => {
+    if (formData.category === 'my-pet') {
+      setIsDisabled(
+        !(isNameFieldValid && isBirthdayFieldValid && isBreedFieldValid)
+      );
     }
+
+    if (formData.category !== 'my-pet') {
+      setIsDisabled(
+        !(
+          isNameFieldValid &&
+          isBirthdayFieldValid &&
+          isBreedFieldValid &&
+          isTitleFieldValid
+        )
+      );
+    }
+    setMaxDate(getCurrentDate());
   }, [
     errors,
     formData.category,
@@ -57,10 +49,14 @@ const PersonalForm = ({ formData, setFormData, nextStep, backStep }) => {
     isTitleFieldValid,
   ]);
 
-  useEffect(() => {
-    setIsDisabled(true);
-  }, []);
-
+  function getCurrentDate() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+  
   const handleInputChange = e => {
     const { name, value } = e.target;
 
@@ -123,6 +119,7 @@ const PersonalForm = ({ formData, setFormData, nextStep, backStep }) => {
             type="date"
             name="birthday"
             data-pattern="**.**.****"
+            max={maxDate}
             onChange={handleInputChange}
             value={formData.birthday.split('.').reverse().join('-')}
             onBlur={() => validateField('birthday', formData, setErrors)}
