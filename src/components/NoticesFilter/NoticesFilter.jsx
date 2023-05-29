@@ -111,7 +111,6 @@ const NoticesFilters = ({ chooseGender, chooseAge, chooseKotikiFilter }) => {
           toggleMenu={filtersToggle}
           setGenderFilter={setGender}
           setAgeFilter={setAge}
-          setKotikiFilter={chooseKotikiFilter}
           age={age}
           gender={gender}
         />
