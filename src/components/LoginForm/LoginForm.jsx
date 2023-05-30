@@ -15,6 +15,7 @@ const LoginForm = () => {
   let [pass, setPass] = useState(true);
   let [em, setEm] = useState(true);
   let [err, setErr] = useState(true);
+  let [err2, setErr2] = useState(true)
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async evt => {
@@ -27,13 +28,23 @@ const LoginForm = () => {
       email: emailField,
       password: passwordField,
     };
+    if (loading) {
+      return;
+    }
 
     if (passwordField && emailField) {
       setLoading(true);
       try {
-        await dispatch(logIn(credentials));        
-        form.reset();
-        navigate('/user');
+        await dispatch(logIn(credentials)).then(data => {
+          console.log(data.error)
+          if (data.error) {
+            setErr2(false)            
+          } else {
+              form.reset();
+              navigate('/user');
+          }
+        })        
+        
       }
       catch (error) {
         console.error(error)        
@@ -89,7 +100,7 @@ const LoginForm = () => {
           {pass ? '' : <p className={css.errorRassword}>Enter password</p>}
           {em ? '' : <p className={css.errorRassword}>Enter email</p>}
           {err ? '' : <p className={css.errorRassword}>Enter data</p>}
-          
+          {err2 ? '' :<p className={css.errorRassword}>Email or password incorrect</p>}
         </div>
 
         <button type="submit" className={css.bttnRegister}>
