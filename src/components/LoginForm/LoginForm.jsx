@@ -35,8 +35,7 @@ const LoginForm = () => {
     if (passwordField && emailField) {
       setLoading(true);
       try {
-        await dispatch(logIn(credentials)).then(data => {
-          console.log(data.error)
+        await dispatch(logIn(credentials)).then(data => {          
           if (data.error) {
             setErr2(false)            
           } else {
