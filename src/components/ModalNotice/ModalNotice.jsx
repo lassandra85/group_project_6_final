@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { selectors } from '../../redux/user/selectors';
 import { selectFavorites } from '../../redux/notices/selectors';
-import { getAllSelectedNotices } from '../../redux/notices/operations';
+import { getNoticeById } from '../../redux/notices/operations';
 
 const ModalNotice = ({ item, categoryName, handleAddOrDeleteFavorite }) => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const ModalNotice = ({ item, categoryName, handleAddOrDeleteFavorite }) => {
     if (!isLogged) {
       return;
     }
-    dispatch(getAllSelectedNotices());
+    dispatch(getNoticeById());
     return;
   }, [dispatch, isLogged]);
 
