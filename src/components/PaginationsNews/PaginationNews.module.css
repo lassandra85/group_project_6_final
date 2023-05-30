@@ -1,0 +1,96 @@
+.wrapperPaginations {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color);
+};
+
+
+
+.listPaginations {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--background-color);
+    box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+    border-radius: 45px;
+    padding: 8px 16px 9px 14px;
+    width: 280px;
+
+    @media screen and (min-width:768px) {
+    
+        width: 310px;
+        padding: 8px 11px 9px 12px;
+    
+    }
+};
+
+
+.btnPaginations {
+
+    outline: none;
+    border: 1px solid var(--background_btn-color);
+    color: var(--background_btn-color);
+    background-color: transparent;
+    display: inline-flex;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    
+    &:hover,
+    &:focus {
+        color: var(--color-blue);
+        background-color: var(--background_btn-color);
+    }
+   
+}
+
+
+
+.btnPaginationsActive {
+
+    border-color: var(--color-blue);
+    background-color: var(--color-blue);
+    color: var(--background-color);
+}
+
+
+.btnPaginationsArrow {
+
+    border-color: var(--color-grey);  
+    background-color: var(--background-color);
+    color: var(--color-grey);
+    
+
+    &:hover,
+    &:focus {
+            
+        color: var(--color-gradient_blue);
+        background-color: var(--color-gradient_blue);
+    }
+
+    &:active {
+        
+        border-color: var(--color-blue);
+        color: var(--color-blue);
+    }
+}
+
+.PaginationsSvg {
+    stroke: currentColor;
+    fill: currentColor;
+}
+
+
+
+
+
+
+
