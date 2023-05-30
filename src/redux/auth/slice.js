@@ -4,14 +4,15 @@ import { register, logIn, logOut, getUserInfo, updateUser,deletePet } from './op
 
 
 const initialState = {
-  user: { email: null, password: null, _id: '', name: '', birthday: '', phone: '', city: '', avatarURL: null },
+  user: { email: null, id: '', name: '', birthday: '', phone: '', city: '', avatarURL: null },
   pet: [],
   token: null,
-  isLoggedIn: false,
-  isRefreshing: false,
+  isLoggedIn: false,  
   isLoading: false,
   error:null,
 };
+
+ 
 
 const authSlice = createSlice({
   name: 'auth',
@@ -20,19 +21,23 @@ const authSlice = createSlice({
     builder
       .addCase(register.fulfilled, (state, { payload }) => {
        state.user.email = payload.email;
-       state.user._id = payload._id;
-       state.user.password = payload.password;
+        state.token = payload.token;
+        const newName = payload.email.split('@')[0]
+        state.user.name = newName; 
+        state.isLoggedIn = true;
+        state.user.id = payload.id
       })
       .addCase(logIn.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
-        state.token = payload.accessToken;
+        
+        state.token = payload.token;
         state.isLoggedIn = true;
+        state.user.id = payload.id 
+     
       })
       .addCase(logOut.fulfilled, (state, { payload }) => {
         state.user = { name: null, email: null };
         state.token = null;
-        state.isLoggedIn = false;
-        state.isRefreshing = false;
+        state.isLoggedIn = false;        
       })
 
       .addCase(getUserInfo.fulfilled, (state, { payload }) => {
@@ -70,6 +75,7 @@ const authSlice = createSlice({
         (state, { payload }) => {
           state.isLoading = false;
           state.error = payload;
+          
         });
   },
 });

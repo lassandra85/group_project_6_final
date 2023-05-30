@@ -15,33 +15,44 @@ const LoginForm = () => {
   let [pass, setPass] = useState(true);
   let [em, setEm] = useState(true);
   let [err, setErr] = useState(true);
-  let [log, setLog] = useState(true);
+  let [err2, setErr2] = useState(true)
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = evt => {
+  const handleSubmit = async evt => {
     evt.preventDefault();
     const form = evt.currentTarget;
     const emailField = form.elements.email.value;
     const passwordField = form.elements.password.value;
 
-    if (
-      passwordField && emailField) {
-      dispatch(
-        logIn({
-          email: form.elements.email.value,
-          password: form.elements.password.value,
-        })
-      ).then(data => {
-        if (data.payload.message === "") {
-          setLog(true)
-          form.reset();
-          navigate('/user');
-        } else {
-          setLog(false)          
-        }
-      })
+    const credentials = {
+      email: emailField,
+      password: passwordField,
+    };
+    if (loading) {
+      return;
+    }
+
+    if (passwordField && emailField) {
+      setLoading(true);
+      try {
+        await dispatch(logIn(credentials)).then(data => {          
+          if (data.error) {
+            setErr2(false)            
+          } else {
+              form.reset();
+              navigate('/user');
+          }
+        })        
+        
+      }
+      catch (error) {
+        console.error(error)        
+      } finally {        
+        setLoading(false);
+      }
       
-    } else if (
-      !emailField && passwordField) {
+      
+    } else if (!emailField && passwordField) {
       setEm((em = false));
       setErr((err = true));
       setPass((pass = true));
@@ -88,7 +99,7 @@ const LoginForm = () => {
           {pass ? '' : <p className={css.errorRassword}>Enter password</p>}
           {em ? '' : <p className={css.errorRassword}>Enter email</p>}
           {err ? '' : <p className={css.errorRassword}>Enter data</p>}
-          {log ? '' : <p className={css.errorRassword}>Email or password is incorrect.</p>}
+          {err2 ? '' :<p className={css.errorRassword}>Email or password incorrect</p>}
         </div>
 
         <button type="submit" className={css.bttnRegister}>

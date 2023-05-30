@@ -20,9 +20,16 @@ export const register = createAsyncThunk(
   async ({credentials}, { rejectWithValue }) => {
     try {
       const response = await axios.post('auth/register', credentials);
-      setAuthHeader(response.data.accessToken);
-        console.log(response.data)
-      return response.data;
+      const { email } = response.data;
+      if (email) {
+        const data = await axios.post('auth/login', credentials);        
+        const total = {email, ...data.data}
+        setAuthHeader(data.data.token);    
+
+        return total;
+      }      
+        
+      return
     } catch (error) {
       const { code } = error.response.data;
       if (code === 11000)
@@ -36,11 +43,11 @@ export const register = createAsyncThunk(
 
 export const logIn = createAsyncThunk(
   'auth/logIn',
-  async (credentials, { rejectWithValue }) => {
+  async ( credentials, { rejectWithValue }) => {    
     try {
-      const response = await axios.post('api/users/login', credentials);
-      setAuthHeader(response.data.accessToken);
-      localStorage.getItem('refreshToken', response.data.refreshToken);
+      
+      const response = await axios.post('auth/login', credentials);      
+      setAuthHeader(response.data.token);     
       return response.data;
     } catch (error) {
       return rejectWithValue ({ message: 'Email or password is incorrect.' });
@@ -53,7 +60,7 @@ export const logOut = createAsyncThunk(
   'auth/logOut',
   async (_, { rejectWithValue }) => {
     try {
-      await axios.post('api/auth/logout');
+      await axios.post('auth/logout');
       clearAuthHeader();
     } catch (error) {
       return rejectWithValue(error.message);

@@ -9,7 +9,7 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const [emailAvailable, setEmailAvailable] = useState(true);
+ 
   const [isActive, setActive] = useState(false);
   const handleClick = () => {
     setActive(!isActive);
@@ -19,24 +19,24 @@ const RegisterForm = () => {
     setActive2(!isActive2);
   };
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   let [pass, setPass] = useState(true);
   let [em, setEm] = useState(true);
   let [err, setErr] = useState(true);
 
-  const handleSubmit = async (evt) => {
+  const handleSubmit = async evt => {
     evt.preventDefault();
     const form = evt.currentTarget;
     const emailField = form.elements.email.value;
     const passwordField = form.elements.password.value;
     const confirmPasswordField = form.elements.confirmPassword.value;
     const credentials = {
-      email:emailField,
-      password:passwordField,
+      email: emailField,
+      password: passwordField,
     };
-    if(loading){
-      return
+    if (loading) {
+      return;
     }
 
     if (
@@ -48,24 +48,17 @@ const RegisterForm = () => {
       setPass(pass);
       setEm(em);
       setErr(err);
-      setLoading(true)
+      setLoading(true);
       try {
-        const response = await dispatch(register({credentials}));
-          if(response.error){
-           console.log(response.error)
-          }else{
-            // setEmailAvailable(true);
-            form.reset();
-            navigate('/user')
-          }
+        await dispatch(register({ credentials }));
+
+        form.reset();
+        navigate('/user');
       } catch (error) {
-        console.error(error)
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
-        finally{
-          setLoading(false)
-        }
-    
-      // navigate('/user');
     } else if (
       !emailField &&
       confirmPasswordField === passwordField &&
