@@ -5,13 +5,14 @@ import Footer from './Footer/Footer';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import Loader from './Loader/loader';
 import css from './SharedLayout.module.css';
 
 const SharedLayout = () => {
   return (
     <div className={css.contentWrapper}>
       <Header />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
       <main>

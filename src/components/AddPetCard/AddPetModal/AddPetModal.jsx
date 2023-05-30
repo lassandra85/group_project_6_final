@@ -18,10 +18,9 @@ const AddPetModal = ({ backLink, category }) => {
   const addPetError = useSelector(selectNoticesError);
   const isError = Boolean(addMyPetError) || Boolean(addPetError);
   const text = isError
-    ? 'Something wrong, please try again.'
-    : 'Pet was successfully added!';
+    ? 'Please try again, something wrong :('
+    : 'Pet was successfully added :)';
 
-  // console.log({ isError });
   const buttonText =
     category === 'my-pet' ? 'Go to profile' : 'Go to your adds';
   const path = category === 'my-pet' ? '/user' : '/notices/my-pets';
