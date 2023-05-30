@@ -4,7 +4,8 @@ import { register, logIn, logOut, getUserInfo, updateUser,deletePet } from './op
 
 
 const initialState = {
-  user: { email: null, password: null, _id: '', name : '', birthday: '', phone: '', city: '', avatarURL: null },
+  user: { email: null, password: null, _id: '', name: '', birthday: '', phone: '', city: '', avatarURL: null },
+  pet: [],
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -35,9 +36,11 @@ const authSlice = createSlice({
       })
 
       .addCase(getUserInfo.fulfilled, (state, { payload }) => {
-        state.user = payload;
+        state.user = payload.user;
+        state.pet = payload.pet;
       })
       .addCase(updateUser.fulfilled, (state, { payload }) => {
+        console.log(payload);
         state.user = { ...state.user, payload }; // state.Object.keys().includes payload? {... обновить} : push)
       })
 

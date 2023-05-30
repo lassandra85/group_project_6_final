@@ -1,5 +1,6 @@
 import  axios  from "axios"
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { changeUserData } from "helpers";
 
 axios.defaults.baseURL = 'https://pets-rest-api.onrender.com/api/'
 
@@ -114,12 +115,17 @@ export const deletePet = createAsyncThunk(
   }
 );
 
+const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NzM0ZDhkMGQ4NzY2YjVmY2E2Y2I1NSIsImlhdCI6MTY4NTI3ODEyMCwiZXhwIjoxNjg3MjY1MzIwfQ.eDM0hGZmVfMTLj6T0KvfGkl6LohWF9PjhhN8sXK9gq0';
 export const getUserInfo = createAsyncThunk( 
   'auth/getUserInfo',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`api/user`);
-      return response.data.user;
+        const response = await axios.get(`api/user`, {
+            headers: {
+          Authorization: `Bearer ${token}`
+      }});
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -130,7 +136,15 @@ export const updateUser = createAsyncThunk(
   'auth/updateUser',
   async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.patch(`api/auth/${data.id}`, data);
+      const response = await axios.patch(
+        `api/auth/${data.id}`,
+        changeUserData(data),
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
