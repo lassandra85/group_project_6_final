@@ -13,9 +13,9 @@ import desktop2x_3 from '../../image/main_img/3desktop2x.png' */
     flex-direction: column;
     width:100%;
     min-height: 100vh;
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat;
     background-size: contain;
-    background-image: url('../../image/bg_mobile2x.png');
+    background-image: url('../../image/bg_mobile2x.png'); */
 
     
 }
@@ -72,7 +72,7 @@ import desktop2x_3 from '../../image/main_img/3desktop2x.png' */
 
 @media(min-width:768px){
     .mainContainer{
-        background-image: url('../../image/bg_tablet2x.png');
+        /* background-image: url('../../image/bg_tablet2x.png'); */
     }
     .mainTitle{
         max-width: 588px;
@@ -110,7 +110,7 @@ import desktop2x_3 from '../../image/main_img/3desktop2x.png' */
 
 @media(min-width:1280px){
     .mainContainer{
-        background-image: url('../../image/bg_desktop2x.png');
+        /* background-image: url('../../image/bg_desktop2x.png'); */
         flex-direction: row;
     }
     .mainTitle{
