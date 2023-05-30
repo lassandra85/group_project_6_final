@@ -93,11 +93,8 @@ export const AddFormItem = styled.li`
 
     @media screen and (min-width: 768px) {
       max-width:120px;
-      // flex-basis: none;
     }
 `;
-
-
 
 export const AddFormStepName = styled.p`
   font-family: Manrope;
