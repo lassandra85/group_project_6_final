@@ -1,8 +1,11 @@
 import React from 'react';
 import { LoaderContainer, Paw, StyledSvg } from './Loader.styled';
 
+
 const PawIcon = () => {
+
   return (
+
     <StyledSvg viewBox="0 0 249 209.32" width="249" height="209.32">
       <symbol id="paw" viewBox="0 0 249 209.32">
         <ellipse
@@ -39,6 +42,7 @@ const PawIcon = () => {
 };
 
 const Loader = () => {
+  
   return (
     <>
       <LoaderContainer>

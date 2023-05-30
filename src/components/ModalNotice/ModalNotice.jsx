@@ -1,155 +1,129 @@
-import PropTypes from 'prop-types';
-import Button from 'components/Button/Button';
-import Modal from 'components/Modal/Modal';
-import ContactModal from 'components/ContactModal/ContactModal';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectCurrentNotice } from 'redux/notices/selectors';
-import { HeartIcon } from 'utils/icons';
-import { transformDate, transformCategoryName } from 'helpers';
-import { selectUser } from 'redux/auth/selectors';
-import { useWindowSize } from 'hooks/useResize';
-import {
-  Wrapper,
-  Positioning,
-  Image,
-  InfoWrapper,
-  Container,
-  Title,
-  Info,
-  InfoName,
-  InfoCred,
-  CommentWrapper,
-  Comment,
-  BtnWrapper,
-  Contact,
-} from './ModalNotice.styled';
-import { Category } from 'components/NoticesCategoriesList/NoticesCategoriesList.styled';
+import css from '../ModalNotice/ModalNotice.module.css';
+import icons from '../../image/icons';
+import { Loader } from '../Loader/loader';
 
-const ModalNotice = ({ toggleModal, onFavoriteClick }) => {
-  const [screenWidth] = useWindowSize();
-  const item = useSelector(selectCurrentNotice);
-  const user = useSelector(selectUser);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-  if (!item) return;
+import { selectors } from '../../redux/user/selectors';
+import { selectFavorites } from '../../redux/notices/selectors';
+import { getAllSelectedNotices } from '../../redux/notices/operations';
 
-  const onFavoriteBtnClick = () => {
-    onFavoriteClick(item);
-    toggleModal();
-  };
+const ModalNotice = ({ item, categoryName, handleAddOrDeleteFavorite }) => {
+  const dispatch = useDispatch();
+  const favorites = useSelector(selectFavorites);
+  const isLogged = useSelector(selectors.isLogged);
 
-  const toggleContactModal = () => {
-    setIsModalOpen(prevState => !prevState);
-  };
-
-  const contactClickHandler = () => {
-    toggleContactModal();
-  };
-
-  const category = transformCategoryName(item.category);
-  const birthday = transformDate(item.birthday);
+  useEffect(() => {
+    if (!isLogged) {
+      return;
+    }
+    dispatch(getAllSelectedNotices());
+    return;
+  }, [dispatch, isLogged]);
 
   return (
-    <>
-      <Modal toggleModal={toggleModal}>
-        <Wrapper>
-          <Positioning>
-            <Image bgi={item.avatarURL}>
-              <Category>{category}</Category>
-            </Image>
-            <InfoWrapper>
-              <Title>{item.titleOfAdd}</Title>
-              <Container>
-                <Info>
-                  <InfoName>Name:</InfoName>
-                  <InfoCred>{item.name}</InfoCred>
-                </Info>
-                <Info>
-                  <InfoName>Birthday:</InfoName>
-                  <InfoCred>{birthday}</InfoCred>
-                </Info>
-                <Info>
-                  <InfoName>Breed:</InfoName>
-                  <InfoCred>{item.breed}</InfoCred>
-                </Info>
-                <Info>
-                  <InfoName>Place:</InfoName>
-                  <InfoCred>{item.location}</InfoCred>
-                </Info>
-                <Info>
-                  <InfoName>The sex:</InfoName>
-                  <InfoCred>{item.sex}</InfoCred>
-                </Info>
-                <Info>
-                  <InfoName>Owner:</InfoName>
-                  <InfoCred>
-                    {!item.owner.username ? 'Stranger' : item.owner.username}
-                  </InfoCred>
-                </Info>
-                <Info>
-                  <InfoName>Email:</InfoName>
-                  <Contact
-                    href={`mailto:${item.owner.email}`}
-                    disabled={!item.owner.email}
-                  >
-                    {!item.owner.email ? 'unknown' : item.owner.email}
-                  </Contact>
-                </Info>
-                <Info>
-                  <InfoName>Phone:</InfoName>
-                  <Contact
-                    href={`tel:${item.owner.phone}`}
-                    disabled={!item.owner.phone}
-                  >
-                    {item.owner.phone ? item.owner.phone : 'unknown'}
-                  </Contact>
-                </Info>
-              </Container>
-            </InfoWrapper>
-          </Positioning>
+    <div className={css.containerNotice}>
+      {<Loader />}
 
-          <CommentWrapper>
-            <InfoName>Comments: </InfoName>
-            <Comment>{item.comments}</Comment>
-          </CommentWrapper>
+      <div className={css.coverNotice}>
+        <div className={css.imgWrapperNotice}>
+          {item.imageURL ? (
+            <img src={item.imageURL} className={css.imgPets} alt="Pet" />
+          ) : null}
 
-          <BtnWrapper>
-            <Button
-              text={
-                !item.favorite || item.favorite.includes(user.id)
-                  ? 'Remove'
-                  : 'Add to'
-              }
-              type="button"
-              clickHandler={onFavoriteBtnClick}
-              icon={<HeartIcon fill="#54ADFF" />}
-              filled
-              short={screenWidth >= 768}
-              heart
-            />
-            <Button
-              text="Contact"
-              type="button"
-              clickHandler={contactClickHandler}
-              short={screenWidth >= 768}
-            />
-          </BtnWrapper>
-        </Wrapper>
-      </Modal>
-      {isModalOpen && (
-        <ContactModal
-          toggleContactModal={toggleContactModal}
-          owner={item.owner}
-        />
-      )}
-    </>
+          <span className={css.categoryNotice}>
+            {categoryName ? (
+              <p className={css.categoryName}> {categoryName} </p>
+            ) : (
+              <p className={css.categoryName}> {item.category} </p>
+            )}
+          </span>
+        </div>
+
+        <div className={css.textContentNotice}>
+          <h3 className={css.titleNotice}> {item.title} </h3>
+
+          <ul className={css.petData}>
+            <li className={css.itemPetData}>
+              <p className={css.mainTextNotice}> Name: </p>
+
+              <p className={css.textNotice}> {item.name} </p>
+            </li>
+
+            <li className={css.itemPetData}>
+              <p className={css.mainTextNotice}> Birthday: </p>
+              <p className={css.textNotice}> {item.birthdate} </p>{' '}
+            </li>
+
+            <li className={css.itemPetData}>
+              <p className={css.mainTextNotice}> Breed: </p>
+              <p className={css.textNotice}> {item.breed} </p>{' '}
+            </li>
+
+            <li className={css.itemPetData}>
+              <p className={css.mainTextNotice}> Place: </p>
+              <p className={css.textNotice}> {item.location} </p>{' '}
+            </li>
+
+            <li className={css.itemPetData}>
+              <p className={css.mainTextNotice}> The sex: </p>
+              <p className={css.textNotice}> {item.sex} </p>{' '}
+            </li>
+
+            <li className={css.itemPetData}>
+              <p className={css.mainTextNotice}> Email: </p>
+
+              <a href={`mailto: ${item.email}`} className={css.mailNotice}>
+                {item.email}
+              </a>
+            </li>
+
+            <li className={css.itemPetData}>
+              <p className={css.mainTextNotice}> Phone: </p>
+
+              {item.mobilePhone ? (
+                <a href={`tel: ${item.mobilePhone}`} className={css.telNotice}>
+                  {item.mobilePhone}
+                </a>
+              ) : (
+                <p className={css.textNotice}> Not provided </p>
+              )}
+            </li>
+
+            {item.category === 'sell' && item.price ? (
+              <li className={css.itemPetData}>
+                <p className={css.mainTextNotice}> Price: </p>{' '}
+                <p className={css.textNotice}> {item.price}$ </p>
+              </li>
+            ) : null}
+          </ul>
+        </div>
+      </div>
+
+      <p className={css.commentsNotice}> Comments: {item.comments} </p>
+
+      <div className={css.noticeBtnContainer}>
+        <a className={css.noticeContactBtn} href={`tel:${item.mobilePhone}`}>
+          Contact
+        </a>
+
+        <button
+          className={css.noticeLikedBtn}
+          type="button"
+          onClick={handleAddOrDeleteFavorite}
+        >
+          {!favorites.find(favorite => favorite._id === item._id)
+            ? 'Add to'
+            : 'Remove from'}
+
+          <svg width={24} height={24} className={css.noticeLikedSvg}>
+            <use href={icons + '#heart'} />
+          </svg>
+        </button>
+      </div>
+    </div>
   );
-};
-
-ModalNotice.propTypes = {
-  toggleModal: PropTypes.func.isRequired,
-  onFavoriteClick: PropTypes.func.isRequired,
 };
 
 export default ModalNotice;
