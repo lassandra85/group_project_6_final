@@ -3,13 +3,13 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { register, logIn } from '../../redux/auth/operations';
+import { register } from '../../redux/auth/operations';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const [emailAvailable, setEmailAvailable] = useState(true);
+ 
   const [isActive, setActive] = useState(false);
   const handleClick = () => {
     setActive(!isActive);
@@ -19,26 +19,24 @@ const RegisterForm = () => {
     setActive2(!isActive2);
   };
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   let [pass, setPass] = useState(true);
   let [em, setEm] = useState(true);
   let [err, setErr] = useState(true);
 
-  const [email, setEmail] = useState("")
-
-  const handleSubmit = async (evt) => {
+  const handleSubmit = async evt => {
     evt.preventDefault();
     const form = evt.currentTarget;
     const emailField = form.elements.email.value;
     const passwordField = form.elements.password.value;
     const confirmPasswordField = form.elements.confirmPassword.value;
     const credentials = {
-      email:emailField,
-      password:passwordField,
+      email: emailField,
+      password: passwordField,
     };
-    if(loading){
-      return
+    if (loading) {
+      return;
     }
 
     if (
@@ -50,22 +48,17 @@ const RegisterForm = () => {
       setPass(pass);
       setEm(em);
       setErr(err);
-      setLoading(true)
-      try {       
-        
-      await dispatch(register({credentials}));        
-                       
-            form.reset();
-            navigate('/user')
-          
+      setLoading(true);
+      try {
+        await dispatch(register({ credentials }));
+
+        form.reset();
+        navigate('/user');
       } catch (error) {
-        console.error(error)
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
-        finally{
-          setLoading(false)
-        }
-    
-      
     } else if (
       !emailField &&
       confirmPasswordField === passwordField &&

@@ -45,9 +45,10 @@ export const logIn = createAsyncThunk(
   'auth/logIn',
   async ( credentials, { rejectWithValue }) => {    
     try {
+      
       const response = await axios.post('auth/login', credentials);
-      setAuthHeader(response.data.token);  
-      console.log(response.data)
+      console.log(response)
+      setAuthHeader(response.data.token);     
       return response.data;
     } catch (error) {
       return rejectWithValue ({ message: 'Email or password is incorrect.' });

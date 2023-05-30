@@ -15,30 +15,34 @@ const LoginForm = () => {
   let [pass, setPass] = useState(true);
   let [em, setEm] = useState(true);
   let [err, setErr] = useState(true);
-  let [log, setLog] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = evt => {
+  const handleSubmit = async evt => {
     evt.preventDefault();
     const form = evt.currentTarget;
     const emailField = form.elements.email.value;
     const passwordField = form.elements.password.value;
 
     const credentials = {
-      email:emailField,
-      password:passwordField,
+      email: emailField,
+      password: passwordField,
     };
 
     if (passwordField && emailField) {
-      dispatch(
-        logIn(credentials)
-      )
-          form.reset();
-          navigate('/user');
-        } 
-     
+      setLoading(true);
+      try {
+        await dispatch(logIn(credentials));        
+        form.reset();
+        navigate('/user');
+      }
+      catch (error) {
+        console.error(error)        
+      } finally {        
+        setLoading(false);
+      }
       
-     else if (
-      !emailField && passwordField) {
+      
+    } else if (!emailField && passwordField) {
       setEm((em = false));
       setErr((err = true));
       setPass((pass = true));
@@ -85,7 +89,7 @@ const LoginForm = () => {
           {pass ? '' : <p className={css.errorRassword}>Enter password</p>}
           {em ? '' : <p className={css.errorRassword}>Enter email</p>}
           {err ? '' : <p className={css.errorRassword}>Enter data</p>}
-          {log ? '' : <p className={css.errorRassword}>Email or password is incorrect.</p>}
+          
         </div>
 
         <button type="submit" className={css.bttnRegister}>
