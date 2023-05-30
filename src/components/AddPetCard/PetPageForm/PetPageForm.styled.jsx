@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { Form } from 'formik';
 
+const padding1 = '20px 74px';
+const padding2 = '20px 32px'
+
 export const AddFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,12 +19,13 @@ export const AddFormWrapper = styled.div`
     padding: 20px 32px;
     width: fit-content;
     min-width: 458px;
+   ;
   }
 
   @media screen and (min-width: 1280px) {
     padding: ${({ step, category }) =>
-      step === 2 && category !== 'my-pet' ? '20px 74px' : '20px 32px'};
-  }
+      step === 2 && category !== 'my-pet' ? padding1 : padding2};
+  }    
 `;
 
 export const AddForm = styled(Form)`
@@ -36,6 +40,7 @@ export const AddFormTitle = styled.h1`
   margin-bottom: 24px;
   font-size: 20px;
   line-height: 1.35;
+  text-align: ${({step})=>step===2? 'center': 'start'};
 
   color: var(--color-black);
 
@@ -48,17 +53,16 @@ export const AddFormList = styled.ul`
      display: grid;
      grid-template-columns: 1fr 1fr 1fr;
      justify-content: start;
-     //  gap: 12px; 
-     // display: flex;
-      column-gap: 12px;
-      width:100%;
-      margin-bottom: 16px;
+     column-gap: 12px;
+     width:100%;
+     margin-bottom: 16px;   
      
   @media screen and (min-width: 768px) {
-      // gap:16px;
       justify-content: center;
-      // max-width:390px;
       column-gap: 16px;
+      ${props=>console.log(props)}
+      padding: ${({ step, category }) =>
+      step === 2 && category !== 'my-pet' ? '0 96px' : '0 16px'};
   }
 `;
 
@@ -94,7 +98,7 @@ export const AddFormItem = styled.li`
     }
 `;
 
-  // font-size: 10px;
+
 
 export const AddFormStepName = styled.p`
   font-family: Manrope;

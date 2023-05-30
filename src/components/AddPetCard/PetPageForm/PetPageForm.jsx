@@ -133,8 +133,8 @@ const AddPetPageForm = () => {
 
   return (
     <AddFormWrapper step={step} category={formData.category}>
-      <AddFormTitle>{title}</AddFormTitle>
-      <AddFormList>
+      <AddFormTitle step={step}>{title}</AddFormTitle>
+      <AddFormList step={step} category={formData.category}>
         {steps.map((stepName, index) => (
           <AddFormItem key={index} className={setClassName(index)}>
             <AddFormStepName>{stepName}</AddFormStepName>
