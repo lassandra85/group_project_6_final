@@ -4,7 +4,7 @@ import NoticesFilters from 'components/NoticesFilter/NoticesFilter';
 import AddPetBtn from 'components/AddPetCard/AddPetButton/AddPetBtn';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 
-import Pagination from 'components/Pagination/Pagination';
+// import Pagination from 'components/Pagination/Pagination';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
 import ModalUnAuthorized from 'components/ModalUnAuthorized/ModalUnAuthorized';
 import { useState, useEffect } from 'react';
@@ -45,6 +45,7 @@ const NoticesPage = () => {
   const { isLoggedIn } = useSelector(selectAuth);
   const user = useSelector(selectUser);
   const notices = useSelector(selectNotices);
+  
   const [isItemModalOpen, setIsItemModalOpen] = useState(false);
   const [isAuthorizedModalOpen, setIsAuthorizedModalOpen] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
@@ -55,7 +56,7 @@ const NoticesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const page = searchParams.get('page') || 1;
-
+  console.log(totalPages)
   useEffect(() => {
     dispatch(setNotices());
 
@@ -177,7 +178,7 @@ const NoticesPage = () => {
   const toggleUnauthorizeModal = () => {
     setIsAuthorizedModalOpen(prevState => !prevState);
   };
-
+  console.log(onPageChange)
   return (
     <Wrapper>
       <Title>Find your favorite pet</Title>
@@ -212,11 +213,11 @@ const NoticesPage = () => {
         
   
      
-        <Pagination
+        {/* <Pagination
           onPageChange={onPageChange}
           currentPage={Number(page)}
           totalPagesCount={totalPages}
-        />
+        /> */}
       </ListContainer>
       {isItemModalOpen && (
         <ModalNotice

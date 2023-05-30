@@ -51,7 +51,7 @@ const NoticesCategoriesList = ({
   const { pathname } = useLocation();
 
   if (!items) return;
-
+  console.log(items)
   const pets = items.map(pet => {
     const category = transformCategoryName(pet.category);
     const title = cutTitle(pet.titleOfAdd);
@@ -59,11 +59,11 @@ const NoticesCategoriesList = ({
     const isDeleteBtnShown = Boolean(
       pathname.includes('my-pets') || pet.owner._id === user.id
     );
-    const favorite = Boolean(!pet.favorite || pet.favorite.includes(user.id));
+    const favorite = pet.favorite.length>0 && pet.favorite.includes(user.id)?true:false;
 
     return (
       <ListItem key={pet._id}>
-        <ImageWrapper bgi={pet.avatarURL}>
+        <ImageWrapper bgi={pet.fileURL}>
           <Category>{category}</Category>
           <FavoriteBtn
             inFavorite={favorite}

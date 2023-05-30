@@ -53,7 +53,7 @@ const noticesSlice = createSlice({
           getFavoriteNotices.fulfilled
         ),
         (state, { payload }) => {
-          state.items = payload.result;
+          state.items = payload;
           state.hits = payload.hits;
           state.totalHits = payload.totalHits;
         }
