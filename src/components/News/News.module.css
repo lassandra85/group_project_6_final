@@ -1,0 +1,156 @@
+.newsList {
+
+    margin: 0 auto;
+    margin-bottom: 40px;
+    display: grid;
+    row-gap: 44px;
+    width: 280px;
+
+}
+
+.newsItem {
+
+    width: 100%;
+    position: relative;
+    border-radius: 20px;
+    background-color: var(--color-white);
+    box-shadow: var(--box-shadow_main);
+    
+    &::before {
+
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        border-radius: 4px;
+        background-color: var(--color-blue);
+        background: var(--background_gradient);
+    }
+
+    @media screen and (min-width:768px) {
+    
+        flex-basis: calc((100% - 32px) / 2);
+    
+    }
+
+    @media screen and (min-width:1280px) {
+    
+        flex-basis: calc((100% - 2 * 31px) / 3);
+    
+    }
+}
+
+
+.imgItemWrp {
+
+    overflow: hidden;
+    border-radius: 20px;
+    width: 100%;
+    height: 252px;
+}
+
+
+.imgItem {
+
+    display: block;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+
+.itemWrp {
+
+    padding: 16px 12px 12px 12px;
+}
+
+
+.newsTitleItem {
+
+    margin-left: 0;
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.37;
+    letter-spacing: -0.01em;
+    overflow: hidden;
+    height: 66px;
+}
+
+
+.newsDescription {
+
+    font-weight: 400;
+    line-height: 1.37;
+    height: 154px;
+    margin-bottom: 40px;
+    
+    @media screen and (min-width:768px) {
+    
+        height: 132px;
+    
+    }
+    
+    @media screen and (min-width:1280px) {
+    
+        height: 110px;
+    
+    }
+}
+
+
+.newsDateAndLink {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.newsDate {
+
+    font-weight: 400;
+    line-height: 1.37;
+    color: var(--color-grey);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+
+}
+
+.newsLink {
+
+    padding: 0;
+    line-height: 1.37;
+    color: var(--color-blue);
+    transition: transform 250ms ease-in-out, border 250ms ease-in-out;
+    
+    &:hover,
+    &:focus {
+        color: var(--color-grey);
+    }
+}
+
+
+
+.notNewsFound {
+
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    margin: auto;
+    margin-top: 40px;
+
+}
+
+.notNewsFoundText {
+
+    color: var(--color-black);
+    
+}
+
+

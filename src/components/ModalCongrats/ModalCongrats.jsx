@@ -1,4 +1,4 @@
-import icons from '../../image/icons';
+import { ReactComponent as PawPrintIcon } from 'image/icons/pawprint.svg';
 
 import css from '../Modal/Modal.module.css';
 
@@ -30,11 +30,7 @@ const ModalCongrats = ({toggleModal}) => {
                       
                 </p> 
                   
-                <svg width={24} height={24} className={css.svg_pawPrint}>
-                      
-                    <use href={icons + '#pawprint'} />
-                      
-                </svg>
+                <PawPrintIcon className={css['svg_pawPrint']} /> 
                
             </button>
         </div >
