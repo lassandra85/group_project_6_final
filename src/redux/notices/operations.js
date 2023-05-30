@@ -77,6 +77,7 @@ export const getNoticeById = createAsyncThunk(
   }
 );
 
+
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async ({ category, newFormData }, { rejectWithValue }) => {
@@ -151,3 +152,4 @@ export const removeFavoriteNoticeOnFavoritepage = createAsyncThunk(
     }
   }
 );
+

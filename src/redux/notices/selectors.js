@@ -7,3 +7,5 @@ export const selectCurrentNotice = state => state.notices.currentNotice;
 export const selectNoticesIsLoading = state => state.notices.isLoading;
 
 export const selectNoticesError = state => state.notices.error;
+
+export const selectFavorites = state => state.notices.favorites;
