@@ -1,6 +1,6 @@
 import css from '../ModalNotice/ModalNotice.module.css';
-import icons from '../../image/icons';
-import { Loader } from '../Loader/loader';
+import {ReactComponent as HeartIcon} from 'image/icons/heart.svg';
+import  Loader  from '../Loader/loader';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,6 +23,7 @@ const ModalNotice = ({ item, categoryName, handleAddOrDeleteFavorite }) => {
   }, [dispatch, isLogged]);
 
   return (
+    
     <div className={css.containerNotice}>
       {<Loader />}
 
@@ -117,9 +118,7 @@ const ModalNotice = ({ item, categoryName, handleAddOrDeleteFavorite }) => {
             ? 'Add to'
             : 'Remove from'}
 
-          <svg width={24} height={24} className={css.noticeLikedSvg}>
-            <use href={icons + '#heart'} />
-          </svg>
+          <HeartIcon className={css['noticeLikedSvg']} />
         </button>
       </div>
     </div>
