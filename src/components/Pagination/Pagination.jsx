@@ -24,7 +24,7 @@ const Pagination = ({
     totalPagesCount,
     viewportWidth,
   });
-
+ 
   if (currentPage === 0 || paginationRange.length < 2) {
     return null;
   }

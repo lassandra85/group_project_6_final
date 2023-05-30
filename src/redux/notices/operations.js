@@ -5,12 +5,15 @@ import { createSearchParams } from 'helpers';
 export const getNotices = createAsyncThunk(
   'notices/getNotices',
   async (credentials, { rejectWithValue }) => {
-    const { category, ...params } = credentials;
+    
+    console.log(credentials)
+    const { category, params } = credentials;
+   
     try {
       const { data } = await axios.get(
-        `/api/notices/${category}?${createSearchParams(params)}`
+        `/notices/category/${category}?${createSearchParams(params)}`
       );
-
+      
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
