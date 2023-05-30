@@ -9,7 +9,7 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [emailAvailable, setEmailAvailable] = useState(true);
+  // const [emailAvailable, setEmailAvailable] = useState(true);
   const [isActive, setActive] = useState(false);
   const handleClick = () => {
     setActive(!isActive);
@@ -35,6 +35,10 @@ const RegisterForm = () => {
       email:emailField,
       password:passwordField,
     };
+    if(loading){
+      return
+    }
+
     if (
       passwordField === confirmPasswordField &&
       emailField &&
@@ -48,9 +52,9 @@ const RegisterForm = () => {
       try {
         const response = await dispatch(register({credentials}));
           if(response.error){
-            setEmailAvailable(false)
+           console.log(response.error)
           }else{
-            setEmailAvailable(true);
+            // setEmailAvailable(true);
             form.reset();
             navigate('/user')
           }

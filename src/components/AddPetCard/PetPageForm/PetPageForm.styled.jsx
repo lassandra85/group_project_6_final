@@ -60,7 +60,6 @@ export const AddFormList = styled.ul`
   @media screen and (min-width: 768px) {
       justify-content: center;
       column-gap: 16px;
-      ${props=>console.log(props)}
       padding: ${({ step, category }) =>
       step === 2 && category !== 'my-pet' ? '0 96px' : '0 16px'};
   }

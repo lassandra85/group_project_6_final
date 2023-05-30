@@ -6,7 +6,7 @@ const AddFormButtonNext = ({ text, icon, clickHandler, filled, short, type, isDi
     <button className={css.buttonNext}
       type={type}
       onClick={clickHandler && (() => clickHandler(false))}
-      filled={filled}
+      // filled={filled}
       short={short}
       disabled={isDisabled}
     >
