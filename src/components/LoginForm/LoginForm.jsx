@@ -23,24 +23,21 @@ const LoginForm = () => {
     const emailField = form.elements.email.value;
     const passwordField = form.elements.password.value;
 
-    if (
-      passwordField && emailField) {
+    const credentials = {
+      email:emailField,
+      password:passwordField,
+    };
+
+    if (passwordField && emailField) {
       dispatch(
-        logIn({
-          email: form.elements.email.value,
-          password: form.elements.password.value,
-        })
-      ).then(data => {
-        if (data.payload.message === "") {
-          setLog(true)
+        logIn(credentials)
+      )
           form.reset();
           navigate('/user');
-        } else {
-          setLog(false)          
-        }
-      })
+        } 
+     
       
-    } else if (
+     else if (
       !emailField && passwordField) {
       setEm((em = false));
       setErr((err = true));

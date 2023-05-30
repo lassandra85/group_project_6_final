@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { register } from '../../redux/auth/operations';
+import { register, logIn } from '../../redux/auth/operations';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -24,6 +24,8 @@ const RegisterForm = () => {
   let [pass, setPass] = useState(true);
   let [em, setEm] = useState(true);
   let [err, setErr] = useState(true);
+
+  const [email, setEmail] = useState("")
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
@@ -49,15 +51,13 @@ const RegisterForm = () => {
       setEm(em);
       setErr(err);
       setLoading(true)
-      try {
-        const response = await dispatch(register({credentials}));
-          if(response.error){
-           console.log(response.error)
-          }else{
-            // setEmailAvailable(true);
+      try {       
+        
+      await dispatch(register({credentials}));        
+                       
             form.reset();
             navigate('/user')
-          }
+          
       } catch (error) {
         console.error(error)
       }
@@ -65,7 +65,7 @@ const RegisterForm = () => {
           setLoading(false)
         }
     
-      // navigate('/user');
+      
     } else if (
       !emailField &&
       confirmPasswordField === passwordField &&
