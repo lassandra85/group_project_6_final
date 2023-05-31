@@ -1,10 +1,8 @@
-/* .contentWrapper{
-    min-height: 100vh;
-    /* ::after {
-        content: '';
-        display: block;
-        min-height: 0;
-    } */
+.contentWrapper{
+    margin: 0 auto;
+    padding: 0 16px;
+    width: 100%;
+    }
 
 @media(min-width:768px) { 
     .contentWrapper{
