@@ -4,6 +4,8 @@ import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
+import { Formik } from 'formik';
+import registerValidation from '../../helpers/registerDataValidation'
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ const RegisterForm = () => {
   let [pass, setPass] = useState(true);
   let [em, setEm] = useState(true);
   let [err, setErr] = useState(true);
+  let[dublicate, setDublicate] = useState(true)
 
   const handleSubmit = async evt => {
     evt.preventDefault();
@@ -50,10 +53,15 @@ const RegisterForm = () => {
       setErr(err);
       setLoading(true);
       try {
-        await dispatch(register({ credentials }));
-
-        form.reset();
-        navigate('/user');
+        const result = await dispatch(register({ credentials }));
+        if (result.payload === 'Request failed with status code 409') {
+          setDublicate(false)
+        } else {
+          setDublicate('')
+          form.reset();
+          navigate('/user');
+        }
+        
       } catch (error) {
         console.error(error);
       } finally {
@@ -86,7 +94,7 @@ const RegisterForm = () => {
   return (
     <div className={css.container}>
       <h2 className={css.header}>Registration</h2>
-
+      {/* <Formik validationSchema={registerValidation}> */}
       <form className={css.formRegister} onSubmit={handleSubmit}>
         <label>
           <input
@@ -137,11 +145,13 @@ const RegisterForm = () => {
           {pass ? '' : <p className={css.errorRassword}>Password mismatch</p>}
           {em ? '' : <p className={css.errorRassword}>Email incorrect</p>}
           {err ? '' : <p className={css.errorRassword}>Enter data</p>}
+          {dublicate ? '': <p className={css.errorRassword}>Email in use.</p>}
         </div>
         <button type="submit" className={css.bttnRegister}>
           Registration
         </button>
-      </form>
+        </form>
+        {/* </Formik> */}
       <div className={css.containerLog}>
         <p className={css.text}>Already have an account?</p>&nbsp;
         <NavLink className={css.link} to="/login">
