@@ -10,7 +10,6 @@ import UserDataItem from '../UserDataItem/UserDataItem';
 import { userDataValidation } from 'helpers';
 import { getUserInfo, updateUser } from 'redux/auth/operations';
 
-
 const initReadOnlyValue = {
   name: true,
   email: true,
@@ -20,15 +19,14 @@ const initReadOnlyValue = {
 };
 
 const UserData = () => {
-  const userState = useSelector(selectUser);
+  const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
-  const [state, setState] = useState({ ...userState });
-  
-  useEffect(() => {
-    setState({...userState})
-  }, [userState])
+  const [state, setState] = useState(user);
 
+  useEffect(() => {
+    setState(user);
+  }, [user]);
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [isReadonly, setIsReadonly] = useState(initReadOnlyValue);
@@ -39,12 +37,14 @@ const UserData = () => {
 
   const handleChangeInput = e => {
     const { name, value } = e.target;
+    console.log('name', name, 'value', value);
     setState({ ...state, [name]: value });
     setInputName(name);
   };
+
   const onClickButton = e => {
     const { name } = e.target;
-    setIsReadonly({...isReadonly, [name]: false });
+    setIsReadonly({ ...isReadonly, [name]: false });
     setBtnEditClicked(true);
   };
 
@@ -70,8 +70,8 @@ const UserData = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    
-    dispatch(updateUser({ _id: state._id, [inputName]: state[inputName] }));
+
+    dispatch(updateUser({ id: user._id, [inputName]: state[inputName] }));
     setInputName('');
     setIsReadonly(initReadOnlyValue);
     setBtnEditClicked(false);

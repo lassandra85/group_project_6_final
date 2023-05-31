@@ -1,35 +1,34 @@
-import  axios  from "axios"
+import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { changeUserData } from "helpers";
+import { changeUserData } from 'helpers';
 
-axios.defaults.baseURL = 'https://pets-rest-api.onrender.com/api/'
+axios.defaults.baseURL = 'https://pets-rest-api.onrender.com/api/';
 
-const setAuthHeader = token => { 
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`
-    
-}
+const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
 
 const clearAuthHeader = () => {
-    axios.defaults.headers.common.Authorization = '';
-}
+  axios.defaults.headers.common.Authorization = '';
+};
 
 // let retry=false;
 
 export const register = createAsyncThunk(
   'auth/register',
-  async ({credentials}, { rejectWithValue }) => {
+  async ({ credentials }, { rejectWithValue }) => {
     try {
       const response = await axios.post('auth/register', credentials);
       const { email } = response.data;
       if (email) {
-        const data = await axios.post('auth/login', credentials);        
-        const total = {email, ...data.data}
-        setAuthHeader(data.data.token);    
+        const data = await axios.post('auth/login', credentials);
+        const total = { email, ...data.data };
+        setAuthHeader(data.data.token);
 
         return total;
-      }      
-        
-      return
+      }
+
+      return;
     } catch (error) {
       const { code } = error.response.data;
       if (code === 11000)
@@ -43,14 +42,13 @@ export const register = createAsyncThunk(
 
 export const logIn = createAsyncThunk(
   'auth/logIn',
-  async ( credentials, { rejectWithValue }) => {    
+  async (credentials, { rejectWithValue }) => {
     try {
-      
-      const response = await axios.post('auth/login', credentials);      
-      setAuthHeader(response.data.token);     
+      const response = await axios.post('auth/login', credentials);
+      setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      return rejectWithValue ({ message: 'Email or password is incorrect.' });
+      return rejectWithValue({ message: 'Email or password is incorrect.' });
     }
   }
 );
@@ -122,16 +120,11 @@ export const deletePet = createAsyncThunk(
   }
 );
 
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NzM0ZDhkMGQ4NzY2YjVmY2E2Y2I1NSIsImlhdCI6MTY4NTI3ODEyMCwiZXhwIjoxNjg3MjY1MzIwfQ.eDM0hGZmVfMTLj6T0KvfGkl6LohWF9PjhhN8sXK9gq0';
-export const getUserInfo = createAsyncThunk( 
+export const getUserInfo = createAsyncThunk(
   'auth/getUserInfo',
   async (_, { rejectWithValue }) => {
     try {
-        const response = await axios.get(`api/user`, {
-            headers: {
-          Authorization: `Bearer ${token}`
-      }});
+      const response = await axios.get(`/user`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -142,16 +135,13 @@ export const getUserInfo = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   'auth/updateUser',
   async (data, { rejectWithValue }) => {
+    console.log('data', data);
     try {
       const response = await axios.patch(
-        `api/auth/${data.id}`,
-        changeUserData(data),
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        `auth/${data.id}`,
+        changeUserData(data)
       );
+      console.log('response.data', response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
