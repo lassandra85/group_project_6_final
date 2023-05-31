@@ -7,11 +7,13 @@ import PetsItem from '../PetsItem/PetsItem';
 const PetsList = ({ pets }) => {
   return (
     <ul className={css.list}>
-      {pets.map(pet => (
-        <li key={pet._id}>
-          <PetsItem pet={pet} />
-        </li>
-      ))}
+      {pets &&
+        pets.length > 0 &&
+        pets.map(pet => (
+          <li key={pet._id}>
+            <PetsItem pet={pet} />
+          </li>
+        ))}
     </ul>
   );
 };
