@@ -49,6 +49,7 @@ const UserData = () => {
 
   const handleChangeAvatar = e => {
     const { name } = e.target;
+    console.log(name);
     setSelectedFile(e.target.files[0]);
     const src = window.URL.createObjectURL(e.target.files[0]);
     setState({ ...state, [name]: src });
@@ -67,18 +68,17 @@ const UserData = () => {
   //   dispatch(updateUser({id: state._id, avatarURL: state.avatarURL}))  //сделать запрос на сервер что бы сохранить картинку там useDispatch( patch   data...)
   // };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
-    dispatch(updateUser({ id: user._id, [inputName]: state[inputName] }));
+    await dispatch(updateUser({ id: user._id, [inputName]: state[inputName] }));
     setInputName('');
     setIsReadonly(initReadOnlyValue);
     setBtnEditClicked(false);
     setSelectedFile(null);
-    dispatch(getUserInfo()); //???
+    await dispatch(getUserInfo());
   };
 
-  // Виктория, [26.05.2023 11:50]
   return (
     <Formik validationSchema={userDataValidation}>
       <form onSubmit={handleSubmit} className={styles.box} autoComplete="off">
