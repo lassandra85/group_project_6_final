@@ -1,15 +1,20 @@
-import css from "./MainPage.module.css" 
+import Container from "components/Container/Container";
+import { ImageContainer, MainContainer,MainTitle,ImageOne,ImageTwo,ImageThree } from "./MainPage.styled";
+
+
 const MainPage = () => {
     return (
-        <div className={css.mainContainer}>
+       <Container>
+         <MainContainer>
             
-            <h1 className={css.mainTitle}>Take good care of your small pets</h1>
-            <ul className={css.imageContainer}>
-               <li className={css.imageOne}></li>
-               <li className={css.imageTwo}></li>
-               <li className={css.imageThree}></li>
-            </ul>
-        </div>
+            <MainTitle>Take good care of your small pets</MainTitle>
+            <ImageContainer>
+               <ImageOne alt="dog"></ImageOne>
+               <ImageTwo alt="dog"></ImageTwo>
+               <ImageThree alt="dog"></ImageThree>
+            </ImageContainer>
+        </MainContainer>
+       </Container>
     );
 }
 
