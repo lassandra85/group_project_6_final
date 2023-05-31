@@ -65,7 +65,9 @@ const Modal = ({ toggleModal, children }) => {
         <div className={css.modalWindow}>
 
           <button className={css.closeBtn} onClick={toggleModal}>
-            <RxCross2 className={css.svg_closeBtn}/>
+
+            <RxCross2 className={css.svg_closeBtn} />
+            
           </button>
           
           {children}
