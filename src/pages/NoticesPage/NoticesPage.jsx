@@ -4,13 +4,13 @@ import NoticesFilters from 'components/NoticesFilter/NoticesFilter';
 import AddPetBtn from 'components/AddPetCard/AddPetButton/AddPetBtn';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 
-// import Pagination from 'components/Pagination/Pagination';
+import Pagination from 'components/Pagination/Pagination';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
 import ModalUnAuthorized from 'components/ModalUnAuthorized/ModalUnAuthorized';
 import { useState, useEffect } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useSelector,useDispatch  } from 'react-redux';
-import { selectAuth } from 'redux/auth/selectors';
+import { selectIsLoggedIn,selectUser} from 'redux/auth/selectors';
 import { useLocation } from 'react-router-dom';
 import {
   getNotices,
@@ -24,9 +24,9 @@ import {
   removeFavoriteNoticeOnFavoritepage,
 } from 'redux/notices/operations';
 import { setCurrentNotice, setNotices } from 'redux/notices/actions';
-import { selectNotices, selectTotalHitsNotices } from 'redux/notices/selectors';
+import { selectNotices } from 'redux/notices/selectors';
 
-import { selectUser } from 'redux/auth/selectors';
+
 
 import {
   Wrapper,
@@ -41,8 +41,8 @@ const NoticesPage = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const { categoryName } = useParams();
-  const totalHits = useSelector(selectTotalHitsNotices);
-  const { isLoggedIn } = useSelector(selectAuth);
+  const { isLoggedIn } = useSelector(selectIsLoggedIn);
+  console.log(isLoggedIn)
   const user = useSelector(selectUser);
   const notices = useSelector(selectNotices);
   
@@ -54,9 +54,10 @@ const NoticesPage = () => {
   const [ageFilter, setAgeFilter] = useState('');
   const [teamFilter, setTeamFilter] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const total = items =>{if(!items){return} return items.length}
+  const totalHits = total(notices)
   const page = searchParams.get('page') || 1;
-  console.log(totalPages)
+
   useEffect(() => {
     dispatch(setNotices());
 
@@ -178,7 +179,7 @@ const NoticesPage = () => {
   const toggleUnauthorizeModal = () => {
     setIsAuthorizedModalOpen(prevState => !prevState);
   };
-  console.log(onPageChange)
+
   return (
     <Wrapper>
       <Title>Find your favorite pet</Title>
@@ -189,7 +190,7 @@ const NoticesPage = () => {
           <NoticesFilters
             chooseGender={setGenderFilter}
             chooseAge={setAgeFilter}
-            chooseKotikiFilter={setTeamFilter}
+
           />
           <AddPetBtn
             isfix ={true}

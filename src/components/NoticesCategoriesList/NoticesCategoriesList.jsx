@@ -51,10 +51,10 @@ const NoticesCategoriesList = ({
   const { pathname } = useLocation();
 
   if (!items) return;
-  console.log(items)
+
   const pets = items.map(pet => {
     const category = transformCategoryName(pet.category);
-    const title = cutTitle(pet.titleOfAdd);
+    const title = cutTitle(pet.comments);
     const age = ageDeterminationFunc(pet.birthday);
     const isDeleteBtnShown = Boolean(
       pathname.includes('my-pets') || pet.owner._id === user.id

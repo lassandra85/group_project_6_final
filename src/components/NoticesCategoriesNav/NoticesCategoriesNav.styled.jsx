@@ -1,68 +1,68 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
+const List = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.space[3] + 'px'};
 
-export const List = styled.ul`
-display: flex;
-flex-wrap:wrap;
-gap:8px;
-
-@media(min-width:768px){
- gap:12px;   
-}
-
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    gap: ${({ theme }) => theme.space[2] * 3 + 'px'};
+  }
 `;
 
-export const Btn = styled.button`
-position: relative;
+const Btn = styled(NavLink)`
+  position: relative;
 
-padding: 8px 16px;
+  padding-top: ${({ theme }) => theme.space[3] + 'px'};
+  padding-bottom: ${({ theme }) => theme.space[3] + 'px'};
+  padding-left: ${({ theme }) => theme.space[4] + 'px'};
+  padding-right: ${({ theme }) => theme.space[4] + 'px'};
 
-color:var(--color-blue);
+  color: ${({ theme }) => theme.colors.blue};
 
-background-color: var(--background_btn-color);
+  background-color: ${({ theme }) => theme.colors.lightBlue};
+  border: none;
+  border-radius: 40px;
 
-border:none;
+  transition: color 300ms ${({ theme }) => theme.transition.main},
+    background-color 300ms ${({ theme }) => theme.transition.main};
 
-border-radius: 40px;
+  &.active {
+    color: ${({ theme }) => theme.colors.white};
 
-transition: 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95),
-    background-color 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    background-color: ${({ theme }) => theme.colors.blue};
+  }
 
-&.active{
-    color:var(--color-white);
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
 
-    background-color: var(--color-blue);
+    width: 100%;
+    height: 100%;
 
-    &::before{
-        content: '';
-        position: absolute;
-        top:0;
-        right: 0;
+    background: ${({ theme }) => theme.colors.gradientBlue};
+    border-radius: 40px;
+    opacity: 0;
 
-        width:100%;
-        height:100%;
+    z-index: -1;
 
-        background: linear-gradient(290.46deg, #419EF1 0%,#9BD0FF 107.89%);
+    transition: opacity 300ms ${({ theme }) => theme.transition.main};
+  }
 
-        border-radius: 40px;
-        opacity:0;
+  &:hover::before,
+  &:focus::before {
+    opacity: 1;
+  }
 
-        z-index: -1;
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.white};
 
-        transition: opacity 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    }
-    &:hover::before,
-    &:focus::before{
-        opacity: 1;
-    }
-    
-    &:hover,
-    &:focus{
-        color:var(--color-white);
-
-        background-color: transparent;
-    }
-
-}
-
+    background-color: transparent;
+  }
 `;
+
+export { List, Btn };

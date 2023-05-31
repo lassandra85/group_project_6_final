@@ -24,7 +24,10 @@ const Pagination = ({
     totalPagesCount,
     viewportWidth,
   });
- 
+console.log(currentPage)
+console.log(siblingCount)
+console.log(totalPagesCount)
+console.log(viewportWidth)
   if (currentPage === 0 || paginationRange.length < 2) {
     return null;
   }
