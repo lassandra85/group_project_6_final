@@ -66,6 +66,8 @@ export const logOut = createAsyncThunk(
   }
 );
 
+// let retry=false;
+
 // export const getCurrentUser = createAsyncThunk(
 //   'auth/currentUser',
 //   async (_, { rejectWithValue, getState }) => {
