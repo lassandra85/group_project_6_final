@@ -13,9 +13,9 @@ import { deletePet } from 'redux/auth/operations';
 
 const PetsItem = ({ pet }) => {
   const dispatch = useDispatch();
-  const { _id, name, birthday, breed, comments, fileURL } = pet;
+  const { _id, name, birthday, breed, comments, photoURL } = pet;
 
-  const path = fileURL
+  const path = photoURL
     .split('/')
     .reduce((acc, item) => {
       if (item.includes('pet')) {
@@ -84,7 +84,7 @@ PetsItem.propTypes = {
     birthday: PropTypes.string,
     breed: PropTypes.string,
     comments: PropTypes.string,
-    fileURL: PropTypes.string,
+    photoURL: PropTypes.string,
   }),
 };
 

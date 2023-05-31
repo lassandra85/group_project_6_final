@@ -12,7 +12,7 @@ const UserDataItem = ({
   isReadonly,
   onClick,
   disabled,
-  onSubmit
+  onSubmit,
 }) => {
   return (
     <div className={styles.field}>
@@ -48,7 +48,11 @@ const UserDataItem = ({
             />
           </button>
         ) : (
-          <button type="button" className={styles.buttonHidden} onClick={onSubmit}>
+          <button
+            type="button"
+            className={styles.buttonHidden}
+            onClick={onSubmit}
+          >
             <BsCheck2
               color="#00C3AD"
               size={24}

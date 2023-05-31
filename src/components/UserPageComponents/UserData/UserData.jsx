@@ -10,7 +10,6 @@ import UserDataItem from '../UserDataItem/UserDataItem';
 import { userDataValidation } from 'helpers';
 import { getUserInfo, updateUser } from 'redux/auth/operations';
 
-
 const initReadOnlyValue = {
   name: true,
   email: true,
@@ -20,15 +19,14 @@ const initReadOnlyValue = {
 };
 
 const UserData = () => {
-  const userState = useSelector(selectUser);
+  const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
-  const [state, setState] = useState({ ...userState });
-  
-  useEffect(() => {
-    setState({...userState})
-  }, [userState])
+  const [state, setState] = useState(user);
 
+  useEffect(() => {
+    setState(user);
+  }, [user]);
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [isReadonly, setIsReadonly] = useState(initReadOnlyValue);
@@ -42,14 +40,16 @@ const UserData = () => {
     setState({ ...state, [name]: value });
     setInputName(name);
   };
+
   const onClickButton = e => {
     const { name } = e.target;
-    setIsReadonly({...isReadonly, [name]: false });
+    setIsReadonly({ ...isReadonly, [name]: false });
     setBtnEditClicked(true);
   };
 
   const handleChangeAvatar = e => {
     const { name } = e.target;
+    console.log(name);
     setSelectedFile(e.target.files[0]);
     const src = window.URL.createObjectURL(e.target.files[0]);
     setState({ ...state, [name]: src });
@@ -68,18 +68,17 @@ const UserData = () => {
   //   dispatch(updateUser({id: state._id, avatarURL: state.avatarURL}))  //сделать запрос на сервер что бы сохранить картинку там useDispatch( patch   data...)
   // };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    
-    dispatch(updateUser({ _id: state._id, [inputName]: state[inputName] }));
+
+    await dispatch(updateUser({ id: user._id, [inputName]: state[inputName] }));
     setInputName('');
     setIsReadonly(initReadOnlyValue);
     setBtnEditClicked(false);
     setSelectedFile(null);
-    dispatch(getUserInfo()); //???
+    await dispatch(getUserInfo());
   };
 
-  // Виктория, [26.05.2023 11:50]
   return (
     <Formik validationSchema={userDataValidation}>
       <form onSubmit={handleSubmit} className={styles.box} autoComplete="off">
