@@ -55,8 +55,7 @@ const authSlice = createSlice({
         state.pets = payload.pets;
       })
       .addCase(updateUser.fulfilled, (state, { payload }) => {
-        console.log('payload', payload);
-        state.user = { ...state.user, payload }; // state.Object.keys().includes payload? {... обновить} : push)
+        state.user = { ...state.user, payload };
       })
 
       .addCase(deletePet.fulfilled, (state, { payload }) => {

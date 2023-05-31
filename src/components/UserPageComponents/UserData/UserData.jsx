@@ -37,7 +37,6 @@ const UserData = () => {
 
   const handleChangeInput = e => {
     const { name, value } = e.target;
-    console.log('name', name, 'value', value);
     setState({ ...state, [name]: value });
     setInputName(name);
   };
