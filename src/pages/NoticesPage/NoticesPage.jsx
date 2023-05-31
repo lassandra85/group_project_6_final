@@ -4,13 +4,13 @@ import NoticesFilters from 'components/NoticesFilter/NoticesFilter';
 import AddPetBtn from 'components/AddPetCard/AddPetButton/AddPetBtn';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 
-import Pagination from 'components/Pagination/Pagination';
+// import Pagination from 'components/Pagination/Pagination';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
 import ModalUnAuthorized from 'components/ModalUnAuthorized/ModalUnAuthorized';
 import { useState, useEffect } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { useSelector,useDispatch  } from 'react-redux';
-import { selectIsLoggedIn,selectUser} from 'redux/auth/selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectIsLoggedIn, selectUser } from 'redux/auth/selectors';
 import { useLocation } from 'react-router-dom';
 import {
   getNotices,
@@ -26,8 +26,6 @@ import {
 import { setCurrentNotice, setNotices } from 'redux/notices/actions';
 import { selectNotices } from 'redux/notices/selectors';
 
-
-
 import {
   Wrapper,
   Title,
@@ -36,26 +34,30 @@ import {
   ListContainer,
 } from './NoticesPage.styled';
 
-
 const NoticesPage = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const { categoryName } = useParams();
   const { isLoggedIn } = useSelector(selectIsLoggedIn);
-  console.log(isLoggedIn)
+  console.log(isLoggedIn);
   const user = useSelector(selectUser);
   const notices = useSelector(selectNotices);
-  
+
   const [isItemModalOpen, setIsItemModalOpen] = useState(false);
   const [isAuthorizedModalOpen, setIsAuthorizedModalOpen] = useState(false);
-  const [totalPages, setTotalPages] = useState(0);
+  // const [totalPages, setTotalPages] = useState(0);
   const [query, setQuery] = useState('');
   const [genderFilter, setGenderFilter] = useState('');
   const [ageFilter, setAgeFilter] = useState('');
   const [teamFilter, setTeamFilter] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const total = items =>{if(!items){return} return items.length}
-  const totalHits = total(notices)
+  // const total = items => {
+  //   if (!items) {
+  //     return;
+  //   }
+  //   return items.length;
+  // };
+  // const totalHits = total(notices);
   const page = searchParams.get('page') || 1;
 
   useEffect(() => {
@@ -115,14 +117,13 @@ const NoticesPage = () => {
     setGenderFilter('');
 
     dispatch(setNotices());
- 
   }, [dispatch, teamFilter]);
 
-  useEffect(() => {
-    const pageCount = Math.ceil(totalHits / 12);
+  // useEffect(() => {
+  //   const pageCount = Math.ceil(totalHits / 12);
 
-    setTotalPages(pageCount);
-  }, [totalHits]);
+  //   setTotalPages(pageCount);
+  // }, [totalHits]);
 
   const onFormSubmit = query => {
     setQuery(query);
@@ -162,19 +163,19 @@ const NoticesPage = () => {
     dispatch(removeNotice(_id));
   };
 
-  const onPageChange = currentPage => {
-    if (page === currentPage) {
-      return;
-    }
+  // const onPageChange = currentPage => {
+  //   if (page === currentPage) {
+  //     return;
+  //   }
 
-    const searchQuery = { page: currentPage };
+  //   const searchQuery = { page: currentPage };
 
-    if (query) searchQuery.query = query;
-    if (genderFilter) searchQuery.gender = genderFilter;
-    if (ageFilter) searchQuery.age = ageFilter;
+  //   if (query) searchQuery.query = query;
+  //   if (genderFilter) searchQuery.gender = genderFilter;
+  //   if (ageFilter) searchQuery.age = ageFilter;
 
-    setSearchParams(searchQuery);
-  };
+  //   setSearchParams(searchQuery);
+  // };
 
   const toggleUnauthorizeModal = () => {
     setIsAuthorizedModalOpen(prevState => !prevState);
@@ -190,10 +191,9 @@ const NoticesPage = () => {
           <NoticesFilters
             chooseGender={setGenderFilter}
             chooseAge={setAgeFilter}
-
           />
           <AddPetBtn
-            isfix ={true}
+            isfix={true}
             text="Add pet"
             path="/add-pet"
             toggleUnauthorizeModal={toggleUnauthorizeModal}
@@ -201,19 +201,16 @@ const NoticesPage = () => {
         </Container>
       </Filters>
       <ListContainer>
- 
-          <NoticesCategoriesList
-            items={notices}
-            moreBtnClickHandler={moreBtnClickHandler}
-            toggleFavorites={toggleFavorites}
-            onDeleteBtnClick={onDeleteMyPet}
-            chosenAgeFilter={ageFilter}
-            chosenGenderFilter={genderFilter}
-            toggleUnauthorizeModal={toggleUnauthorizeModal}
-          />
-        
-  
-     
+        <NoticesCategoriesList
+          items={notices}
+          moreBtnClickHandler={moreBtnClickHandler}
+          toggleFavorites={toggleFavorites}
+          onDeleteBtnClick={onDeleteMyPet}
+          chosenAgeFilter={ageFilter}
+          chosenGenderFilter={genderFilter}
+          toggleUnauthorizeModal={toggleUnauthorizeModal}
+        />
+
         {/* <Pagination
           onPageChange={onPageChange}
           currentPage={Number(page)}
@@ -229,7 +226,6 @@ const NoticesPage = () => {
       {isAuthorizedModalOpen && (
         <ModalUnAuthorized toggleUnauthorizeModal={toggleUnauthorizeModal} />
       )}
-    
     </Wrapper>
   );
 };
