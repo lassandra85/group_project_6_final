@@ -1,4 +1,5 @@
 import AuthForm from "../../components/AuthForm/AuthForm"
+import css from "../AddPetPage/AddPetPage.module.css"; 
 
 // const str = 'vovan@mail.com';
 // const cutStr = str.split('@')
@@ -6,7 +7,7 @@ import AuthForm from "../../components/AuthForm/AuthForm"
 
 const RegisterPage = () => {
     return (
-        <div>
+        <div className={css.mainContainer}>
                 <AuthForm></AuthForm>
         </div>
     );
