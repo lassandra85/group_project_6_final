@@ -30,7 +30,7 @@ const UserData = () => {
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [isReadonly, setIsReadonly] = useState(initReadOnlyValue);
-
+console.log(state);
   const [inputName, setInputName] = useState('');
 
   const [btnEditClicked, setBtnEditClicked] = useState(false);
@@ -102,7 +102,7 @@ console.log({[inputName]: state[inputName]});
             height={182}
           />
           <div className={styles.edit}>
-            {selectedFile ? (
+            {state.avatarURL ? ( //selectedFile
               <button
                 type="button"
                 className={styles.buttonUploadHidden}
