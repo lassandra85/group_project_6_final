@@ -101,7 +101,8 @@ const AddPetPageForm = () => {
     for (const value of newFormData.values()) {
       console.log(value);
     }
-   
+      console.log(formData.file.name);
+
     if (formData.comments) {
       newFormData.append('comments', formData.comments);
     }

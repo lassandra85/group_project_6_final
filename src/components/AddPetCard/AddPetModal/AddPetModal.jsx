@@ -36,7 +36,7 @@ const AddPetModal = ({ backLink, category }) => {
           clickHandler={() => {
             navigate(path);
           }}
-          filled={false}
+          // filled={false}
           isDisabled={false}
         />
         <AddFormButtonBack

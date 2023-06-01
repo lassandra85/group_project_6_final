@@ -61,8 +61,7 @@ const authSlice = createSlice({
       .addCase(addMyPet.pending,state=>{
         state.isLoading = true;
       })
-      .addCase(addMyPet.fulfilled,(state,{payload})=>{
-        state.pet.push(payload)
+      .addCase(addMyPet.fulfilled, (state) => {
         state.isLoading=false;
       })
 
