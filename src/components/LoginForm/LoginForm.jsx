@@ -131,14 +131,14 @@ const LoginForm = () => {
           {em ? '' : <p className={css.errorRassword}>Enter email</p>}
           {err ? '' : <p className={css.errorRassword}>Enter data</p>} */}
           {errors.password &&
-            touched.password &&
-            values.password.length < 6 && (
+            touched.password 
+             && (
               <p className={css.errorRassword}>{errors.password}</p>
             )}
           {/* {values.password.length > 5 && err2 && (
             <p className={css.inputGood}>Password is secure</p>
           )} */}
-          {err2 ? (
+          {err2 || errors.password || errors.email ? (
             ''
           ) : (
             <p className={css.errorRassword}>Email or password incorrect</p>
