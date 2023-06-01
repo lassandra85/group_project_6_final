@@ -94,8 +94,8 @@ export const addMyPet = createAsyncThunk(
   'auth/addMyPet',
   async (newFormData, { rejectWithValue }) => {
     try {
-      await axios.post('/pets', newFormData);
-     
+      const response = await axios.post('/pets', newFormData);
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -106,7 +106,7 @@ export const deletePet = createAsyncThunk(
   'auth/deleteMyPet',
   async (id, thunkAPI) => {
     try {
-      const response = await axios.delete(`api/pets/${id}`);
+      const response = await axios.delete(`/pets/${id}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

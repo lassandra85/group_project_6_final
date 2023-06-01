@@ -34,7 +34,7 @@ const MoreInfo = ({ formData, setFormData, submit, backStep }) => {
   const [imageValue, setImageValue] = useState('');
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
-  const isPetPhotoFieldValid = Boolean(!errors.petPhoto && !!formData.petPhoto);
+  const isFileFieldValid = Boolean(!errors.file && !!formData.file);
   const isCommentsFieldValid = Boolean(!errors.comments);
   const isLocationFieldValid = Boolean(!errors.location && !!formData.location);
   const isSexFieldValid = Boolean(!errors.sex && !!formData.sex);
@@ -56,7 +56,7 @@ const MoreInfo = ({ formData, setFormData, submit, backStep }) => {
     if (formData.category === 'sell') {
       setIsDisabled(
         !(
-          isPetPhotoFieldValid &&
+          isFileFieldValid &&
           isLocationFieldValid &&
           isSexFieldValid &&
           isPriceFieldValid &&
@@ -65,11 +65,11 @@ const MoreInfo = ({ formData, setFormData, submit, backStep }) => {
       );
     }
     if (formData.category === 'my-pet') {
-      setIsDisabled(!(isPetPhotoFieldValid && isCommentsFieldValid));
+      setIsDisabled(!(isFileFieldValid && isCommentsFieldValid));
     } else {
       setIsDisabled(
         !(
-          isPetPhotoFieldValid &&
+          isFileFieldValid &&
           isLocationFieldValid &&
           isSexFieldValid &&
           isCommentsFieldValid
@@ -81,7 +81,7 @@ const MoreInfo = ({ formData, setFormData, submit, backStep }) => {
     formData.category,
     isCommentsFieldValid,
     isLocationFieldValid,
-    isPetPhotoFieldValid,
+    isFileFieldValid,
     isPriceFieldValid,
     isSexFieldValid,
   ]);
@@ -144,23 +144,23 @@ const MoreInfo = ({ formData, setFormData, submit, backStep }) => {
               ? 'Add photo'
               : 'Load the pet’s image:'}
             <AddFormImageWrapper>
-              {!formData.petPhoto && <PlusIcon width="30" height="30" />}
-              {!!formData.petPhoto && (
+              {!formData.file && <PlusIcon width="30" height="30" />}
+              {!!formData.file && (
                 <img
                   id="image"
-                  src={URL.createObjectURL(formData.petPhoto)}
-                  alt={formData.petPhoto.name}
+                  src={URL.createObjectURL(formData.file)}
+                  alt={formData.file.name}
                 />
               )}
             </AddFormImageWrapper>
             <FileInput
               type="file"
               id="pet-image"
-              name="petPhoto"
+              name="file"
               accept=".png, .jpg, .jpeg, .webp"
               onChange={handleInputChange}
               value={imageValue}
-              onBlur={() => validateField('petPhoto', formData, setErrors)}
+              onBlur={() => validateField('file', formData, setErrors)}
             />
           </AddFormImageLabel>
         </FirstPartFormWrapper>
