@@ -6,7 +6,7 @@ export const getNotices = createAsyncThunk(
   'notices/getNotices',
   async (credentials, { rejectWithValue }) => {
     
-    console.log(credentials)
+  
     const { category, params } = credentials;
    
     try {
@@ -26,7 +26,7 @@ export const getUsersNotices = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(
-        `/api/notices?${createSearchParams(params)}`
+        `/notices?${createSearchParams(params)}`
       );
 
       return data;
@@ -41,7 +41,7 @@ export const getFavoriteNotices = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(
-        `/api/notices/favorites?${createSearchParams(params)}`
+        `/notices/favorites?${createSearchParams(params)}`
       );
 
       return data;
@@ -85,7 +85,7 @@ export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async ({ category, newFormData }, { rejectWithValue }) => {
     try {
-      await axios.post(`/api/notices/${category}`, newFormData);
+      await axios.post(`/notices/${category}`, newFormData);
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -97,7 +97,7 @@ export const updateNotice = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     const { _id, ...params } = credentials;
     try {
-      await axios.put(`/api/notices/${_id}`, params);
+      await axios.put(`/notices/${_id}`, params);
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -108,7 +108,7 @@ export const removeNotice = createAsyncThunk(
   'notices/removeNotice',
   async (_id, { rejectWithValue }) => {
     try {
-      await axios.delete(`/api/notices/notice/${_id}`);
+      await axios.delete(`/notices/notice/${_id}`);
 
       return { _id };
     } catch (error) {
@@ -121,7 +121,7 @@ export const addFavoriteNotice = createAsyncThunk(
   'notices/addFavoriteNotice',
   async (pet, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(`/api/notices/favorite/${pet._id}`);
+      const { data } = await axios.post(`/notices/favorite/${pet._id}`);
 
       return data.result.updatedNotice;
     } catch (error) {
@@ -134,7 +134,7 @@ export const removeFavoriteNotice = createAsyncThunk(
   'notices/removeFavoriteNotice',
   async (pet, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(`/api/notices/favorite/${pet._id}`);
+      const { data } = await axios.delete(`/notices/favorite/${pet._id}`);
 
       return data.result.updatedNotice;
     } catch (error) {
@@ -147,7 +147,7 @@ export const removeFavoriteNoticeOnFavoritepage = createAsyncThunk(
   'notices/removeFavoriteNoticeOnFavoritepage',
   async (pet, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(`/api/notices/favorite/${pet._id}`);
+      const { data } = await axios.delete(`/notices/favorite/${pet._id}`);
 
       return data.result.updatedNotice;
     } catch (error) {
