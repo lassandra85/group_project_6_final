@@ -5,10 +5,11 @@ import { BsCheck2 } from 'react-icons/bs';
 import { MdOutlinePhotoCamera } from 'react-icons/md';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectUser } from 'redux/auth/selectors';
+import { selectError, selectUser } from 'redux/auth/selectors';
 import UserDataItem from '../UserDataItem/UserDataItem';
 import { userDataValidation } from 'helpers';
 import { getUserInfo, updateUser } from 'redux/auth/operations';
+import {notify} from 'helpers';
 
 const initReadOnlyValue = {
   name: true,
@@ -20,7 +21,8 @@ const initReadOnlyValue = {
 
 const UserData = () => {
   const user = useSelector(selectUser);
-
+  const error = useSelector(selectError);
+  console.log(error);
   const dispatch = useDispatch();
   const [state, setState] = useState(user);
 
@@ -30,26 +32,25 @@ const UserData = () => {
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [isReadonly, setIsReadonly] = useState(initReadOnlyValue);
-console.log(state);
-  const [inputName, setInputName] = useState('');
 
+  const [inputName, setInputName] = useState('');
+console.log(state);
   const [btnEditClicked, setBtnEditClicked] = useState(false);
 
   const handleChangeInput = e => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
-    setInputName(name);
   };
 
   const onClickButton = e => {
     const { name } = e.target;
     setIsReadonly({ ...isReadonly, [name]: false });
     setBtnEditClicked(true);
+    setInputName(name);
   };
 
   const handleChangeAvatar = e => {
     const { name } = e.target;
-    console.log(e.target.files[0]);
     
     setSelectedFile(e.target.files[0]);
     const src = window.URL.createObjectURL(e.target.files[0]);
@@ -58,28 +59,32 @@ console.log(state);
     setInputName(name);
   };
 
-  const handleUpload = async () => {
-    console.log(inputName);
+  const handleUpload = async (e) => {
+
     if (!selectedFile) {
-      alert('Please select file!');
+      notify('error', 'Please select file');
       return;
     }
     const formFile = new FormData();
-    formFile.append('avatarURL', selectedFile); 
+    formFile.append('avatar', selectedFile); 
 
-   dispatch(updateUser({ id: state._id, formFile })); 
-    dispatch(getUserInfo());
+   await dispatch(updateUser({ id: state._id, formFile })); 
+    await dispatch(getUserInfo());
     setSelectedFile(null);
   };
 
   const handleSubmit = async e => {
-    e.preventDefault();
-console.log({[inputName]: state[inputName]});
-    dispatch(updateUser({ id: user._id, [inputName]: state[inputName] }));
+    
+    if ((inputName === 'email' && !state.email) || (inputName === 'birthday' && !state.birthday)) {
+      notify('error', 'Please fill in the field');
+      return
+    }
+    await dispatch(updateUser({ id: user._id, [inputName]: state[inputName] }));
     setInputName('');
     setIsReadonly(initReadOnlyValue);
     setBtnEditClicked(false);
-    dispatch(getUserInfo());
+    await dispatch(getUserInfo());
+    notify('error', 'Data entered incorrectly');
   };
 
   return (
@@ -92,22 +97,17 @@ console.log({[inputName]: state[inputName]});
         <div className="photo-container">
           <img
             className={styles.photo}
-            src={
-              state.avatarURL
-                ? state.avatarURL
-                : userPhoto
-            }
+            src={state.avatarURL ? state.avatarURL : userPhoto}
             alt="user"
             width={182}
             height={182}
           />
           <div className={styles.edit}>
-            {state.avatarURL ? ( //selectedFile
+            {selectedFile ? (
               <button
                 type="button"
                 className={styles.buttonUploadHidden}
                 onClick={handleUpload}
-                // onClick={handleSubmit}
               >
                 <BsCheck2
                   size={24}
@@ -143,7 +143,7 @@ console.log({[inputName]: state[inputName]});
         <div className={styles.form}>
           <UserDataItem
             id={'user_name'}
-            value={state.name}
+            value={state.name || ''}
             placeholder={'Anna |'}
             name={'name'}
             label={'Name:'}
@@ -167,7 +167,7 @@ console.log({[inputName]: state[inputName]});
           />
           <UserDataItem
             id={'user_birthday'}
-            value={state.birthday}
+            value={state.birthday || ''}
             placeholder={'00.00.0000'}
             name={'birthday'}
             label={'Birthday:'}
@@ -179,7 +179,7 @@ console.log({[inputName]: state[inputName]});
           />
           <UserDataItem
             id={'user_phone'}
-            value={state.phone}
+            value={state.phone || ''}
             placeholder={'+38000000000'}
             name={'phone'}
             label={'Phone:'}
@@ -191,7 +191,7 @@ console.log({[inputName]: state[inputName]});
           />
           <UserDataItem
             id={'user_city'}
-            value={state.city}
+            value={state.city || ''}
             placeholder={'Kiev'}
             name={'city'}
             label={'City:'}

@@ -19,6 +19,7 @@ const initialState = {
     phone: '',
     city: '',
     avatarURL: null,
+    isNewUser: true,
   },
   pet: [],
   token: null,
@@ -56,7 +57,8 @@ const authSlice = createSlice({
         state.pet = payload.pet;
       })
       .addCase(updateUser.fulfilled, (state, { payload }) => {
-        state.user = { ...state.user, payload };
+        console.log(payload);
+        state.user = payload;
       })
       .addCase(addMyPet.pending,state=>{
         state.isLoading = true;
