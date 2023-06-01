@@ -105,7 +105,7 @@ const RegisterForm = () => {
     <div className={css.container}>
       <h2 className={css.header}>Registration</h2>
 
-      <form className={css.formRegister} onSubmit={handleSubmit} noValidate>
+      <form className={css.formRegister} onSubmit={handleSubmit} noValidate autoComplete='off'>
         <div className={css.passwordCont}>
           <label>
             <input
@@ -150,7 +150,7 @@ const RegisterForm = () => {
                 <BsEyeSlash size={24} color="rgba(84, 173, 255, 1)" />
               )}
               {isActive &&  errors.password && values.password.length>5
-                (<BsEye size={24} color="rgba(84, 173, 255, 1)" />
+                && (<BsEye size={24} color="rgba(84, 173, 255, 1)" />
               )}
               {!isActive && errors.password && values.password.length > 5
                 && (

@@ -81,7 +81,7 @@ const LoginForm = () => {
     <div className={css.container}>
       <h2 className={css.header}>Login</h2>
 
-      <form className={css.formRegister} onSubmit={handleSubmit} noValidate>
+      <form className={css.formRegister} onSubmit={handleSubmit} noValidate autoComplete='off'>
         <div className={css.passwordCont}>
           <label>
             <input
