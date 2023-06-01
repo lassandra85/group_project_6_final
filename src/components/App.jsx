@@ -10,6 +10,7 @@ import SharedLayout from "components/SharedLayout";
 
 
 import Loader from 'components/Loader/loader';
+import { ToastContainer } from "react-toastify";
 
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
 const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
@@ -47,6 +48,7 @@ export const App = () => {
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
+      <ToastContainer/>
     </Suspense>
   );
 };

@@ -10,7 +10,7 @@ const ModalCongrats = ({toggleModal}) => {
     <> 
         <div className={css.congratzContainer}>
               
-            <h3> className={css.congratzTitle}
+            <h3 className={css.congratzTitle}> 
                   
                 Congrats!
                   
