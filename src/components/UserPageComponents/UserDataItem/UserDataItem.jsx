@@ -29,7 +29,7 @@ const UserDataItem = ({
           value={value}
           readOnly={isReadonly}
           onChange={onChange}
-          // required={name === 'name' || name === 'birthday' ? true : false} //убрать при подключенной валидации йап
+          required={name === 'name' || name === 'birthday' ? true : false} //убрать при подключенной валидации йап
         />
         {isReadonly ? (
           <button

@@ -49,43 +49,54 @@ const UserData = () => {
 
   const handleChangeAvatar = e => {
     const { name } = e.target;
-    console.log(name);
+    console.log(e.target.files[0]);
+    
     setSelectedFile(e.target.files[0]);
     const src = window.URL.createObjectURL(e.target.files[0]);
+    
     setState({ ...state, [name]: src });
     setInputName(name);
   };
 
-  // const handleUpload = async () => {
-  //   console.log(inputName);
-  //   if (!selectedFile) {
-  //     alert('Please select file!');
-  //     return;
-  //   }
-  //   const formData = new FormData();
-  //   formData.append('avatarURL', state.avatarURL); //название файла нужно узнать у бекенда, под каким ключом он лежит
+  const handleUpload = async () => {
+    console.log(inputName);
+    if (!selectedFile) {
+      alert('Please select file!');
+      return;
+    }
+    const formFile = new FormData();
+    formFile.append('avatarURL', selectedFile); 
 
-  //   dispatch(updateUser({id: state._id, avatarURL: state.avatarURL}))  //сделать запрос на сервер что бы сохранить картинку там useDispatch( patch   data...)
-  // };
+   dispatch(updateUser({ id: state._id, formFile })); 
+    dispatch(getUserInfo());
+    setSelectedFile(null);
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
-
-    await dispatch(updateUser({ id: user._id, [inputName]: state[inputName] }));
+console.log({[inputName]: state[inputName]});
+    dispatch(updateUser({ id: user._id, [inputName]: state[inputName] }));
     setInputName('');
     setIsReadonly(initReadOnlyValue);
     setBtnEditClicked(false);
-    setSelectedFile(null);
-    await dispatch(getUserInfo());
+    dispatch(getUserInfo());
   };
 
   return (
     <Formik validationSchema={userDataValidation}>
-      <form onSubmit={handleSubmit} className={styles.box} autoComplete="off">
+      <form
+        className={styles.box}
+        autoComplete="off"
+        encType="multipart/form-data"
+      >
         <div className="photo-container">
           <img
             className={styles.photo}
-            src={state.avatarURL ? state.avatarURL : userPhoto}
+            src={
+              state.avatarURL
+                ? state.avatarURL
+                : userPhoto
+            }
             alt="user"
             width={182}
             height={182}
@@ -95,8 +106,8 @@ const UserData = () => {
               <button
                 type="button"
                 className={styles.buttonUploadHidden}
-                // onClick={handleUpload}
-                onClick={handleSubmit}
+                onClick={handleUpload}
+                // onClick={handleSubmit}
               >
                 <BsCheck2
                   size={24}

@@ -52,7 +52,7 @@ const authSlice = createSlice({
 
       .addCase(getUserInfo.fulfilled, (state, { payload }) => {
         state.user = payload.user;
-        state.pets = payload.pets;
+        state.pet = payload.pet;
       })
       .addCase(updateUser.fulfilled, (state, { payload }) => {
         state.user = { ...state.user, payload };
