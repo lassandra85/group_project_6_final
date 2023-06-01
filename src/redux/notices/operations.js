@@ -57,7 +57,7 @@ export const getNoticesByQuery = createAsyncThunk(
     const { category, ...params } = credentials;
     try {
       const { data } = await axios.get(
-        `/api/notices/search/${category}?${createSearchParams(params)}`
+        `/notices/search/${category}?${createSearchParams(params)}`
       );
 
       return data;
@@ -71,7 +71,7 @@ export const getNoticeById = createAsyncThunk(
   'notices/getNoticeById',
   async (_id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/notices/notice/${_id}`);
+      const { data } = await axios.get(`/notices/notice/${_id}`);
 
       return data.result;
     } catch (error) {
