@@ -1,26 +1,29 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import css from './Nav.module.css';
+
+import { navData } from './navData';
+import { List,Item,Link } from './Nav.styled';
+import { useLocation } from 'react-router';
+// import { useWindowSize } from 'hooks/useResize';
+
 
 const Nav = () => {
+  const {pathname} = useLocation();
+
+  const items = navData.map(({text,path})=>(
+    <Item key={text}>
+      <Link to ={path}
+         className={
+          pathname.includes('notices') && path.includes('notices') && 'active'
+        }
+      >
+        {text}
+      </Link>
+      
+    </Item>
+  ))
+
   return (
-    <div className={css.navList}>
-      <div className={css.nav_item}>
-        <NavLink to="/news" className={css.navItem}>
-          News
-        </NavLink>
-      </div>
-      <div className={css.nav_item}>
-        <NavLink to="/notices" className={css.navItem}>
-          Find Pet
-        </NavLink>
-      </div>
-      <div className={css.nav_item}>
-        <NavLink to="/friends" className={css.navItem}>
-          Our Friends
-        </NavLink>
-      </div>
-    </div>
+   <List>{items}</List>
   );
 };
 

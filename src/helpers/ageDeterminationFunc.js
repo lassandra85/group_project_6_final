@@ -1,4 +1,5 @@
 const ageDeterminationFunc = bd => {
+  if(!bd){return}
   const dateArray = bd.split('.');
   const date = [dateArray[2], dateArray[1], dateArray[0]].join('-');
   const now = new Date();

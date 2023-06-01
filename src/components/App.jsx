@@ -5,8 +5,8 @@ import { Suspense,lazy } from "react";
 
 import { Route,Routes } from "react-router-dom";
 import SharedLayout from "components/SharedLayout";
-import PrivateRoute from "components/PrivateRoute/PrivateRoute";
-import PublicRoute from "components/PublicRoute/PublicRoute";
+// import PrivateRoute from "components/PrivateRoute/PrivateRoute";
+// import PublicRoute from "components/PublicRoute/PublicRoute";
 
 
 import Loader from 'components/Loader/loader';
