@@ -88,22 +88,12 @@ export const logOut = createAsyncThunk(
 //   }
 // );
 
-// export const updateUser = createAsyncThunk(
-//   'user/updateUser',
-//   async (credentials, { rejectWithValue }) => {
-//     try {
-//       await axios.put('api/users/update', credentials);
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
 
 export const addMyPet = createAsyncThunk(
-  'user/addMyPet',
-  async (credentials, { rejectWithValue }) => {
+  'auth/addMyPet',
+  async (newFormData, { rejectWithValue }) => {
     try {
-      await axios.post('api/pets', credentials);
+      await axios.post('api/pets', newFormData);
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -111,7 +101,7 @@ export const addMyPet = createAsyncThunk(
 );
 
 export const deletePet = createAsyncThunk(
-  'user/deleteMyPet',
+  'auth/deleteMyPet',
   async (id, thunkAPI) => {
     try {
       const response = await axios.delete(`api/pets/${id}`);

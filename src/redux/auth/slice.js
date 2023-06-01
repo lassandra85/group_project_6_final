@@ -7,6 +7,7 @@ import {
   getUserInfo,
   updateUser,
   deletePet,
+  addMyPet,
 } from './operations';
 
 const initialState = {
@@ -57,6 +58,13 @@ const authSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, { payload }) => {
         state.user = { ...state.user, payload };
       })
+      .addCase(addMyPet.pending,state=>{
+        state.isLoading = true;
+      })
+      .addCase(addMyPet.fulfilled,(state,{payload})=>{
+        state.pet.push(payload)
+        state.isLoading=false;
+      })
 
       .addCase(deletePet.fulfilled, (state, { payload }) => {
         const index = state.user.pet.findIndex(pet => pet._id === payload.id);
@@ -98,7 +106,8 @@ const authSlice = createSlice({
           logOut.rejected,
           deletePet.rejected,
           getUserInfo.rejected,
-          updateUser.rejected
+          updateUser.rejected,
+          addMyPet.register
         ),
 
         (state, { payload }) => {
