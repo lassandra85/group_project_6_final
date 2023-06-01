@@ -20,6 +20,7 @@ export const register = createAsyncThunk(
     try {
       const response = await axios.post('auth/register', credentials);
       const { email } = response.data;
+      console.log(email)
       if (email) {
         const data = await axios.post('auth/login', credentials);
         const total = { email, ...data.data };
@@ -93,8 +94,8 @@ export const addMyPet = createAsyncThunk(
   'auth/addMyPet',
   async (newFormData, { rejectWithValue }) => {
     try {
-      await axios.post('api/pets', newFormData);
-      console.log(newFormData)
+      await axios.post('/pets', newFormData);
+     
     } catch (error) {
       return rejectWithValue(error.message);
     }

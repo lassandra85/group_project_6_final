@@ -35,7 +35,7 @@ const AddPetPageForm = () => {
     breed: '',
     location: '',
     comments: '',
-    petPhoto: null,
+    file: null,
     sex: '',
     price: 0,
   });
@@ -88,15 +88,20 @@ const AddPetPageForm = () => {
   };
 
   const handleSubmit = async () => {
-    if (!formData.category) return;
+    console.log(formData)
+    console.log(formData.category)
+    if (!formData.category) {return}else{
 
     const newFormData = new FormData();
 
     newFormData.append('name', formData.name);
     newFormData.append('birthday', formData.birthday);
     newFormData.append('breed', formData.breed);
-    newFormData.append('pets-photo', formData.petPhoto);
-
+    newFormData.append('file', formData.file);
+    for (const value of newFormData.values()) {
+      console.log(value);
+    }
+   
     if (formData.comments) {
       newFormData.append('comments', formData.comments);
     }
@@ -129,6 +134,8 @@ const AddPetPageForm = () => {
       dispatch(addNotice({ category: formData.category, newFormData }));
       toggleModal();
     }
+    
+  } 
   };
 
   return (
