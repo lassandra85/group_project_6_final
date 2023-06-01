@@ -128,14 +128,25 @@ export const getUserInfo = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   'auth/updateUser',
   async (data, { rejectWithValue }) => {
+    console.log(data);
     try {
-      const response = await axios.patch(
-        `auth/${data.id}`,
-        changeUserData(data)
-      );
-      console.log('response.data', response.data);
+      if (data.formFile) {
+        const response = await axios.patch(
+          `auth/${data.id}`,
+          // changeUserData(data)
+          data.formFile
+        )
+        console.log('response.data formFile', response.data);
       return response.data;
-    } catch (error) {
+      } else {
+        const response = await axios.patch(
+          `auth/${data.id}`,
+          changeUserData(data)
+        )
+      console.log('response.data', response.data);
+      return response.data;};
+      }
+catch (error) {
       return rejectWithValue(error.message);
     }
   }
