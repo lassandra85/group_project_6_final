@@ -4,14 +4,13 @@ import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
-// import { Formik } from 'formik';
-// import registerValidation from '../../helpers/registerDataValidation'
+import { useFormik } from 'formik';
+import { registerValidation } from "../../helpers/registerDataValidation"
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
- 
   const [isActive, setActive] = useState(false);
   const handleClick = () => {
     setActive(!isActive);
@@ -23,94 +22,128 @@ const RegisterForm = () => {
 
   const [loading, setLoading] = useState(false);
 
-  let [pass, setPass] = useState(true);
-  let [em, setEm] = useState(true);
-  let [err, setErr] = useState(true);
-  let[dublicate, setDublicate] = useState(true)
+  // let [pass, setPass] = useState(true);
+  // let [em, setEm] = useState(true);
+  // let [err, setErr] = useState(true);
+  let [dublicate, setDublicate] = useState(true);
 
-  const handleSubmit = async evt => {
-    evt.preventDefault();
-    const form = evt.currentTarget;
-    const emailField = form.elements.email.value;
-    const passwordField = form.elements.password.value;
-    const confirmPasswordField = form.elements.confirmPassword.value;
-    const credentials = {
-      email: emailField,
-      password: passwordField,
-    };
+  const onSubmit = async (values) => {
+    //evt.preventDefault();
+    // const form = evt.currentTarget;
+    // const emailField = form.elements.email.value;
+    // const passwordField = form.elements.password.value;
+    // const confirmPasswordField = form.elements.confirmPassword.value;
+    // const credentials = {
+    //   email: emailField,
+    //   password: passwordField,
+    // };
     if (loading) {
       return;
     }
 
-    if (
-      passwordField === confirmPasswordField &&
-      emailField &&
-      passwordField !== '' &&
-      confirmPasswordField !== ''
-    ) {
-      setPass(pass);
-      setEm(em);
-      setErr(err);
-      setLoading(true);
-      try {
-        const result = await dispatch(register({ credentials }));
-        if (result.payload === 'Request failed with status code 409') {
-          setDublicate(false)
-        } else {
-          setDublicate('')
-          form.reset();
-          navigate('/user');
-        }
-        
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
+    
+    // if (
+    //   passwordField === confirmPasswordField &&
+    //   emailField &&
+    //   passwordField !== '' &&
+    //   confirmPasswordField !== ''
+    // ) {
+    // setPass(pass);
+    // setEm(em);
+    // setErr(err);
+    setLoading(true);
+    try {
+      const result = await dispatch(
+        register({ email: values.email, password: values.password })
+      );
+      
+
+      if (result.payload === 'Request failed with status code 409') {
+        setDublicate(false);
+      } else {
+        setDublicate('');
+        //form.reset();
+        navigate('/user');
       }
-    } else if (
-      !emailField &&
-      confirmPasswordField === passwordField &&
-      passwordField !== '' &&
-      confirmPasswordField !== ''
-    ) {
-      setEm((em = false));
-      setErr((err = true));
-      setPass((pass = true));
-    } else if (!emailField && !passwordField && !confirmPasswordField) {
-      setErr((err = false));
-      setPass((pass = true));
-      setEm((em = true));
-    } else if (confirmPasswordField !== passwordField) {
-      setPass((pass = false));
-      setEm((em = true));
-      setErr((err = true));
-    } else if (emailField && !passwordField) {
-      setPass((pass = false));
-      setEm((em = true));
-      setErr((err = true));
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
+    // } else if (
+    //   !emailField &&
+    //   confirmPasswordField === passwordField &&
+    //   passwordField !== '' &&
+    //   confirmPasswordField !== ''
+    // ) {
+    //   setEm((em = false));
+    //   setErr((err = true));
+    //   setPass((pass = true));
+    // } else if (!emailField && !passwordField && !confirmPasswordField) {
+    //   setErr((err = false));
+    //   setPass((pass = true));
+    //   setEm((em = true));
+    // } else if (confirmPasswordField !== passwordField) {
+    //   setPass((pass = false));
+    //   setEm((em = true));
+    //   setErr((err = true));
+    // } else if (emailField && !passwordField) {
+    //   setPass((pass = false));
+    //   setEm((em = true));
+    //   setErr((err = true));
   };
+
+  const { values, errors, touched, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
+    validationSchema: registerValidation,
+    onSubmit,
+  });
+ 
 
   return (
     <div className={css.container}>
       <h2 className={css.header}>Registration</h2>
-      {/* <Formik validationSchema={registerValidation}> */}
-      <form className={css.formRegister} onSubmit={handleSubmit}>
-        <label>
-          <input
-            placeholder="Email"
-            type="email"
-            name="email"
-            className={css.inputRegister}
-          ></input>
-        </label>
+
+      <form className={css.formRegister} onSubmit={handleSubmit} noValidate>
+        <div className={css.passwordCont}>
+          <label>
+            <input
+              placeholder="Email"
+              type="email"
+              name="email"
+              id="email"
+              className={
+                errors.email && touched.email
+                  ? css.inputRegisterError
+                  : css.inputRegister
+              }
+              value={values.email}
+              onChange={handleChange}
+            ></input>
+          </label>
+          {errors.email && touched.email && (
+            <p className={css.errorRassword}>{errors.email}</p>
+          )}
+          {dublicate ? '' : <p className={css.errorRassword}>Email in use.</p>}
+        </div>
         <div className={css.passwordCont}>
           <label>
             <input
               placeholder="Password"
               type={isActive ? 'text' : 'password'}
               name="password"
-              className={css.inputRegister}
+              id="password"
+              className={
+                errors.password && touched.password
+                  ? css.inputRegisterError
+                  : css.inputRegister
+              }
+              value={values.password}
+              onChange={handleChange}
             ></input>
             <button type="button" className={css.eyeBttn} onClick={handleClick}>
               {isActive ? (
@@ -120,6 +153,9 @@ const RegisterForm = () => {
               )}
             </button>
           </label>
+          {errors.password && touched.password && (
+            <p className={css.errorRassword}>{errors.password}</p>
+          )}
         </div>
         <div className={css.passwordCont}>
           <label>
@@ -127,7 +163,14 @@ const RegisterForm = () => {
               placeholder="Confirm password"
               type={isActive2 ? 'text' : 'password'}
               name="confirmPassword"
-              className={css.inputRegister}
+              id="confirmPassword"
+              className={
+                errors.confirmPassword && touched.confirmPassword
+                  ? css.inputRegisterError
+                  : css.inputRegister
+              }
+              value={values.confirmPassword}
+              onChange={handleChange}
             ></input>
             <button
               type="button"
@@ -141,17 +184,18 @@ const RegisterForm = () => {
               )}
             </button>
           </label>
-
-          {pass ? '' : <p className={css.errorRassword}>Password mismatch</p>}
+          {errors.confirmPassword && touched.confirmPassword && (
+            <p className={css.errorRassword}>{errors.confirmPassword}</p>
+          )}
+          {/* {pass ? '' : <p className={css.errorRassword}>Password mismatch</p>}
           {em ? '' : <p className={css.errorRassword}>Email incorrect</p>}
-          {err ? '' : <p className={css.errorRassword}>Enter data</p>}
-          {dublicate ? '': <p className={css.errorRassword}>Email in use.</p>}
+          {err ? '' : <p className={css.errorRassword}>Enter data</p>} */}
         </div>
         <button type="submit" className={css.bttnRegister}>
           Registration
         </button>
-        </form>
-        {/* </Formik> */}
+      </form>
+
       <div className={css.containerLog}>
         <p className={css.text}>Already have an account?</p>&nbsp;
         <NavLink className={css.link} to="/login">
