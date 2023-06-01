@@ -4,8 +4,8 @@ import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
-import { Formik } from 'formik';
-import registerValidation from '../../helpers/registerDataValidation'
+// import { Formik } from 'formik';
+// import registerValidation from '../../helpers/registerDataValidation'
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
