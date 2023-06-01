@@ -44,6 +44,7 @@
   padding: 0;
   border: none;
   background-color: inherit;
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     top: 20px;
