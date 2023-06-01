@@ -39,7 +39,7 @@ const NoticesPage = () => {
   const { pathname } = useLocation();
   const { categoryName } = useParams();
   const { isLoggedIn } = useSelector(selectIsLoggedIn);
-  console.log(isLoggedIn);
+
   const user = useSelector(selectUser);
   const notices = useSelector(selectNotices);
 

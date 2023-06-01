@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -50,9 +50,9 @@ const AddPetModal = ({ backLink, category }) => {
   );
 };
 
-AddPetModal.propTypes = PropTypes.shape({
-  backLink: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-});
+// AddPetModal.propTypes = PropTypes.shape({
+//   backLink: PropTypes.string.isRequired,
+//   category: PropTypes.string.isRequired,
+// });
 
 export default AddPetModal;

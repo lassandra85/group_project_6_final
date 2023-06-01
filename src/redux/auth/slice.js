@@ -107,7 +107,7 @@ const authSlice = createSlice({
           deletePet.rejected,
           getUserInfo.rejected,
           updateUser.rejected,
-          addMyPet.register
+          addMyPet.rejected
         ),
 
         (state, { payload }) => {

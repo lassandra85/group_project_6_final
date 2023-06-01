@@ -94,6 +94,7 @@ export const addMyPet = createAsyncThunk(
   async (newFormData, { rejectWithValue }) => {
     try {
       await axios.post('api/pets', newFormData);
+      console.log(newFormData)
     } catch (error) {
       return rejectWithValue(error.message);
     }
