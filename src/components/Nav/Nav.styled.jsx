@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const List = styled.ul`
   position: absolute;
   top: 210px;
-
+  z-index: -1;
   display: flex;
   flex-direction: column;
   align-items: center;
