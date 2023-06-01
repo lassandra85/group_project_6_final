@@ -200,3 +200,12 @@
     color: red;
     font-size: 10px;
 }
+
+.inputGood {
+    margin: 0;
+    position: absolute;
+    top: 50px;
+    left: 15px;
+    color: #00C3AD;
+    font-size: 10px;
+}

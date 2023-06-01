@@ -1,11 +1,11 @@
 import css from '../LoginForm/LoginForm.module.css';
-import { BsEyeSlash, BsEye, BsCheck2 } from 'react-icons/bs';
+import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { logIn } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
-import {loginValidation} from '../../helpers/loginDataValidation'
+import { loginValidation } from '../../helpers/loginDataValidation';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -18,10 +18,10 @@ const LoginForm = () => {
   // let [pass, setPass] = useState(true);
   // let [em, setEm] = useState(true);
   // let [err, setErr] = useState(true);
-  let [err2, setErr2] = useState(true)
+  let [err2, setErr2] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (values) => {
+  const onSubmit = async values => {
     // evt.preventDefault();
     // const form = evt.currentTarget;
     // const emailField = form.elements.email.value;
@@ -34,29 +34,25 @@ const LoginForm = () => {
     if (loading) {
       return;
     }
-      
 
-    
-      setLoading(true);
-      try {
-        await dispatch(logIn({ email: values.email, password: values.password }))
-          .then(data => {          
-          if (data.error) {
-            setErr2(false)            
-          } else {
-              setErr2(true)
-              navigate('/user');
-          }
-        })        
-        
-      }
-      catch (error) {
-        console.error(error)        
-      } finally {        
-        setLoading(false);
-      }
-      
-      
+    setLoading(true);
+    try {
+      await dispatch(
+        logIn({ email: values.email, password: values.password })
+      ).then(data => {
+        if (data.error) {
+          setErr2(false);
+        } else {
+          setErr2(true);
+          navigate('/user');
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+
     //  else if (!emailField && passwordField) {
     //   setEm((em = false));
     //   setErr((err = true));
@@ -87,25 +83,25 @@ const LoginForm = () => {
 
       <form className={css.formRegister} onSubmit={handleSubmit} noValidate>
         <div className={css.passwordCont}>
-        <label>
-          <input
-            placeholder="Email"
-            type="email"
+          <label>
+            <input
+              placeholder="Email"
+              type="email"
               name="email"
               id="email"
-            className={
+              className={
                 errors.email && touched.email
                   ? css.inputRegisterError
                   : css.inputRegister
               }
               value={values.email}
               onChange={handleChange}
-          ></input>
+            ></input>
           </label>
           {errors.email && touched.email && (
             <p className={css.errorRassword}>{errors.email}</p>
           )}
-          </div>
+        </div>
         <div className={css.passwordCont}>
           <label>
             <input
@@ -121,30 +117,32 @@ const LoginForm = () => {
               onChange={handleChange}
             ></input>
             <button type="button" className={css.eyeBttn} onClick={handleClick}>
-              {isActive &&  values.password.length<6 &&
-                (<BsEye size={24} color="rgba(84, 173, 255, 1)" />
-              )}
-                {!isActive &&  values.password.length<6 &&(
+              {isActive ? (
+                <BsEye size={24} color="rgba(84, 173, 255, 1)" />
+              ) : (
                 <BsEyeSlash size={24} color="rgba(84, 173, 255, 1)" />
               )}
-              {isActive &&  !err2 &&
-                (<BsEye size={24} color="rgba(84, 173, 255, 1)" />
-              )}
-                {!isActive &&   !err2 &&(
-                <BsEyeSlash size={24} color="rgba(84, 173, 255, 1)" />
-              )}
-              {!isActive && values.password.length > 5 && err2 &&  (
+              {/* {!isActive && values.password.length > 5 && err2 && (
                 <BsCheck2 size={24} color="#00C3AD" />
-              )}
+              )} */}
             </button>
           </label>
           {/* {pass ? '' : <p className={css.errorRassword}>Enter password</p>}
           {em ? '' : <p className={css.errorRassword}>Enter email</p>}
           {err ? '' : <p className={css.errorRassword}>Enter data</p>} */}
-          {errors.password && touched.password && values.password.length < 6 &&
-            <p className={css.errorRassword}>{errors.password}</p>}
-           {values.password.length > 5 && err2 &&  <p className={css.inputGood}>Password is secure</p>}
-          {err2 ? '' :<p className={css.errorRassword}>Email or password incorrect</p>}
+          {errors.password &&
+            touched.password &&
+            values.password.length < 6 && (
+              <p className={css.errorRassword}>{errors.password}</p>
+            )}
+          {/* {values.password.length > 5 && err2 && (
+            <p className={css.inputGood}>Password is secure</p>
+          )} */}
+          {err2 ? (
+            ''
+          ) : (
+            <p className={css.errorRassword}>Email or password incorrect</p>
+          )}
         </div>
 
         <button type="submit" className={css.bttnRegister}>
