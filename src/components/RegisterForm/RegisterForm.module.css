@@ -94,7 +94,14 @@
 @media screen and (min-width:768px) {
     .inputRegister {
         margin-bottom: 32px;
+        width: 458px;
+    }
+}
 
+@media screen and (min-width:768px) {
+    .inputRegisterError {
+        margin-bottom: 32px;
+        width: 458px;
     }
 }
 
@@ -104,12 +111,9 @@
     border: 3px solid var(--color-gradient_blue);
 }
 
-@media screen and (min-width:768px) {
-    .inputRegister {
-        width: 458px;
 
-    }
-}
+
+
 
 .bttnRegister {
     display: flex;

@@ -111,7 +111,7 @@
 @media screen and (min-width:768px) {
     .inputRegister {
         margin-bottom: 32px;
-
+        width: 458px;
     }
 }
 
@@ -120,11 +120,13 @@
 }
 
 @media screen and (min-width:768px) {
-    .inputRegister {
+    .inputRegisterError {
+    margin-bottom: 32px;
         width: 458px;
+    }
 
     }
-}
+
 
 .bttnRegister {
     display: flex;
