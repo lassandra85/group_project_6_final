@@ -1,4 +1,5 @@
 .logOutContainer {
+
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -12,12 +13,7 @@
 
     color: var(--color-black);
 
-    @media screen and (min-width:768px) {
-        padding: 108px 155px;
-        letter-spacing: -0.01em;
-    }
 }
-
 
 
 .logOutTitle {
@@ -29,11 +25,6 @@
     margin-left: calc(50% - 200px/2);
     margin-bottom: 40px;
 
-    @media screen and (min-width:768px) {
-        font-size: 36px;
-        line-height: 49px;
-        margin-bottom: 48px;
-    }
 }
 
 
@@ -43,12 +34,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     gap: 8px;
-
-    @media screen and (min-width:768px) {
-
-        flex-direction: row;
-
-    }
+    
 }
 
 
@@ -79,6 +65,7 @@
 .cancellogOutBtn:active,
 .cancellogOutBtn:focus {
     background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
+    color: var(--color-white);
 }
 
 
@@ -119,3 +106,25 @@
 
     fill: var(--background-color);
 }
+
+
+@media (max-width: 768px) {
+
+    .logOutContainer{
+        padding: 108px 155px;
+        letter-spacing: -0.01em;
+    }
+
+    .logOutTitle{
+        font-size: 36px;
+        line-height: 49px;
+        margin-bottom: 48px;
+    }
+
+    .logOutBtnContainer{
+
+        flex-direction: row;
+    }
+
+}
+
