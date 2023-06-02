@@ -8,7 +8,7 @@ const ModalLogOut = ({ handleLogOut, toggleModal}) => {
         
         <div className={css.logOutContainer}>
               
-            <h3> className={css.logOutTitle}
+            <h3 className={css.logOutTitle}> 
                   
                Already leaving?
                   
