@@ -8,6 +8,7 @@ export const AddFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 8px 17px;
+  margin-top: 20px;
   width: 100%;
   min-height: 496px;
   background: var(--color-white);
@@ -16,6 +17,7 @@ export const AddFormWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     margin: 0 auto;
+    margin-top: 60px;
     padding: 20px 32px;
     width: fit-content;
     min-width: 458px;
@@ -23,6 +25,7 @@ export const AddFormWrapper = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
+    margin-top: 40px;
     padding: ${({ step, category }) =>
       step === 2 && category !== 'my-pet' ? padding1 : padding2};
   }    

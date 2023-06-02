@@ -88,8 +88,9 @@ const AddPetPageForm = () => {
   };
 
   const handleSubmit = async () => {
-
-    if (!formData.category) {return}else{
+    // console.log(formData)
+    // console.log(formData.category)
+    if (!formData.category) {return}
 
     const newFormData = new FormData();
 
@@ -117,13 +118,13 @@ const AddPetPageForm = () => {
     newFormData.append('location', formData.location);
 
     if (formData.category === 'lost-found') {
-      dispatch(addNotice({ category: 'lost-found', newFormData }));
+      dispatch(addNotice({ category: 'lost-found', formData }));
       toggleModal();
       return;
     }
 
     if (formData.category === 'for-free') {
-      dispatch(addNotice({ category: 'in-good-hands', newFormData }));
+      dispatch(addNotice({ category: 'in-good-hands', formData }));
       toggleModal();
       return;
     }
@@ -131,11 +132,10 @@ const AddPetPageForm = () => {
     newFormData.append('price', formData.price);
 
     if (formData.category === 'sell') {
-      dispatch(addNotice({ category: formData.category, newFormData }));
+      dispatch(addNotice({ category: formData.category, formData }));
       toggleModal();
     }
     
-  } 
   };
 
   return (

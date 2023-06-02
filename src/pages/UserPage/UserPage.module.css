@@ -50,6 +50,7 @@
 .container {
     @media screen and (min-width:1280px) {
         display: flex;
+        column-gap: 32px;
         }
     
 }
