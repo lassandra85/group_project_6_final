@@ -47,7 +47,7 @@ export const App = () => {
             <Route path="news" element={<NewsPage />} />
             <Route path="notices/:categoryName" element={<NoticesPage />} />
               <Route path="add-pet" element={
-              <RestrictedRoute redirectTo="/login" component={<AddPetPage />} />
+              <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
             }/>
             <Route path="friends" element={<OurFriendsPage />} />
             <Route path="login" element={
