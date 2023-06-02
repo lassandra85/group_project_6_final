@@ -15,7 +15,7 @@ export const registerValidation = yup.object({
     .string('Enter your password')
     .min(6, 'Password should be min 6 characters')
     .required('Password is required')
-    .matches(passwordRules,{message:"Password min 6 characters + big and small letters"}),
+    .matches(passwordRules,{message:"Password must be min 6 characters, at least 1 uppercase and 1 lowercase letter and 1 number"}),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref('password'), null], 'Password must match')

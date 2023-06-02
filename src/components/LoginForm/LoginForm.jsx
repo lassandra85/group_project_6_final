@@ -1,6 +1,6 @@
 import css from '../LoginForm/LoginForm.module.css';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { logIn } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
@@ -9,7 +9,7 @@ import { loginValidation } from '../../helpers/loginDataValidation';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const [isActive, setActive] = useState(false);
   const handleClick = () => {
@@ -44,7 +44,7 @@ const LoginForm = () => {
           setErr2(false);
         } else {
           setErr2(true);
-          navigate('/user');
+          //navigate('/user');
         }
       });
     } catch (error) {

@@ -9,6 +9,9 @@ import SharedLayout from 'components/SharedLayout';
 // import PrivateRoute from "components/PrivateRoute/PrivateRoute";
 // import PublicRoute from "components/PublicRoute/PublicRoute";
 
+import { RestrictedRoute } from '../components/RestrictedRoute';
+import { PrivateRoute } from '../components/PrivateRoute';
+
 import Loader from 'components/Loader/loader';
 import { ToastContainer } from 'react-toastify';
 
@@ -43,11 +46,19 @@ export const App = () => {
             <Route index element={<MainPage />} />
             <Route path="news" element={<NewsPage />} />
             <Route path="notices/:categoryName" element={<NoticesPage />} />
-            <Route path="add-pet" element={<AddPetPage />} />
+              <Route path="add-pet" element={
+              <RestrictedRoute redirectTo="/login" component={<AddPetPage />} />
+            }/>
             <Route path="friends" element={<OurFriendsPage />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="register" element={<RegisterPage />} />
-            <Route path="user" element={<UserPage />} />
+            <Route path="login" element={
+              <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+            } />
+            <Route path="register" element={
+              <RestrictedRoute redirectTo="/user" component={<RegisterPage />} />
+            } />
+              <Route path="user" element={
+              <PrivateRoute redirectTo="/login" component={<UserPage />} />
+            }  />
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
