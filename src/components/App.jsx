@@ -1,17 +1,12 @@
-import { Suspense,lazy } from "react";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import {getCurrentUser} from 'redux/auth/operations'
 import { Suspense, lazy } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 import { selectIsRefreshing } from 'redux/auth/selectors';
 
-import { Route,Routes } from "react-router-dom";
-import SharedLayout from "components/SharedLayout";
-import PrivateRoute from "components/PrivateRoute/PrivateRoute";
-import PublicRoute from "components/PublicRoute/PublicRoute";
+import { Route, Routes } from 'react-router-dom';
+import SharedLayout from 'components/SharedLayout';
+
 
 import { RestrictedRoute } from '../components/RestrictedRoute';
 import { PrivateRoute } from '../components/PrivateRoute';
@@ -32,9 +27,13 @@ const AddPetPage = lazy(() => import('../pages/AddPetPage/AddPetPage'));
 const ErrorPage = lazy(() => import('../pages/ErrorPage/ErrorPage'));
 
 export const App = () => {
+  const dispatch = useDispatch();
 
+  const isRefreshing = useSelector(selectIsRefreshing);
 
-
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return (
     <Suspense fallback={<Loader />}>
@@ -61,21 +60,9 @@ export const App = () => {
             }  />
             <Route path="*" element={<ErrorPage />} />
           </Route>
-
-          <Route element={<PrivateRoute />}>
-            <Route path="user" element={<UserPage />} />
-            <Route path="add-pet" element={<AddPetPage />} />
-          </Route>
-
-          <Route path="news" element={<NewsPage />} />
-          <Route path="*" element={<ErrorPage />} />
-        
-      </Routes>)}
-
-
-
-    <ToastContainer/>
+        </Routes>
+      )}
+      <ToastContainer />
     </Suspense>
-  )
+  );
 };
-
