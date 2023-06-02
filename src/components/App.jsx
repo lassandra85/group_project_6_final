@@ -1,12 +1,12 @@
 import { Suspense,lazy } from "react";
-// import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
-// import {getCurrentUser} from 'redux/auth/operations'
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {getCurrentUser} from 'redux/auth/operations'
 
 import { Route,Routes } from "react-router-dom";
 import SharedLayout from "components/SharedLayout";
-// import PrivateRoute from "components/PrivateRoute/PrivateRoute";
-// import PublicRoute from "components/PublicRoute/PublicRoute";
+import PrivateRoute from "components/PrivateRoute/PrivateRoute";
+import PublicRoute from "components/PublicRoute/PublicRoute";
 
 
 import Loader from 'components/Loader/loader';
@@ -26,29 +26,39 @@ const ErrorPage = lazy(() => import('../pages/ErrorPage/ErrorPage'));
 
 export const App = () => {
 
-  // const dispatch = useDispatch();
+const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(getCurrentUser())
-  
-  // }, [dispatch])
+
 
   return (
     <Suspense fallback={<Loader />}>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<MainPage />} />
-          <Route path="news" element={<NewsPage />} />
-          <Route path="notices/:categoryName" element={<NoticesPage />} />
-          <Route path="add-pet" element={<AddPetPage />} />
-          <Route path="friends" element={<OurFriendsPage />} />
-          <Route path="login" element={<LoginPage />} />
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<MainPage />} />
+        <Route path="notices/:categoryName" element={<NoticesPage />} />
+        <Route path="friends" element={<OurFriendsPage />} />
+        <Route element={<PublicRoute />}>
           <Route path="register" element={<RegisterPage />} />
-          <Route path="user" element={<UserPage />} />
-          <Route path="*" element={<ErrorPage />} />
+          <Route path="login" element={<LoginPage />} />
         </Route>
-      </Routes>
+
+        <Route element={<PrivateRoute />}>
+          <Route path="user" element={<UserPage />} />
+          <Route path="add-pet" element={<AddPetPage />} />
+        </Route>
+
+        <Route path="news" element={<NewsPage />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Route>
+    </Routes>
+
+
+
       <ToastContainer/>
     </Suspense>
   );
 };
+

@@ -88,8 +88,7 @@ const AddPetPageForm = () => {
   };
 
   const handleSubmit = async () => {
-    console.log(formData)
-    console.log(formData.category)
+
     if (!formData.category) {return}else{
 
     const newFormData = new FormData();

@@ -67,27 +67,27 @@ export const logOut = createAsyncThunk(
   }
 );
 
-// let retry=false;
+let retry=false;
 
-// export const getCurrentUser = createAsyncThunk(
-//   'auth/currentUser',
-//   async (_, { rejectWithValue, getState }) => {
-//     if (!retry) {
-//       const state = getState();
-//       const currentToken = state.auth.token;
-//       setAuthHeader(currentToken);
-//     }
+export const getCurrentUser = createAsyncThunk(
+  'auth/currentUser',
+  async (_, { rejectWithValue, getState }) => {
+    if (!retry) {
+      const state = getState();
+      const currentToken = state.auth.token;
+      setAuthHeader(currentToken);
+    }
 
-//     try {
-//       const response = await axios.get('api/users/current');
+    try {
+      const response = await axios.get('users/current');
 
-//       const token = axios.defaults.headers.common.Authorization.split(' ')[1];
-//       return { token, data: response.data };
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
+      const token = axios.defaults.headers.common.Authorization.split(' ')[1];
+      return { token, data: response.data };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const addMyPet = createAsyncThunk(
   'auth/addMyPet',
