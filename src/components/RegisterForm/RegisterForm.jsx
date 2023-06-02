@@ -59,7 +59,7 @@ const RegisterForm = () => {
       if (result.payload === 'Request failed with status code 409') {
         setDublicate(false);
       } else {
-        setDublicate('');
+        setDublicate(true);
         //form.reset();
         //navigate('/user');
       }
