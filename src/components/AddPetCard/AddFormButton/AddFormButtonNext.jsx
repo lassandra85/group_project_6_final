@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import css from './AddFormButton.module.css';
 
-const AddFormButtonNext = ({ text, icon, clickHandler, filled, short, type, isDisabled}) => {
+const AddFormButtonNext = ({ text, icon, clickHandler, /*filled,*/ short, type, isDisabled}) => {
   return (
     <button className={css.buttonNext}
       type={type}
