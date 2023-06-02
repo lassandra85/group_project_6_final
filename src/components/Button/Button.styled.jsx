@@ -18,7 +18,7 @@ const Btn = styled.button`
   font-family: 700;
   font-size:16px;
   color: ${({  filled }) =>(
-    filled ? '#fff' : '#0000ff')};
+    filled ? '#fff' : '#54ADFF')};
 
   background-color: ${({  filled }) =>
     filled ? 'blue' : 'transparent'};

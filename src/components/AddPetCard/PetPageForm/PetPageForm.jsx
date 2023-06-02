@@ -90,7 +90,7 @@ const AddPetPageForm = () => {
   const handleSubmit = async () => {
     // console.log(formData)
     // console.log(formData.category)
-    if (!formData.category) {return}
+    if (!formData.category) return;
 
     const newFormData = new FormData();
 
@@ -98,10 +98,10 @@ const AddPetPageForm = () => {
     newFormData.append('birthday', formData.birthday);
     newFormData.append('breed', formData.breed);
     newFormData.append('file', formData.file);
-    for (const value of newFormData.values()) {
-      console.log(value);
-    }
-      console.log(formData.file.name);
+    // for (const value of newFormData.values()) {
+    //   console.log(value);
+    // }
+    //   console.log(formData.file.name);
 
     if (formData.comments) {
       newFormData.append('comments', formData.comments);
