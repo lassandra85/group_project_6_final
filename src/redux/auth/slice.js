@@ -21,7 +21,7 @@ const initialState = {
     avatarURL: null,
     isNewUser: true,
   },
-  pet: [],
+  pets: [],
   token: null,
   isLoggedIn: false,
   isLoading: false,
@@ -54,22 +54,26 @@ const authSlice = createSlice({
 
       .addCase(getUserInfo.fulfilled, (state, { payload }) => {
         state.user = payload.user;
-        state.pet = payload.pet;
+        state.pets = payload.pets;
       })
       .addCase(updateUser.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        state.user = payload;
+        state.user = { ...state.user, payload };
       })
-      .addCase(addMyPet.pending,state=>{
+      .addCase(addMyPet.pending, state => {
         state.isLoading = true;
       })
+
+      .addCase(addMyPet.fulfilled, (state, { payload }) => {
+        
+        state.isLoading = false;
       .addCase(addMyPet.fulfilled, (state) => {
         state.isLoading=false;
       })
 
       .addCase(deletePet.fulfilled, (state, { payload }) => {
-        const index = state.user.pet.findIndex(pet => pet._id === payload.id);
-        state.user.pet.splice(index, 1);
+        console.log(payload);
+        const index = state.pets.indexOf(pet => pet.id === payload);
+        state.pets.splice(index, 1);
       })
       .addMatcher(
         isAnyOf(

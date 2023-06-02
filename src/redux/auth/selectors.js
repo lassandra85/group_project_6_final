@@ -7,9 +7,13 @@ export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 
 export const selectUser = state => state.auth.user;
 
+
+export const selectPets = state => state.auth.pets;
+
 export const selectNewUser = state => state.auth.user.isNewUser;
 
-export const selectPets = state => state.auth.pet;
+
+
 
 export const selectIsLoading = state => state.auth.isLoading;
 

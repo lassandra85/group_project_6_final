@@ -16,11 +16,11 @@ const clearAuthHeader = () => {
 
 export const register = createAsyncThunk(
   'auth/register',
-  async ( credentials , { rejectWithValue }) => {
+  async (credentials, { rejectWithValue }) => {
     try {
       const response = await axios.post('auth/register', credentials);
       const { email } = response.data;
-      console.log(email)
+      console.log(email);
       if (email) {
         const data = await axios.post('auth/login', credentials);
         const total = { email, ...data.data };
@@ -89,13 +89,11 @@ export const logOut = createAsyncThunk(
 //   }
 // );
 
-
 export const addMyPet = createAsyncThunk(
   'auth/addMyPet',
   async (newFormData, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/pets', newFormData);
-      return response.data;
+      await axios.post('/pets', newFormData);
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -106,8 +104,8 @@ export const deletePet = createAsyncThunk(
   'auth/deleteMyPet',
   async (id, thunkAPI) => {
     try {
-      const response = await axios.delete(`/pets/${id}`);
-      return response.data;
+      await axios.delete(`pets/${id}`);
+      return id;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -136,18 +134,18 @@ export const updateUser = createAsyncThunk(
           `auth/${data.id}`,
           // changeUserData(data)
           data.formFile
-        )
+        );
         console.log('response.data formFile', response.data);
-      return response.data;
+        return response.data;
       } else {
         const response = await axios.patch(
           `auth/${data.id}`,
           changeUserData(data)
-        )
-      console.log('response.data', response.data);
-      return response.data;};
+        );
+        console.log('response.data', response.data);
+        return response.data;
       }
-catch (error) {
+    } catch (error) {
       return rejectWithValue(error.message);
     }
   }
