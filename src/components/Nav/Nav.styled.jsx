@@ -75,7 +75,7 @@ const Link = styled(NavLink)`
     font-size: ${({ theme }) => theme.fontSizes[7]};
 
     &.active {
-      font-family: ${({ theme }) => theme.fonts.main.semiBold};
+      font-family: 'Manrope',sans-serif;
     }
   }
 
