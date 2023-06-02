@@ -13,6 +13,9 @@ import SharedLayout from "components/SharedLayout";
 import PrivateRoute from "components/PrivateRoute/PrivateRoute";
 import PublicRoute from "components/PublicRoute/PublicRoute";
 
+import { RestrictedRoute } from '../components/RestrictedRoute';
+import { PrivateRoute } from '../components/PrivateRoute';
+
 import Loader from 'components/Loader/loader';
 import { ToastContainer } from 'react-toastify';
 
@@ -29,25 +32,34 @@ const AddPetPage = lazy(() => import('../pages/AddPetPage/AddPetPage'));
 const ErrorPage = lazy(() => import('../pages/ErrorPage/ErrorPage'));
 
 export const App = () => {
-  const dispatch = useDispatch();
 
-const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getCurrentUser());
-  }, [dispatch]);
 
 
 
   return (
     <Suspense fallback={<Loader />}>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<MainPage />} />
-          <Route path="notices/:categoryName" element={<NoticesPage />} />
-          <Route path="friends" element={<OurFriendsPage />} />
-          <Route element={<PublicRoute />}>
-            <Route path="register" element={<RegisterPage />} />
-            <Route path="login" element={<LoginPage />} />
+      {isRefreshing ? (
+        <Loader />
+      ) : (
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<MainPage />} />
+            <Route path="news" element={<NewsPage />} />
+            <Route path="notices/:categoryName" element={<NoticesPage />} />
+              <Route path="add-pet" element={
+              <RestrictedRoute redirectTo="/login" component={<AddPetPage />} />
+            }/>
+            <Route path="friends" element={<OurFriendsPage />} />
+            <Route path="login" element={
+              <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+            } />
+            <Route path="register" element={
+              <RestrictedRoute redirectTo="/user" component={<RegisterPage />} />
+            } />
+              <Route path="user" element={
+              <PrivateRoute redirectTo="/login" component={<UserPage />} />
+            }  />
+            <Route path="*" element={<ErrorPage />} />
           </Route>
 
           <Route element={<PrivateRoute />}>
@@ -57,13 +69,13 @@ const dispatch = useDispatch();
 
           <Route path="news" element={<NewsPage />} />
           <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </Routes>
+        
+      </Routes>)}
 
 
 
-        <ToastContainer/>
+    <ToastContainer/>
     </Suspense>
-  );
+  )
 };
 

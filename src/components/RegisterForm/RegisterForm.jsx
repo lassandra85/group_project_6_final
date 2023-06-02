@@ -1,5 +1,5 @@
 import css from '../RegisterForm/RegisterForm.module.css';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { BsEyeSlash, BsEye, BsCheck2 } from 'react-icons/bs';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -9,7 +9,7 @@ import { registerValidation } from '../../helpers/registerDataValidation';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const [isActive, setActive] = useState(false);
   const handleClick = () => {
@@ -61,7 +61,7 @@ const RegisterForm = () => {
       } else {
         setDublicate('');
         //form.reset();
-        navigate('/user');
+        //navigate('/user');
       }
     } catch (error) {
       console.error(error);
