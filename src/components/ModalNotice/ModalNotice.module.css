@@ -188,15 +188,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
     transition: transform 200ms ease;
+}
 
-    &:hover,
-    &:focus {
-
-        color: var(--color-gradient_blue);
+.mailNotice:hover,
+.mailNotice:focus {
+    color: var(--color-gradient_blue);
         overflow: visible;
         transform: translate(-40px, 0);
-
-    }
 }
 
 
@@ -208,15 +206,16 @@
     overflow: hidden;
     text-overflow: ellipsis;
     transition: transform 200ms ease;
+  
+}
 
-    &:hover,
-    &:focus {
+.telNotice:hover,
+.telNotice:focus {
 
-        color: var(--color-gradient_blue);
-        overflow: visible;
-        transform: translate(-40px, 0);
+    color: var(--color-gradient_blue);
+    overflow: visible;
+    transform: translate(-40px, 0);
 
-    }   
 }
 
 .commentsNotice {
@@ -275,12 +274,11 @@
     background: var(--color-white);
 
     cursor: pointer;
+}
 
-
-    &:hover,
-    &:focus {
-        background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
-    }
+.noticeContactBtn:hover,
+.noticeContactBtn:focus {
+    background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
 }
 
 
@@ -308,11 +306,11 @@
     background: var(--color-blue);
 
     cursor: pointer;
+}
 
-    &:hover,
-    &:focus {
-        background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
-    }
+.noticeLikedBtn:hover,
+.noticeLikedBtn:focus {
+    background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
 }
 
 
