@@ -60,7 +60,7 @@ const Modal = ({ toggleModal, children }) => {
 
   return createPortal(
     <>
-      <div className={css.backdrop} onClick={onBackdropClick} >
+      <div className={css.backDrop} onClick={onBackdropClick} >
 
         <div className={css.modalWindow}>
 

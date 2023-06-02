@@ -28,6 +28,8 @@
 .modalWindow {
 
   position: absolute;
+  top: 50%;
+  left: 50%;
   max-width: 360px;
   margin: auto;
   display: flex;
@@ -73,15 +75,22 @@
     top: 24px;
     right: 24px;
 
-    &:hover,
-    &:active,
-    &:focus {
+    
+    /* closeBtn:hover,
+    closeBtn:active,
+    closeBtn:focus {
       transform: scale(1.2);
-    }
+    } */
 
   }
 
 }
+
+ .closeBtn:hover,
+ .closeBtn:active,
+ .closeBtn:focus {
+   transform: scale(1.2);
+ }
 
 .svg_closeBtn {
   position: absolute;

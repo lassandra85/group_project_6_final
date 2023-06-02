@@ -5,7 +5,7 @@
     align-items: center;
 
     width: 100%;
-    padding: 68px 16 60px;
+    padding: 68px 16px 60px;
     
     font-style: normal;
     letter-spacing: 0.04em;
@@ -77,14 +77,18 @@
     
     cursor: pointer;
     
-    &:hover,
+    /* &:hover,
     &:active,
     &:focus {
         background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
-    }
+    } */
+}
+.congratzBtn:hover,
+.congratzBtn:active,
+.congratzBtn:focus {
+    background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
 }
 
 .svg_pawPrint{
-   
     fill: var(--background-color);
 }

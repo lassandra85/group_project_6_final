@@ -34,7 +34,7 @@ const UserData = () => {
   const [isReadonly, setIsReadonly] = useState(initReadOnlyValue);
 
   const [inputName, setInputName] = useState('');
-console.log(state);
+
   const [btnEditClicked, setBtnEditClicked] = useState(false);
 
   const handleChangeInput = e => {
