@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { CiLogout } from 'react-icons/ci';
 import { useDispatch } from 'react-redux';
-/* import { useNavigate } from 'react-router-dom'; */
 import ModalLogOut from '../ModalLogOut/ModalLogOut';
 import Modal from '../Modal/Modal';
 import { logOut } from 'redux/auth/operations';
@@ -13,7 +12,6 @@ const LogOut = () => {
 
   const [isLogOut, setIsLogOut] = useState(false);
   const dispatch = useDispatch();
-  /* const navigate = useNavigate(); */
 
   useEffect(() => {
     dispatch(logOut());
@@ -32,7 +30,6 @@ const LogOut = () => {
     try {
       dispatch(logOut());
       setIsLogOut(false);
-      /* navigate('/'); */
       notify('info', 'You have logged out');
     } catch (error) {
       notify('error', "Please try again");
