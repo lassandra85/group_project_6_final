@@ -12,8 +12,6 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
-// let retry=false;
-
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
@@ -54,7 +52,6 @@ export const logIn = createAsyncThunk(
   }
 );
 
-//додано
 export const logOut = createAsyncThunk(
   'auth/logOut',
   async (_, { rejectWithValue }) => {
@@ -67,27 +64,25 @@ export const logOut = createAsyncThunk(
   }
 );
 
-// let retry=false;
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
 
-// export const getCurrentUser = createAsyncThunk(
-//   'auth/currentUser',
-//   async (_, { rejectWithValue, getState }) => {
-//     if (!retry) {
-//       const state = getState();
-//       const currentToken = state.auth.token;
-//       setAuthHeader(currentToken);
-//     }
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
 
-//     try {
-//       const response = await axios.get('api/users/current');
-
-//       const token = axios.defaults.headers.common.Authorization.split(' ')[1];
-//       return { token, data: response.data };
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
+    try {
+      setAuthHeader(persistedToken);
+      const res = await axios.get('auth/current');
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const addMyPet = createAsyncThunk(
   'auth/addMyPet',
@@ -130,11 +125,7 @@ export const updateUser = createAsyncThunk(
     console.log(data);
     try {
       if (data.formFile) {
-        const response = await axios.patch(
-          `auth/${data.id}`,
-          // changeUserData(data)
-          data.formFile
-        );
+        const response = await axios.patch(`auth/${data.id}`, data.formFile);
         console.log('response.data formFile', response.data);
         return response.data;
       } else {

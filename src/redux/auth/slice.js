@@ -4,6 +4,7 @@ import {
   register,
   logIn,
   logOut,
+  refreshUser,
   getUserInfo,
   updateUser,
   deletePet,
@@ -25,6 +26,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isLoading: false,
+  isRefreshing: false,
   error: null,
 };
 
@@ -51,7 +53,6 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-
       .addCase(getUserInfo.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.pets = payload.pets;
@@ -59,18 +60,23 @@ const authSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, { payload }) => {
         state.user = { ...state.user, payload };
       })
-      .addCase(addMyPet.pending, state => {
-        state.isLoading = true;
+      .addCase(addMyPet.fulfilled, state => {
+        state.isLoading = false;
       })
-
-     .addCase(addMyPet.fulfilled, (state) => {
-        state.isLoading=false;
-      })
-
       .addCase(deletePet.fulfilled, (state, { payload }) => {
-        console.log(payload);
         const index = state.pets.indexOf(pet => pet.id === payload);
         state.pets.splice(index, 1);
+      })
+      .addCase(refreshUser.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(refreshUser.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(refreshUser.rejected, state => {
+        state.isRefreshing = false;
       })
       .addMatcher(
         isAnyOf(
@@ -79,6 +85,7 @@ const authSlice = createSlice({
           logOut.pending,
           getUserInfo.pending,
           updateUser.pending,
+          addMyPet.pending,
           deletePet.pending
         ),
 
