@@ -6,11 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 import { selectNoticesIsLoading } from 'redux/notices/selectors';
-import {
-  ageDeterminationFunc,
-  cutTitle,
-  transformCategoryName,
-} from 'helpers';
+import { ageDeterminationFunc, cutTitle, transformCategoryName } from 'helpers';
 
 import {
   HeartIcon,
@@ -55,11 +51,12 @@ const NoticesCategoriesList = ({
   const pets = items.map(pet => {
     const category = transformCategoryName(pet.category);
     const title = cutTitle(pet.comments);
-    const age = ageDeterminationFunc(pet.birthday);
+    const age = ageDeterminationFunc(pet.date);
     const isDeleteBtnShown = Boolean(
       pathname.includes('my-pets') || pet.owner._id === user.id
     );
-    const favorite = pet.favorite.length>0 && pet.favorite.includes(user.id)?true:false;
+    const favorite =
+      pet.favorite.length > 0 && pet.favorite.includes(user.id) ? true : false;
 
     return (
       <ListItem key={pet._id}>
