@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState/* , useEffect */ } from 'react';
 import { CiLogout } from 'react-icons/ci';
 import { useDispatch } from 'react-redux';
 import ModalLogOut from '../ModalLogOut/ModalLogOut';
@@ -13,9 +13,9 @@ const LogOut = () => {
   const [isLogOut, setIsLogOut] = useState(false);
   const dispatch = useDispatch();
 
-  useEffect(() => {
+ /*  useEffect(() => {
     dispatch(logOut());
-  }, [dispatch]);
+  }, [dispatch]); */
 
   const handleLogOut = () => {
     setIsLogOut(true);  
@@ -39,7 +39,7 @@ const LogOut = () => {
 
   return (
        <>
-          <div className={css.logout}>
+          <div className={css.logoutContainer}>
         
             <button type="button" className={css.button} onClick = {handleLogOut} >
               
