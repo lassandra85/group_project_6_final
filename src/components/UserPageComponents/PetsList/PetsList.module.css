@@ -9,7 +9,20 @@
   }
 
   @media screen and (min-width: 1280px) {
-	margin: 0;
-	gap: 24px;
+    margin: 0;
+    gap: 24px;
+  }
+}
+
+.notice {
+  padding-top: 32px;
+  font-size: 24px;
+  color: rgb(255, 193, 7);
+  text-align: center;
+  opacity: 0.3;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 64px;
+    font-size: 28px;
   }
 }
