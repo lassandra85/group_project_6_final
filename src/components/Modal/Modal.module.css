@@ -9,29 +9,19 @@
   overflow-y: scroll;
   z-index: 101;
 
-
-  @media screen and (min-width:768px) {
-
-    background-color: rgba(39, 39, 39, 0.6);
-
-  }
-
-
-  @media screen and (min-width:1280px) {
-
-    background-color: rgba(43, 43, 43, 0.6);
-
-  }
 }
 
 
 .modalWindow {
 
   position: absolute;
-  top: 50%;
+ /*  top: 50%;
+  left: 50%; */
+  top: 10%;
   left: 50%;
+  transform: translateX(-50%);
   max-width: 360px;
-  margin: auto;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,14 +30,6 @@
 
   background-color: var(--color-white);
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-
-  @media screen and (min-width:768px) {
-    
-    width: fit-content;
-    border-radius: 40px;
-    top: 7%;
-    max-width: 704px;
-  }
 
 }
 
@@ -70,27 +52,15 @@
 
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  @media screen and (min-width:768px) {
-
-    top: 24px;
-    right: 24px;
-
-    
-    /* closeBtn:hover,
-    closeBtn:active,
-    closeBtn:focus {
-      transform: scale(1.2);
-    } */
-
-  }
-
 }
 
- .closeBtn:hover,
- .closeBtn:active,
- .closeBtn:focus {
-   transform: scale(1.2);
- }
+.closeBtn:hover,
+.closeBtn:active,
+.closeBtn:focus {
+
+  transform: scale(1.2);
+
+}
 
 .svg_closeBtn {
   position: absolute;
@@ -98,4 +68,39 @@
   left: 0;
   fill: currentColor;
   stroke: currentColor;
+}
+
+
+
+@media (max-width: 768px) {
+  
+  .backDrop{
+
+    background-color: rgba(39, 39, 39, 0.6);
+  }
+
+  .modalWindow {
+  
+    width: fit-content;
+    border-radius: 40px;
+    top: 7%;
+    max-width: 704px;
+  
+  }
+  
+  .closeBtn {
+  
+    top: 24px;
+    right: 24px;
+  }
+
+}
+
+@media (max-width: 1280px) {
+
+  .backDrop {
+
+    background-color: rgba(43, 43, 43, 0.6);
+  }
+
 }

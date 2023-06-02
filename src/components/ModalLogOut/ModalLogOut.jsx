@@ -1,5 +1,5 @@
 import css from '../ModalLogOut/ModalLogOut.module.css';
-import {ReactComponent as LogOutIcon} from 'image/icons/logout.svg';
+import { CiLogout } from 'react-icons/ci';
 
 
 const ModalLogOut = ({ handleLogOut, toggleModal}) => {
@@ -26,7 +26,7 @@ const ModalLogOut = ({ handleLogOut, toggleModal}) => {
           
                     Yes
                       
-                    <LogOutIcon className={css.yeslogOutSvg}/>
+                    <CiLogout size={24} className={css.yeslogOutSvg} />
                       
                 </button>
             </div>

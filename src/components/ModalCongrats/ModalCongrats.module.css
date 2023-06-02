@@ -1,18 +1,16 @@
 .congratzContainer{
+
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
+    
 
     width: 100%;
     padding: 68px 16px 60px;
     
     font-style: normal;
     letter-spacing: 0.04em;
-    
-    @media screen and (min-width:768px) {
-        padding: 60px auto 60px;
-    }
 }
 
 
@@ -27,11 +25,6 @@
 
     color: var(--color-black);
     
-    @media screen and (min-width:768px) {
-        font-size: 36px;
-        line-height: 49px;
-        margin-bottom: 40px;
-    }
 }
 
 
@@ -46,16 +39,12 @@
 
     color: var(--color-black);
     
-    @media screen and (min-width:768px) {
-        font-size: 24px;
-        line-height: 33px;
-        margin-bottom: 48px;
-    }
 }
 
 
 
 .congratzBtn{
+    
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -86,4 +75,27 @@
 
 .svg_pawPrint{
     fill: var(--background-color);
+}
+
+@media (max-width: 768px) {
+
+    .congratzContainer{
+
+        padding: 60px auto 60px;
+    }
+
+    .congratzTitle{
+
+        font-size: 36px;
+        line-height: 49px;
+        margin-bottom: 40px;
+    }
+
+    .congratzDescr{
+
+        font-size: 24px;
+        line-height: 33px;
+        margin-bottom: 48px;
+    }
+
 }
