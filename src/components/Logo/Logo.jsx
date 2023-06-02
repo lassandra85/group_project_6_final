@@ -1,23 +1,16 @@
-import React from 'react';
-import logo from 'image/logo/logo.svg';
-import logoSm from 'image/logo/logoSm.svg';
-import { Link } from 'react-router-dom';
-import css from './Logo.module.css';
+import { useWindowSize } from 'hooks/useResize';
+import { LogoIcon, LogoIconSm } from 'utils/icons';
+import { LogoWrapper } from './Logo.styled';
 
-function Logo({ handleLinkClick }) {
-  const handleClick = () => {
-    if (handleLinkClick) {
-      handleLinkClick();
-    }
-  };
+const Logo = () => {
+  const [screenWidth] = useWindowSize();
+
   return (
-    <div>
-      <Link to="/" onClick={handleClick}>
-        <img src={logoSm} alt="Logo" className={css.logoWrapperS} />
-        <img src={logo} alt="Logo" className={css.logoWrapperM} />
-      </Link>
-    </div>
+    <LogoWrapper to="/" aria-label="Site logo">
+      {screenWidth <= 767 ? <LogoIconSm /> : <LogoIcon />}
+    </LogoWrapper>
   );
-}
+};
 
 export default Logo;
+

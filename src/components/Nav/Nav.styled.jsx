@@ -54,7 +54,7 @@ const Item = styled.li`
 `;
 
 const Link = styled(NavLink)`
-  font-family: ${({ theme }) => theme.fonts.main.semiBold};
+  font-family: 'Manrope',sans-serif;
   font-size: ${({ theme }) => theme.fontSizes[6]};
   color: ${({ theme }) => theme.colors.black};
 
@@ -66,12 +66,12 @@ const Link = styled(NavLink)`
   }
 
   &.active {
-    font-family: ${({ theme }) => theme.fonts.main.bold};
+    font-family: 'Manrope',sans-serif;
     color: ${({ theme }) => theme.colors.yellow};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-family: ${({ theme }) => theme.fonts.main.semiBold};
+    font-family: 'Manrope',sans-serif;
     font-size: ${({ theme }) => theme.fontSizes[7]};
 
     &.active {

@@ -1,21 +1,31 @@
-import Container from "components/Container/Container";
-import { ImageContainer, MainContainer,MainTitle,ImageOne,ImageTwo,ImageThree } from "./MainPage.styled";
+import { useEffect } from 'react';
 
+import {
+  MainContainer,
+  MainTitle,
+  ImageContainer,
+  ImageOne,
+  ImageTwo,
+  ImageThree,
+} from './MainPage.styled';
 
 const MainPage = () => {
-    return (
-       <Container>
-         <MainContainer>
-            
-            <MainTitle>Take good care of your small pets</MainTitle>
-            <ImageContainer>
-               <ImageOne alt="dog"></ImageOne>
-               <ImageTwo alt="dog"></ImageTwo>
-               <ImageThree alt="dog"></ImageThree>
-            </ImageContainer>
-        </MainContainer>
-       </Container>
-    );
-}
+  useEffect(() => {
+    document.body.classList.add('no-scroll');
+
+    return () => document.body.classList.remove('no-scroll');
+  }, []);
+
+  return (
+    <MainContainer>
+      <MainTitle>Take good care of your small pets</MainTitle>
+      <ImageContainer>
+        <ImageOne alt="Cute buldog" />
+        <ImageTwo alt="Cute dog" />
+        <ImageThree alt="Cute cat" />
+      </ImageContainer>
+    </MainContainer>
+  );
+};
 
 export default MainPage;

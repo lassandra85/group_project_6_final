@@ -1,30 +1,42 @@
-import React from 'react';
-
+import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import { navData } from './navData';
-import { List,Item,Link } from './Nav.styled';
 import { useLocation } from 'react-router';
-// import { useWindowSize } from 'hooks/useResize';
+import { useWindowSize } from 'hooks/useResize';
+import { List, Item, Link } from './Nav.styled';
 
+const Nav = ({ isOpen, setIsOpen }) => {
+  const { pathname } = useLocation();
+  const [screenWidth] = useWindowSize();
 
-const Nav = () => {
-  const {pathname} = useLocation();
+  useEffect(() => {
+    if (screenWidth >= 1280) setIsOpen(false);
+  }, [screenWidth, setIsOpen]);
 
-  const items = navData.map(({text,path})=>(
-    <Item key={text}>
-      <Link to ={path}
-         className={
+  const items = navData.map(({ text, path }) => (
+    <Item key={text} isOpen={isOpen}>
+      <Link
+        to={path}
+        onClick={() => setIsOpen(false)}
+        className={
           pathname.includes('notices') && path.includes('notices') && 'active'
         }
       >
         {text}
       </Link>
-      
     </Item>
-  ))
+  ));
 
   return (
-   <List>{items}</List>
+    <nav>
+      <List>{items}</List>
+    </nav>
   );
+};
+
+Nav.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  setIsOpen: PropTypes.func.isRequired,
 };
 
 export default Nav;

@@ -63,10 +63,7 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
 
-      .addCase(addMyPet.fulfilled, (state, { payload }) => {
-        
-        state.isLoading = false;
-      .addCase(addMyPet.fulfilled, (state) => {
+     .addCase(addMyPet.fulfilled, (state) => {
         state.isLoading=false;
       })
 

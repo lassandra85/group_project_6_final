@@ -13,8 +13,9 @@ import desktop3t2x from '../../image/main_img/3desktop2x.png'
 export const MainContainer  = styled.div`
   display: flex;
     flex-direction: column;
+    align-items: center;
     width:100%;
-    min-height: 100vh;
+   
     @media(min-width: 1280px){
         flex-direction: row; 
     }
