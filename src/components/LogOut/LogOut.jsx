@@ -44,8 +44,9 @@ const LogOut = () => {
        <>
           <div className={css.logout}>
         
-            <CiLogout size={24} fill="#54ADFF" />
             <button type="button" className={css.button} onClick = {handleLogOut} >
+              
+              <CiLogout size={24} fill="#54ADFF" />
               
               Log Out
             
